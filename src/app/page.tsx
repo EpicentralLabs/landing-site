@@ -198,26 +198,24 @@ export default function Home() {
                 What is Epicentral Labs?
               </h3>
               <p className="text-lg leading-relaxed text-white/70">
-              Epicentral Labs is a community-governed protocol focused on improving decentralized
-              finance (DeFi) infrastructure on Solana through program governance. The name "Epicentral" is
-              inspired by seismology, symbolizing the aim to be a focal point for innovation in finance and
-              blockchain development.
+                Epicentral Labs is a community-governed protocol focused on improving decentralized
+                finance (DeFi) infrastructure on <a href="https://solana.com/" className="text-[#4a85ff] hover:drop-shadow-[0_0_8px_#4a85ff] transition-all duration-300">Solana</a> through program governance. The name "Epicentral" is
+                inspired by seismology, symbolizing the aim to be a focal point for innovation in finance and
+                blockchain development.
               </p>
             </div>
           </div>
 
-          {/* Vision and Offerings Container */}
+          {/* Mission and Focuses Container */}
           <div className="bg-black/30 backdrop-blur-md border border-white/10 rounded-xl p-8 md:p-12">
             {/* Content */}
             <div className="space-y-12 text-center md:text-left">
               <div className="space-y-6">
                 <h3 className="text-2xl font-light text-white/90">
-                  Our Vision
+                  Our Mission
                 </h3>
                 <p className="text-lg leading-relaxed text-white/70">
-                  We envision a future where decentralized governance is accessible, efficient, and secure. Through innovative 
-                  technology and community collaboration, we're building the infrastructure needed to empower the next generation 
-                  of DeFi protocols.
+                  Our mission is to contribute to the value of the Solana ecosystem through open-source projects, collaboration, and innovation. Take a look at some of our below focuses:
                 </p>
               </div>
 
