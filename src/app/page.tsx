@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowRight, Wallet, Lock, Blocks } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col">
       {/* Top Navigation */}
-      <nav className="fixed top-0 w-full bg-background/80 backdrop-blur-sm border-b border-neutral-800 z-50">
+      <nav className="fixed top-0 w-full backdrop-blur-sm z-50">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
@@ -56,55 +56,64 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <main className="flex-1 pt-24">
-        <div className="container mx-auto px-4 py-20">
+      <main className="flex-1 flex items-center justify-center min-h-screen">
+        <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center space-y-8">
             <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
-              One-click for Asset{" "}
-              <span className="text-muted-foreground">Defense</span>
+              <span className="font-extralight drop-shadow-[0_0_0.3rem_#ffffff70]">
+                Shaping DeFi Through Governance
+              </span>
             </h1>
-            <p className="text-xl text-muted-foreground">
-              Dive into the art assets, where innovative blockchain technology meets financial expertise
-            </p>
             <div className="flex items-center justify-center gap-4">
-              <Button size="lg" className="px-8">
+              <Button 
+                size="lg" 
+                className="bg-[#FFFFFF] hover:bg-[#FFFFFF]/90 transition-all duration-300 
+                           hover:drop-shadow-[0_0_0.1rem_#FFFFFF]"
+              >
                 Open App
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
-              <Button size="lg" variant="outline" className="px-8">
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="transition-all duration-300 hover:drop-shadow-[0_0_0.3rem_#ffffff70]"
+              >
                 Discover More
               </Button>
             </div>
           </div>
         </div>
-
-        {/* Features Grid */}
-        <div className="container mx-auto px-4 py-12">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <Card className="bg-neutral-900/50 border-neutral-800">
-              <CardContent className="p-6 space-y-4">
-                <Wallet className="h-12 w-12 text-[#4a85ff]" />
-                <h3 className="text-xl font-semibold">Asset Management</h3>
-                <p className="text-muted-foreground">Secure and efficient handling of digital assets with advanced blockchain technology.</p>
-              </CardContent>
-            </Card>
-            <Card className="bg-neutral-900/50 border-neutral-800">
-              <CardContent className="p-6 space-y-4">
-                <Lock className="h-12 w-12 text-[#4a85ff]" />
-                <h3 className="text-xl font-semibold">Enhanced Security</h3>
-                <p className="text-muted-foreground">State-of-the-art protection for your digital assets with multi-layer security.</p>
-              </CardContent>
-            </Card>
-            <Card className="bg-neutral-900/50 border-neutral-800">
-              <CardContent className="p-6 space-y-4">
-                <Blocks className="h-12 w-12 text-[#4a85ff]" />
-                <h3 className="text-xl font-semibold">Smart Integration</h3>
-                <p className="text-muted-foreground">Seamless integration with multiple blockchain networks and protocols.</p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
       </main>
+
+      {/* Features Grid */}
+      <div className="container mx-auto px-4 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <Card className="bg-black/30 backdrop-blur-md border-neutral-800 hover:bg-black/40 transition-all duration-300">
+            <CardContent className="p-6 space-y-4">
+              <h3 className="text-xl font-semibold text-white/80">Asset Management</h3>
+              <p className="text-white/60">
+                Secure and efficient handling of digital assets with advanced blockchain technology.
+              </p>
+            </CardContent>
+          </Card>
+          <Card className="bg-black/30 backdrop-blur-md border-neutral-800 hover:bg-black/40 transition-all duration-300">
+            <CardContent className="p-6 space-y-4">
+              <h3 className="text-xl font-semibold text-white/80">Enhanced Security</h3>
+              <p className="text-white/60">
+                State-of-the-art protection for your digital assets with multi-layer security.
+              </p>
+            </CardContent>
+          </Card>
+          <Card className="bg-black/30 backdrop-blur-md border-neutral-800 hover:bg-black/40 transition-all duration-300">
+            <CardContent className="p-6 space-y-4">
+              <h3 className="text-xl font-semibold text-white/80">Smart Integration</h3>
+              <p className="text-white/60">
+                Seamless integration with multiple blockchain networks and protocols.
+              </p>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
 
       {/* Footer */}
       <footer className="border-t border-neutral-800 py-8">

@@ -26,5 +26,47 @@ body {
 @layer base {
   body {
     @apply bg-background text-foreground;
+    background-image: 
+      radial-gradient(circle at 20% 20%, rgba(74, 133, 255, 0.15) 0%, transparent 20%),
+      radial-gradient(circle at 50% 50%, rgba(74, 133, 255, 0.1) 0%, transparent 40%),
+      url('/WebPageBackground.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+    position: relative;
   }
+}
+
+/* Gradient animation */
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 70% 30%, rgba(74, 133, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 30% 70%, rgba(37, 37, 37, 0.05) 0%, transparent 20%);
+  animation: gradientMove 20s ease infinite;
+  pointer-events: none;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
 }
