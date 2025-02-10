@@ -50,7 +50,7 @@ export default function Home() {
                 className="bg-[#FFFFFF] hover:bg-[#FFFFFF]/90 transition-all duration-300 
                            hover:drop-shadow-[0_0_0.1rem_#FFFFFF] hover:scale-105"
               >
-                Launch App
+                Solana OPX
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </div>
@@ -184,38 +184,19 @@ export default function Home() {
       {/* About Section */}
       <div className="container mx-auto px-4 py-48">
         <div className="max-w-4xl mx-auto space-y-16">
-          {/* Gradient Divider */}
-          <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent blur-sm"></div>
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent"></div>
-            <div className="h-px w-full bg-gradient-to-r from-transparent via-white/20 to-transparent relative"></div>
-          </div>
-
-          {/* What is Epicentral Labs? Container */}
+          {/* Combined Info Container */}
           <div className="bg-black/30 backdrop-blur-md border border-white/10 rounded-xl p-8 md:p-12">
-            <div className="space-y-6 text-left">
-              <h3 className="text-2xl font-light text-white/90">
-                What is Epicentral Labs?
-              </h3>
-              <p className="text-lg leading-relaxed text-white/70">
-                Epicentral Labs is a community-governed protocol focused on improving decentralized
-                finance (DeFi) infrastructure on <a href="https://solana.com/" className="text-[#4a85ff] hover:drop-shadow-[0_0_8px_#4a85ff] transition-all duration-300">Solana</a> through program governance. The name "Epicentral" is
-                inspired by seismology, symbolizing the aim to be a focal point for innovation in finance and
-                blockchain development.
-              </p>
-            </div>
-          </div>
-
-          {/* Mission and Focuses Container */}
-          <div className="bg-black/30 backdrop-blur-md border border-white/10 rounded-xl p-8 md:p-12">
-            {/* Content */}
-            <div className="space-y-12 text-center md:text-left">
+            <div className="space-y-12 text-left">
+              {/* What is Epicentral Labs? */}
               <div className="space-y-6">
                 <h3 className="text-2xl font-light text-white/90">
-                  Our Mission
+                  What is Epicentral Labs?
                 </h3>
-                <p className="text-lg leading-relaxed text-white/70">
-                  Our mission is to contribute to the value of the Solana ecosystem through open-source projects, collaboration, and innovation. Take a look at some of our below focuses:
+                <p className="text-base leading-relaxed text-white/70">
+                  Epicentral Labs is a community-governed protocol focused on improving decentralized
+                  finance (DeFi) infrastructure on <a href="https://solana.com/" className="text-[#4a85ff] hover:drop-shadow-[0_0_8px_#4a85ff] transition-all duration-300">Solana</a> through program governance. The name "Epicentral" is
+                  inspired by seismology, symbolizing the aim to be a focal point for innovation in finance and
+                  blockchain development.
                 </p>
               </div>
 
@@ -226,112 +207,126 @@ export default function Home() {
                 <div className="h-px w-full bg-gradient-to-r from-transparent via-white/20 to-transparent relative"></div>
               </div>
 
+              {/* Our Mission */}
               <div className="space-y-6">
                 <h3 className="text-2xl font-light text-white/90">
-                  What We Offer
+                  Our Mission
                 </h3>
-                <div className="grid md:grid-cols-2 gap-6">
-                  {/* Governance Framework Card */}
-                  <div 
-                    className="group bg-black/30 hover:bg-black/40 backdrop-blur-md border border-white/10 
-                             hover:border-white/20 rounded-xl transition-all duration-300 cursor-pointer"
-                    tabIndex={0}
-                  >
-                    <div className="flex justify-between items-center p-6">
-                      <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center">
-                          <ArrowDown className="h-5 w-5 text-white/70 transition-transform duration-300 
-                                               group-focus:-rotate-180 group-hover:text-white/90" />
-                        </div>
-                        <h4 className="text-xl font-medium text-white/90 group-hover:text-white">Governance Framework</h4>
+                <p className="text-base leading-relaxed text-white/70">
+                  Our goal is to expand decentralized finance capabilities by developing innovative financial derivatives through governance mechanisms.
+                  Through collaboration with existing protocols and the development of new solutions, we create integrable tools for the Solana DeFi ecosystem.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Focuses Container */}
+          <div className="bg-black/30 backdrop-blur-md border border-white/10 rounded-xl p-8 md:p-12">
+            <div className="space-y-6">
+              <h3 className="text-2xl font-light text-white/90">
+                Our Focuses
+              </h3>
+              <div className="grid md:grid-cols-2 gap-6">
+                {/* Governance Framework Card */}
+                <div 
+                  className="group bg-black/30 hover:bg-black/40 backdrop-blur-md border border-white/10 
+                           hover:border-white/20 rounded-xl transition-all duration-300 cursor-pointer"
+                  tabIndex={0}
+                >
+                  <div className="flex justify-between items-center p-6">
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center">
+                        <ArrowDown className="h-5 w-5 text-white/70 transition-transform duration-300 
+                                             group-focus:-rotate-180 group-hover:text-white/90" />
                       </div>
-                    </div>
-                    <div className="overflow-hidden transition-all duration-500 ease-in-out max-h-0 group-focus:max-h-[300px]">
-                      <div className="p-6 pt-0 text-white/70 group-hover:text-white/80 space-y-4">
-                        <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
-                        <p className="leading-relaxed">
-                          Advanced voting mechanisms and proposal systems designed to streamline decision-making processes in DAOs and DeFi protocols.
-                          Our framework includes customizable voting parameters, delegation systems, and transparent execution of passed proposals.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  {/* Security Card */}
-                  <div 
-                    className="group bg-black/30 hover:bg-black/40 backdrop-blur-md border border-white/10 
-                             hover:border-white/20 rounded-xl transition-all duration-300 cursor-pointer"
-                    tabIndex={0}
-                  >
-                    <div className="flex justify-between items-center p-6">
-                      <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center">
-                          <ArrowDown className="h-5 w-5 text-white/70 transition-transform duration-300 
-                                               group-focus:-rotate-180 group-hover:text-white/90" />
-                        </div>
-                        <h4 className="text-xl font-medium text-white/90 group-hover:text-white">Security</h4>
-                      </div>
-                    </div>
-                    <div className="overflow-hidden transition-all duration-500 ease-in-out max-h-0 group-focus:max-h-[300px]">
-                      <div className="p-6 pt-0 text-white/70 group-hover:text-white/80 space-y-4">
-                        <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
-                        <p className="leading-relaxed">
-                          Battle-tested smart contracts and multi-layer security measures ensuring the safety of governance processes and assets.
-                          Including audit-ready code, time-locks, and multi-signature capabilities for critical operations.
-                        </p>
-                      </div>
+                      <h4 className="text-xl font-medium text-white/90 group-hover:text-white">Governance Framework</h4>
                     </div>
                   </div>
-                  
-                  {/* Integration Card */}
-                  <div 
-                    className="group bg-black/30 hover:bg-black/40 backdrop-blur-md border border-white/10 
-                             hover:border-white/20 rounded-xl transition-all duration-300 cursor-pointer"
-                    tabIndex={0}
-                  >
-                    <div className="flex justify-between items-center p-6">
-                      <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center">
-                          <ArrowDown className="h-5 w-5 text-white/70 transition-transform duration-300 
-                                               group-focus:-rotate-180 group-hover:text-white/90" />
-                        </div>
-                        <h4 className="text-xl font-medium text-white/90 group-hover:text-white">Integration</h4>
-                      </div>
-                    </div>
-                    <div className="overflow-hidden transition-all duration-500 ease-in-out max-h-0 group-focus:max-h-[300px]">
-                      <div className="p-6 pt-0 text-white/70 group-hover:text-white/80 space-y-4">
-                        <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
-                        <p className="leading-relaxed">
-                          Seamless integration capabilities with existing DeFi protocols, making it easy to implement governance solutions.
-                          Featuring standardized interfaces, comprehensive documentation, and developer support for quick implementation.
-                        </p>
-                      </div>
+                  <div className="overflow-hidden transition-all duration-500 ease-in-out max-h-0 group-focus:max-h-[300px]">
+                    <div className="p-6 pt-0 text-white/70 group-hover:text-white/80 space-y-4">
+                      <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+                      <p className="leading-relaxed">
+                        Advanced voting mechanisms and proposal systems designed to streamline decision-making processes in DAOs and DeFi protocols.
+                        Our framework includes customizable voting parameters, delegation systems, and transparent execution of passed proposals.
+                      </p>
                     </div>
                   </div>
-                  
-                  {/* Community Tools Card */}
-                  <div 
-                    className="group bg-black/30 hover:bg-black/40 backdrop-blur-md border border-white/10 
-                             hover:border-white/20 rounded-xl transition-all duration-300 cursor-pointer"
-                    tabIndex={0}
-                  >
-                    <div className="flex justify-between items-center p-6">
-                      <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center">
-                          <ArrowDown className="h-5 w-5 text-white/70 transition-transform duration-300 
-                                               group-focus:-rotate-180 group-hover:text-white/90" />
-                        </div>
-                        <h4 className="text-xl font-medium text-white/90 group-hover:text-white">Community Tools</h4>
+                </div>
+                
+                {/* Security Card */}
+                <div 
+                  className="group bg-black/30 hover:bg-black/40 backdrop-blur-md border border-white/10 
+                           hover:border-white/20 rounded-xl transition-all duration-300 cursor-pointer"
+                  tabIndex={0}
+                >
+                  <div className="flex justify-between items-center p-6">
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center">
+                        <ArrowDown className="h-5 w-5 text-white/70 transition-transform duration-300 
+                                             group-focus:-rotate-180 group-hover:text-white/90" />
                       </div>
+                      <h4 className="text-xl font-medium text-white/90 group-hover:text-white">Security</h4>
                     </div>
-                    <div className="overflow-hidden transition-all duration-500 ease-in-out max-h-0 group-focus:max-h-[300px]">
-                      <div className="p-6 pt-0 text-white/70 group-hover:text-white/80 space-y-4">
-                        <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
-                        <p className="leading-relaxed">
-                          Comprehensive suite of community management tools empowering DAOs to effectively coordinate and grow their ecosystems.
-                          Including analytics dashboards, communication channels, and reputation systems.
-                        </p>
+                  </div>
+                  <div className="overflow-hidden transition-all duration-500 ease-in-out max-h-0 group-focus:max-h-[300px]">
+                    <div className="p-6 pt-0 text-white/70 group-hover:text-white/80 space-y-4">
+                      <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+                      <p className="leading-relaxed">
+                        Battle-tested smart contracts and multi-layer security measures ensuring the safety of governance processes and assets.
+                        Including audit-ready code, time-locks, and multi-signature capabilities for critical operations.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Integration Card */}
+                <div 
+                  className="group bg-black/30 hover:bg-black/40 backdrop-blur-md border border-white/10 
+                           hover:border-white/20 rounded-xl transition-all duration-300 cursor-pointer"
+                  tabIndex={0}
+                >
+                  <div className="flex justify-between items-center p-6">
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center">
+                        <ArrowDown className="h-5 w-5 text-white/70 transition-transform duration-300 
+                                             group-focus:-rotate-180 group-hover:text-white/90" />
                       </div>
+                      <h4 className="text-xl font-medium text-white/90 group-hover:text-white">Integration</h4>
+                    </div>
+                  </div>
+                  <div className="overflow-hidden transition-all duration-500 ease-in-out max-h-0 group-focus:max-h-[300px]">
+                    <div className="p-6 pt-0 text-white/70 group-hover:text-white/80 space-y-4">
+                      <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+                      <p className="leading-relaxed">
+                        Seamless integration capabilities with existing DeFi protocols, making it easy to implement governance solutions.
+                        Featuring standardized interfaces, comprehensive documentation, and developer support for quick implementation.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Community Tools Card */}
+                <div 
+                  className="group bg-black/30 hover:bg-black/40 backdrop-blur-md border border-white/10 
+                           hover:border-white/20 rounded-xl transition-all duration-300 cursor-pointer"
+                  tabIndex={0}
+                >
+                  <div className="flex justify-between items-center p-6">
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center">
+                        <ArrowDown className="h-5 w-5 text-white/70 transition-transform duration-300 
+                                             group-focus:-rotate-180 group-hover:text-white/90" />
+                      </div>
+                      <h4 className="text-xl font-medium text-white/90 group-hover:text-white">Community Tools</h4>
+                    </div>
+                  </div>
+                  <div className="overflow-hidden transition-all duration-500 ease-in-out max-h-0 group-focus:max-h-[300px]">
+                    <div className="p-6 pt-0 text-white/70 group-hover:text-white/80 space-y-4">
+                      <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+                      <p className="leading-relaxed">
+                        Comprehensive suite of community management tools empowering DAOs to effectively coordinate and grow their ecosystems.
+                        Including analytics dashboards, communication channels, and reputation systems.
+                      </p>
                     </div>
                   </div>
                 </div>
