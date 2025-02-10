@@ -70,3 +70,39 @@ body::before {
   max-width: 1200px;
   margin: 0 auto;
 }
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+  transition: all 0.2s ease;
+}
+
+/* Hide scrollbar when inactive */
+body {
+  scrollbar-gutter: stable;
+}
+
+body:not(:hover)::-webkit-scrollbar-thumb {
+  opacity: 0;
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+}
+
+/* Optional: Add smooth scrolling to the page */
+html {
+  scroll-behavior: smooth;
+}

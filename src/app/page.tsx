@@ -8,11 +8,11 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col">
       {/* Top Navigation */}
-      <nav className="fixed top-0 w-full backdrop-blur-sm z-50">
+      <nav className="w-full backdrop-blur-sm z-50 bg-black/20">
         <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-16">
+          <div className="flex items-center h-16">
             {/* Logo */}
-            <div className="w-[200px] flex items-center gap-2">
+            <div className="flex-1">
               <Link href="/" className="flex items-center gap-2 whitespace-nowrap">
                 <Image 
                   src="/EpicentralLogo.png"
@@ -28,7 +28,7 @@ export default function Home() {
             </div>
             
             {/* Centered navigation links */}
-            <div className="flex items-center space-x-8">
+            <div className="absolute left-1/2 transform -translate-x-1/2 flex items-center space-x-8">
               <Link 
                 href="/"
                 className="text-sm font-medium opacity-60 hover:opacity-100 transition-all hover:drop-shadow-[0_0_0.3rem_#ffffff70] duration-300"
@@ -44,7 +44,7 @@ export default function Home() {
             </div>
             
             {/* Launch App button */}
-            <div className="w-[100px] flex justify-end">
+            <div className="flex-1 flex justify-end">
               <Button 
                 size="sm" 
                 className="bg-[#FFFFFF] hover:bg-[#FFFFFF]/90 transition-all duration-300 
@@ -59,9 +59,9 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <main className="flex-1 flex items-center justify-center min-h-screen">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center space-y-8">
+      <main className="flex-1 flex items-center justify-center min-h-[80vh] pt-32">
+        <div className="container mx-auto px-4 flex flex-col items-center">
+          <div className="max-w-3xl w-full text-center space-y-8">
             <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
               <span className="font-extralight drop-shadow-[0_0_0.3rem_#ffffff70]">
                 Shaping DeFi Through Governance
@@ -82,12 +82,107 @@ export default function Home() {
                 Learn More
               </Button>
             </div>
+            {/* Gradient Divider */}
+            <div className="relative mt-16 w-full">
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent blur-sm"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent"></div>
+              <div className="h-px w-full bg-gradient-to-r from-transparent via-white/20 to-transparent relative"></div>
+            </div>
+            
+            {/* Partners Section */}
+            <div className="mt-16 w-full">
+              <div className="max-w-4xl mx-auto">
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4 place-items-center">
+                  <div className="text-white/50 hover:text-white/80 transition-colors duration-300">
+                    <Image 
+                      src="/1.png"
+                      alt="Partner Logo 1"
+                      width={180}
+                      height={60}
+                      className="object-contain opacity-50 hover:opacity-100 transition-opacity duration-300"
+                    />
+                  </div>
+                  <div className="text-white/50 hover:text-white/80 transition-colors duration-300">
+                    <Image 
+                      src="/2.png"
+                      alt="Partner Logo 2"
+                      width={180}
+                      height={60}
+                      className="object-contain opacity-50 hover:opacity-100 transition-opacity duration-300"
+                    />
+                  </div>
+                  <div className="text-white/50 hover:text-white/80 transition-colors duration-300">
+                    <Image 
+                      src="/3.png"
+                      alt="Partner Logo 3"
+                      width={180}
+                      height={60}
+                      className="object-contain opacity-50 hover:opacity-100 transition-opacity duration-300"
+                    />
+                  </div>
+                  <div className="text-white/50 hover:text-white/80 transition-colors duration-300">
+                    <Image 
+                      src="/4.png"
+                      alt="Partner Logo 4"
+                      width={180}
+                      height={60}
+                      className="object-contain opacity-50 hover:opacity-100 transition-opacity duration-300"
+                    />
+                  </div>
+                  <div className="text-white/50 hover:text-white/80 transition-colors duration-300">
+                    <Image 
+                      src="/5.png"
+                      alt="Partner Logo 5"
+                      width={180}
+                      height={60}
+                      className="object-contain opacity-50 hover:opacity-100 transition-opacity duration-300"
+                    />
+                  </div>
+                  <div className="text-white/50 hover:text-white/80 transition-colors duration-300">
+                    <Image 
+                      src="/6.png"
+                      alt="Partner Logo 6"
+                      width={180}
+                      height={60}
+                      className="object-contain opacity-50 hover:opacity-100 transition-opacity duration-300"
+                    />
+                  </div>
+                  <div className="text-white/50 hover:text-white/80 transition-colors duration-300">
+                    <Image 
+                      src="/7.png"
+                      alt="Partner Logo 7"
+                      width={180}
+                      height={60}
+                      className="object-contain opacity-50 hover:opacity-100 transition-opacity duration-300"
+                    />
+                  </div>
+                  <div className="text-white/50 hover:text-white/80 transition-colors duration-300">
+                    <Image 
+                      src="/8.png"
+                      alt="Partner Logo 8"
+                      width={180}
+                      height={60}
+                      className="object-contain opacity-50 hover:opacity-100 transition-opacity duration-300"
+                    />
+                  </div>
+                  <div className="text-white/50 hover:text-white/80 transition-colors duration-300">
+                    <Image 
+                      src="/9.png"
+                      alt="Partner Logo 9"
+                      width={180}
+                      height={60}
+                      className="object-contain opacity-50 hover:opacity-100 transition-opacity duration-300"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </main>
 
       {/* About Section */}
-      <div className="container mx-auto px-4 py-32">
+      <div className="container mx-auto px-4 py-48">
         <div className="max-w-4xl mx-auto space-y-16">
           {/* Gradient Divider */}
           <div className="relative">
@@ -103,9 +198,10 @@ export default function Home() {
                 What is Epicentral Labs?
               </h3>
               <p className="text-lg leading-relaxed text-white/70">
-                Epicentral Labs is pioneering the future of decentralized governance, providing cutting-edge solutions 
-                for DeFi protocols and DAOs. Our platform enables seamless decision-making and community-driven development 
-                in the blockchain ecosystem.
+              Epicentral Labs is a community-governed protocol focused on improving decentralized
+              finance (DeFi) infrastructure on Solana through program governance. The name "Epicentral" is
+              inspired by seismology, symbolizing the aim to be a focal point for innovation in finance and
+              blockchain development.
               </p>
             </div>
           </div>
