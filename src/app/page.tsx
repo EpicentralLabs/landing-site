@@ -1,3 +1,5 @@
+"use client"
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight, ArrowDown } from "lucide-react";
@@ -11,6 +13,13 @@ import {
 } from "@/components/ui/accordion"
 
 export default function Home() {
+  const scrollToAbout = () => {
+    document.getElementById('about-section')?.scrollIntoView({ 
+      behavior: 'smooth',
+      block: 'start'
+    });
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       {/* Top Navigation */}
@@ -54,7 +63,7 @@ export default function Home() {
               <Button 
                 size="sm" 
                 className="bg-[#FFFFFF] hover:bg-[#FFFFFF]/90 transition-all duration-300 
-                           hover:drop-shadow-[0_0_0.1rem_#FFFFFF] hover:scale-105"
+                           hover:drop-shadow-[0_0_0.1rem_#FFFFFF] hover:scale-95"
               >
                 Solana OPX
                 <ArrowRight className="ml-2 h-4 w-4" />
@@ -76,7 +85,8 @@ export default function Home() {
             <div className="flex items-center justify-center gap-4">
               <Button 
                 size="lg" 
-                className="bg-[#FFFFFF] hover:bg-[#FFFFFF]/90 transition-all duration-300"
+                className="bg-[#FFFFFF] hover:bg-[#FFFFFF]/90 transition-all duration-300 
+                           hover:scale-95"
               >
                 Solana OPX
               </Button>
@@ -84,6 +94,7 @@ export default function Home() {
                 size="lg" 
                 variant="outline" 
                 className="transition-all duration-300"
+                onClick={scrollToAbout}
               >
                 Learn More
               </Button>
@@ -188,10 +199,10 @@ export default function Home() {
       </main>
 
       {/* About Section */}
-      <div className="container mx-auto px-4 py-48">
+      <div id="about-section" className="container mx-auto px-4 py-48">
         <div className="max-w-4xl mx-auto space-y-16">
           {/* Combined Info Container */}
-          <div className="bg-black/30 backdrop-blur-md border border-white/10 rounded-xl p-8 md:p-12">
+          <div className="bg-black/30 backdrop-blur-md border border-white/10 rounded-xl p-8 md:p-12 mb-4">
             <div className="space-y-12 text-left">
               {/* What is Epicentral Labs? */}
               <div className="space-y-6">
@@ -200,10 +211,20 @@ export default function Home() {
                 </h3>
                 <p className="text-base leading-relaxed text-white/70">
                   Epicentral Labs is a community-governed protocol focused on improving decentralized
-                  finance (DeFi) infrastructure on <a href="https://solana.com/" className="text-[#4a85ff] hover:drop-shadow-[0_0_8px_#4a85ff] transition-all duration-300">Solana</a> through program governance. The name "Epicentral" is
+                  finance (DeFi) infrastructure on <a href="https://solana.com/" className="text-[#4a85ff] hover:drop-shadow-[0_0_8px_#4a85ff] transition-all duration-300">Solana</a> through program governance and powered by the <span className="text-[#4a85ff]">$LABS</span> token. The name "Epicentral" is
                   inspired by seismology, symbolizing the aim to be a focal point for innovation in finance and
                   blockchain development.
                 </p>
+                <div className="flex items-center">
+                  <Button 
+                    size="sm"
+                    variant="secondary"
+                    className="bg-white/10 hover:bg-white/20 text-white transition-all duration-300 
+                              hover:drop-shadow-[0_0_0.1rem_rgba(255,255,255,0.3)] hover:scale-95 px-4"
+                  >
+                    Read Whitepaper
+                  </Button>
+                </div>
               </div>
 
               {/* Gradient Divider */}
@@ -222,6 +243,17 @@ export default function Home() {
                   Our goal is to expand decentralized finance capabilities by developing innovative financial derivatives through governance mechanisms.
                   Through collaboration with existing protocols and the development of new solutions, we create integrable tools for the Solana DeFi ecosystem.
                 </p>
+                <div className="flex items-center">
+                  <Button 
+                    size="sm"
+                    variant="secondary"
+                    className="bg-white/10 hover:bg-white/20 text-white transition-all duration-300 
+                              hover:drop-shadow-[0_0_0.1rem_rgba(255,255,255,0.3)] hover:scale-95 px-4"
+                  >
+                    Roadmap
+                    <ArrowRight className="ml-0 h-4 w-4" />
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
@@ -242,14 +274,25 @@ export default function Home() {
                       </div>
                       <h4 className="text-xl font-medium text-white/90 transition-all duration-300 
                                     group-hover:text-white group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
-                        Governance Framework
+                        Solana OPX
                       </h4>
                     </div>
                   </AccordionTrigger>
                   <AccordionContent className="text-white/70">
-                    <div className="pt-4 leading-relaxed">
-                      Advanced voting mechanisms and proposal systems designed to streamline decision-making processes in DAOs and DeFi protocols.
-                      Our framework includes customizable voting parameters, delegation systems, and transparent execution of passed proposals.
+                    <div className="pt-4 leading-relaxed space-y-4">
+                      <p>
+                        Solana's First Decentralized Options Exchange. Allowing for traders to hedge, speculate, and diversify their portfolios. 
+                      </p>
+                      <div className="flex items-center">
+                        <Button 
+                          size="sm"
+                          className="bg-[#FFFFFF] hover:bg-[#FFFFFF]/90 text-black transition-all duration-300 
+                                     hover:drop-shadow-[0_0_0.1rem_#FFFFFF] hover:scale-95 px-4"
+                        >
+                          Trade Now
+                          <ArrowRight className="ml-0 h-4 w-4" />
+                        </Button>
+                      </div>
                     </div>
                   </AccordionContent>
                 </AccordionItem>
@@ -263,14 +306,24 @@ export default function Home() {
                       </div>
                       <h4 className="text-xl font-medium text-white/90 transition-all duration-300 
                                     group-hover:text-white group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
-                        Security
+                        Option Programs
                       </h4>
                     </div>
                   </AccordionTrigger>
                   <AccordionContent className="text-white/70">
                     <div className="pt-4 leading-relaxed">
-                      Battle-tested smart contracts and multi-layer security measures ensuring the safety of governance processes and assets.
-                      Including audit-ready code, time-locks, and multi-signature capabilities for critical operations.
+                      For option contracts to exist on Solana, on-chain programs validate the creation of new option contracts and the settlement of existing ones. 
+                      Ensuring that all options are accurately priced and settled fairly.
+                      <div className="flex items-center mt-4">
+                        <Button 
+                          size="sm"
+                          className="bg-[#FFFFFF] hover:bg-[#FFFFFF]/90 text-black transition-all duration-300 
+                                     hover:drop-shadow-[0_0_0.1rem_#FFFFFF] hover:scale-95 px-4"
+                        >
+                          Read Docs
+                          <ArrowRight className="ml-0 h-4 w-4" />
+                        </Button>
+                      </div>
                     </div>
                   </AccordionContent>
                 </AccordionItem>
@@ -284,14 +337,23 @@ export default function Home() {
                       </div>
                       <h4 className="text-xl font-medium text-white/90 transition-all duration-300 
                                     group-hover:text-white group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
-                        Integration
+                        Solana Options Standard SDK
                       </h4>
                     </div>
                   </AccordionTrigger>
                   <AccordionContent className="text-white/70">
                     <div className="pt-4 leading-relaxed">
-                      Seamless integration capabilities with existing DeFi protocols, making it easy to implement governance solutions.
-                      Featuring standardized interfaces, comprehensive documentation, and developer support for quick implementation.
+                      An open source program development kit (SDK) consisting of different libraries, modules, and pre-made mathematical derivative functions that allow developers to build or implement custom or standardized option contracts on Solana.
+                      <div className="flex items-center mt-4">
+                        <Button 
+                          size="sm"
+                          className="bg-[#FFFFFF] hover:bg-[#FFFFFF]/90 text-black transition-all duration-300 
+                                     hover:drop-shadow-[0_0_0.1rem_#FFFFFF] hover:scale-95 px-4"
+                        >
+                          GitHub
+                          <ArrowRight className="ml-0 h-4 w-4" />
+                        </Button>
+                      </div>
                     </div>
                   </AccordionContent>
                 </AccordionItem>
@@ -305,39 +367,29 @@ export default function Home() {
                       </div>
                       <h4 className="text-xl font-medium text-white/90 transition-all duration-300 
                                     group-hover:text-white group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
-                        Community Tools
+                        Epicentral DAO
                       </h4>
                     </div>
                   </AccordionTrigger>
                   <AccordionContent className="text-white/70">
                     <div className="pt-4 leading-relaxed">
-                      Comprehensive suite of community management tools empowering DAOs to effectively coordinate and grow their ecosystems.
-                      Including analytics dashboards, communication channels, and reputation systems.
+                      Short for "Decentralized Autonomous Organization", is considered a shared treasury or bank account and is stored on the blockchain. This is the governing body of the Epicentral Labs Protocol. 
+                      The Epicentral DAO is strictly community-driven, where members can propose and vote on changes to the protocol using the <span className="text-[#4a85ff]">$LABS</span> token.
+                      <div className="flex items-center mt-4">
+                        <Button 
+                          size="sm"
+                          className="bg-[#FFFFFF] hover:bg-[#FFFFFF]/90 text-black transition-all duration-300 
+                                     hover:drop-shadow-[0_0_0.1rem_#FFFFFF] hover:scale-95 px-4"
+                        >
+                          Join DAO
+                          <ArrowRight className="ml-0 h-4 w-4" />
+                        </Button>
+                      </div>
                     </div>
                   </AccordionContent>
                 </AccordionItem>
               </Accordion>
             </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Network Graph Section */}
-      <div className="container mx-auto px-4 py-16">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-8">
-            <h2 className="text-2xl md:text-3xl font-light mb-4 drop-shadow-[0_0_0.3rem_#ffffff70]">
-              Explore our Network
-            </h2>
-          </div>
-          
-          <div className="w-full aspect-[16/9] rounded-xl overflow-hidden border border-white/10">
-            <iframe
-              src="https://widget.vybenetwork.com/network-graph?address=LABSh5DTebUcUbEoLzXKCiXFJLecDFiDWiBGUU1GpxR&entity=token&connectionNode=program"
-              title="vybe-network-graph"
-              allow="clipboard-write"
-              className="w-full h-full"
-            ></iframe>
           </div>
         </div>
       </div>
