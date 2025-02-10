@@ -139,3 +139,46 @@ body:not(:hover)::-webkit-scrollbar-thumb {
 html {
   scroll-behavior: smooth;
 }
+
+/* Add these new styles at the end of the file */
+@layer utilities {
+  /* Mobile menu transition */
+  .mobile-menu-enter {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  
+  .mobile-menu-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 200ms, transform 200ms;
+  }
+  
+  .mobile-menu-exit {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .mobile-menu-exit-active {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 200ms, transform 200ms;
+  }
+}
+
+/* Ensure content doesn't shift when scrollbar appears */
+html {
+  scrollbar-gutter: stable;
+}
+
+/* Additional mobile optimizations */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+  
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
