@@ -560,14 +560,16 @@ export default function Home() {
                       Short for &ldquo;Decentralized Autonomous Organization&rdquo;, is considered a shared treasury or bank account and is stored on the blockchain. This is the governing body of the Epicentral Labs Protocol. 
                       The Epicentral DAO is strictly community-driven, where members can propose and vote on changes to the protocol using the <span className="text-[#4a85ff]">$LABS</span> token.
                       <div className="flex items-center mt-4">
-                        <Button 
-                          size="sm"
-                          className="bg-[#FFFFFF] hover:bg-[#FFFFFF]/90 text-black transition-all duration-300 
-                                     hover:drop-shadow-[0_0_0.1rem_#FFFFFF] hover:scale-95 px-4"
-                        >
-                          Join DAO
-                          <ArrowRight className="ml-0 h-4 w-4" />
-                        </Button>
+                        <Link href="/dao">
+                          <Button 
+                            size="sm"
+                            className="bg-[#FFFFFF] hover:bg-[#FFFFFF]/90 text-black transition-all duration-300 
+                                       hover:drop-shadow-[0_0_0.1rem_#FFFFFF] hover:scale-95 px-4"
+                          >
+                            Join DAO
+                            <ArrowRight className="ml-0 h-4 w-4" />
+                          </Button>
+                        </Link>
                       </div>
                     </div>
                   </AccordionContent>
