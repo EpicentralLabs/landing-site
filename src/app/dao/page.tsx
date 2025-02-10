@@ -15,11 +15,19 @@ import Footer from "@/components/footer";
 import { Bar, BarChart, Line, LineChart, XAxis, YAxis, ResponsiveContainer, Tooltip } from "recharts"
 import { useState } from "react"
 
-// Function to format numbers with k/m suffix
+// Function to format numbers with k/m suffix (rounded to nearest thousand)
 const formatValue = (value: number) => {
-  if (value >= 1000000) return `${(value / 1000000).toFixed(1)}m`
-  if (value >= 1000) return `${(value / 1000).toFixed(1)}k`
-  return value.toFixed(1)
+  if (value >= 1000000) return `${Math.round(value / 1000000)}m`
+  if (value >= 1000) return `${Math.round(value / 1000)}k`
+  return Math.round(value).toString()
+}
+
+// Function to format current value with 2 decimal places
+const formatCurrentValue = (value: number) => {
+  return value.toLocaleString('en-US', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  })
 }
 
 // Add YTD data
@@ -84,7 +92,7 @@ export default function DAOPage() {
           <div className="max-w-2xl space-y-8 text-center lg:text-left">
             <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
               <span className="font-extralight drop-shadow-[0_0_0.3rem_#ffffff70]">
-                Epicentral DAO
+                Epicentral<strong>DAO</strong>
               </span>
             </h1>
             <p className="text-xl text-white/70">
@@ -102,9 +110,22 @@ export default function DAOPage() {
                 size="lg" 
                 variant="outline" 
                 className="transition-all duration-300"
+                onClick={() => {
+                  document.getElementById('active-proposals')?.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'center'
+                  });
+                }}
               >
                 View Proposals
               </Button>
+            </div>
+
+            {/* Gradient Divider */}
+            <div className="relative w-full">
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent blur-sm"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent"></div>
+              <div className="h-px w-full bg-gradient-to-r from-transparent via-white/20 to-transparent relative"></div>
             </div>
           </div>
 
@@ -114,7 +135,9 @@ export default function DAOPage() {
               <div className="flex justify-between items-center mb-4">
                 <div>
                   <h3 className="text-xl font-medium text-white/90">Treasury Value</h3>
-                  <p className="text-sm text-white/50">Current: ${getCurrentTreasury(timeRange === 'AT' ? allTimeData : ytdData)}</p>
+                  <p className="text-sm text-white/50">
+                    Current: ${formatCurrentValue(timeRange === 'AT' ? allTimeData[allTimeData.length - 1].treasury : ytdData[ytdData.length - 1].treasury)}
+                  </p>
                 </div>
                 <div className="flex gap-2">
                   <Button
@@ -181,16 +204,18 @@ export default function DAOPage() {
       <section className="container mx-auto px-4 py-40">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
           {/* Active Proposals Container */}
-          <div className="bg-black/30 backdrop-blur-md border border-white/10 rounded-xl p-4 lg:p-8">
+          <div id="active-proposals" className="bg-black/30 backdrop-blur-md border border-white/10 rounded-xl p-4 lg:p-8">
             <div className="flex justify-between items-center mb-4">
               <h3 className="text-xl font-medium text-white/90">Active Proposals</h3>
-              <Button
-                variant="ghost"
-                size="sm"
-                className="h-8 px-3 text-xs font-medium"
-              >
-                View All
-              </Button>
+              <Link href="https://app.realms.today/dao/LABS">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="h-8 px-3 text-xs font-medium"
+                >
+                  View All
+                </Button>
+              </Link>
             </div>
             
             <div className="space-y-3">
