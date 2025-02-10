@@ -11,6 +11,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion"
 import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
 
 export default function DAOPage() {
   return (
@@ -172,6 +173,8 @@ export default function DAOPage() {
           </div>
         </div>
       </div>
+
+      <Footer />
     </div>
   );
 } 
