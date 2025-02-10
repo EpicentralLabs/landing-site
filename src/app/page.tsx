@@ -258,7 +258,7 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <main className="flex-1 flex items-center justify-center min-h-[80vh] pt-32">
+      <main className="flex-1 flex items-center justify-center min-h-[80vh] pt-48">
         <div className="container mx-auto px-4 flex flex-col items-center">
           <div className="max-w-3xl w-full text-center space-y-8">
             <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
