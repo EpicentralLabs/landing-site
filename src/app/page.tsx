@@ -3,6 +3,12 @@ import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight, ArrowDown } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
 
 export default function Home() {
   return (
@@ -226,111 +232,91 @@ export default function Home() {
               <h3 className="text-2xl font-light text-white/90">
                 Our Focuses
               </h3>
-              <div className="grid md:grid-cols-2 gap-6">
-                {/* Governance Framework Card */}
-                <div 
-                  className="group bg-black/30 hover:bg-black/40 backdrop-blur-md border border-white/10 
-                           hover:border-white/20 rounded-xl transition-all duration-300 cursor-pointer"
-                  tabIndex={0}
-                >
-                  <div className="flex justify-between items-center p-6">
+              <Accordion type="single" collapsible className="w-full space-y-2">
+                <AccordionItem value="governance" className="border-white/10">
+                  <AccordionTrigger className="hover:no-underline group">
                     <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center">
+                      <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center transition-all duration-300">
                         <ArrowDown className="h-5 w-5 text-white/70 transition-transform duration-300 
-                                             group-focus:-rotate-180 group-hover:text-white/90" />
+                                           group-hover:text-white" />
                       </div>
-                      <h4 className="text-xl font-medium text-white/90 group-hover:text-white">Governance Framework</h4>
+                      <h4 className="text-xl font-medium text-white/90 transition-all duration-300 
+                                    group-hover:text-white group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
+                        Governance Framework
+                      </h4>
                     </div>
-                  </div>
-                  <div className="overflow-hidden transition-all duration-500 ease-in-out max-h-0 group-focus:max-h-[300px]">
-                    <div className="p-6 pt-0 text-white/70 group-hover:text-white/80 space-y-4">
-                      <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
-                      <p className="leading-relaxed">
-                        Advanced voting mechanisms and proposal systems designed to streamline decision-making processes in DAOs and DeFi protocols.
-                        Our framework includes customizable voting parameters, delegation systems, and transparent execution of passed proposals.
-                      </p>
+                  </AccordionTrigger>
+                  <AccordionContent className="text-white/70">
+                    <div className="pt-4 leading-relaxed">
+                      Advanced voting mechanisms and proposal systems designed to streamline decision-making processes in DAOs and DeFi protocols.
+                      Our framework includes customizable voting parameters, delegation systems, and transparent execution of passed proposals.
                     </div>
-                  </div>
-                </div>
-                
-                {/* Security Card */}
-                <div 
-                  className="group bg-black/30 hover:bg-black/40 backdrop-blur-md border border-white/10 
-                           hover:border-white/20 rounded-xl transition-all duration-300 cursor-pointer"
-                  tabIndex={0}
-                >
-                  <div className="flex justify-between items-center p-6">
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="security" className="border-white/10">
+                  <AccordionTrigger className="hover:no-underline group">
                     <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center">
+                      <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center transition-all duration-300">
                         <ArrowDown className="h-5 w-5 text-white/70 transition-transform duration-300 
-                                             group-focus:-rotate-180 group-hover:text-white/90" />
+                                           group-hover:text-white" />
                       </div>
-                      <h4 className="text-xl font-medium text-white/90 group-hover:text-white">Security</h4>
+                      <h4 className="text-xl font-medium text-white/90 transition-all duration-300 
+                                    group-hover:text-white group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
+                        Security
+                      </h4>
                     </div>
-                  </div>
-                  <div className="overflow-hidden transition-all duration-500 ease-in-out max-h-0 group-focus:max-h-[300px]">
-                    <div className="p-6 pt-0 text-white/70 group-hover:text-white/80 space-y-4">
-                      <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
-                      <p className="leading-relaxed">
-                        Battle-tested smart contracts and multi-layer security measures ensuring the safety of governance processes and assets.
-                        Including audit-ready code, time-locks, and multi-signature capabilities for critical operations.
-                      </p>
+                  </AccordionTrigger>
+                  <AccordionContent className="text-white/70">
+                    <div className="pt-4 leading-relaxed">
+                      Battle-tested smart contracts and multi-layer security measures ensuring the safety of governance processes and assets.
+                      Including audit-ready code, time-locks, and multi-signature capabilities for critical operations.
                     </div>
-                  </div>
-                </div>
-                
-                {/* Integration Card */}
-                <div 
-                  className="group bg-black/30 hover:bg-black/40 backdrop-blur-md border border-white/10 
-                           hover:border-white/20 rounded-xl transition-all duration-300 cursor-pointer"
-                  tabIndex={0}
-                >
-                  <div className="flex justify-between items-center p-6">
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="integration" className="border-white/10">
+                  <AccordionTrigger className="hover:no-underline group">
                     <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center">
+                      <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center transition-all duration-300">
                         <ArrowDown className="h-5 w-5 text-white/70 transition-transform duration-300 
-                                             group-focus:-rotate-180 group-hover:text-white/90" />
+                                           group-hover:text-white" />
                       </div>
-                      <h4 className="text-xl font-medium text-white/90 group-hover:text-white">Integration</h4>
+                      <h4 className="text-xl font-medium text-white/90 transition-all duration-300 
+                                    group-hover:text-white group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
+                        Integration
+                      </h4>
                     </div>
-                  </div>
-                  <div className="overflow-hidden transition-all duration-500 ease-in-out max-h-0 group-focus:max-h-[300px]">
-                    <div className="p-6 pt-0 text-white/70 group-hover:text-white/80 space-y-4">
-                      <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
-                      <p className="leading-relaxed">
-                        Seamless integration capabilities with existing DeFi protocols, making it easy to implement governance solutions.
-                        Featuring standardized interfaces, comprehensive documentation, and developer support for quick implementation.
-                      </p>
+                  </AccordionTrigger>
+                  <AccordionContent className="text-white/70">
+                    <div className="pt-4 leading-relaxed">
+                      Seamless integration capabilities with existing DeFi protocols, making it easy to implement governance solutions.
+                      Featuring standardized interfaces, comprehensive documentation, and developer support for quick implementation.
                     </div>
-                  </div>
-                </div>
-                
-                {/* Community Tools Card */}
-                <div 
-                  className="group bg-black/30 hover:bg-black/40 backdrop-blur-md border border-white/10 
-                           hover:border-white/20 rounded-xl transition-all duration-300 cursor-pointer"
-                  tabIndex={0}
-                >
-                  <div className="flex justify-between items-center p-6">
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="community" className="border-white/10">
+                  <AccordionTrigger className="hover:no-underline group">
                     <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center">
+                      <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center transition-all duration-300">
                         <ArrowDown className="h-5 w-5 text-white/70 transition-transform duration-300 
-                                             group-focus:-rotate-180 group-hover:text-white/90" />
+                                           group-hover:text-white" />
                       </div>
-                      <h4 className="text-xl font-medium text-white/90 group-hover:text-white">Community Tools</h4>
+                      <h4 className="text-xl font-medium text-white/90 transition-all duration-300 
+                                    group-hover:text-white group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
+                        Community Tools
+                      </h4>
                     </div>
-                  </div>
-                  <div className="overflow-hidden transition-all duration-500 ease-in-out max-h-0 group-focus:max-h-[300px]">
-                    <div className="p-6 pt-0 text-white/70 group-hover:text-white/80 space-y-4">
-                      <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
-                      <p className="leading-relaxed">
-                        Comprehensive suite of community management tools empowering DAOs to effectively coordinate and grow their ecosystems.
-                        Including analytics dashboards, communication channels, and reputation systems.
-                      </p>
+                  </AccordionTrigger>
+                  <AccordionContent className="text-white/70">
+                    <div className="pt-4 leading-relaxed">
+                      Comprehensive suite of community management tools empowering DAOs to effectively coordinate and grow their ecosystems.
+                      Including analytics dashboards, communication channels, and reputation systems.
                     </div>
-                  </div>
-                </div>
-              </div>
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
             </div>
           </div>
         </div>
