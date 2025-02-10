@@ -10,10 +10,13 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
+import Navbar from "@/components/navbar";
 
 export default function DAOPage() {
   return (
     <div className="min-h-screen flex flex-col">
+      <Navbar />
+      
       {/* Hero Section */}
       <main className="flex-1 flex items-center justify-center min-h-[80vh] pt-48">
         <div className="container mx-auto px-4 flex flex-col items-center">
