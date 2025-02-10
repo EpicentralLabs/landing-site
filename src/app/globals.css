@@ -60,7 +60,7 @@ body {
   body {
     @apply bg-background text-foreground;
     background-image: 
-      radial-gradient(circle at 20% 20%, rgba(74, 133, 255, 0.15) 0%, transparent 20%),
+      radial-gradient(circle at 20% 30%, rgba(74, 133, 255, 0.15) 0%, transparent 20%),
       radial-gradient(circle at 50% 50%, rgba(74, 133, 255, 0.1) 0%, transparent 40%),
       url('/WebPageBackground.png');
     background-size: cover;
@@ -138,47 +138,4 @@ body:not(:hover)::-webkit-scrollbar-thumb {
 /* Optional: Add smooth scrolling to the page */
 html {
   scroll-behavior: smooth;
-}
-
-/* Add these new styles at the end of the file */
-@layer utilities {
-  /* Mobile menu transition */
-  .mobile-menu-enter {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  
-  .mobile-menu-enter-active {
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity 200ms, transform 200ms;
-  }
-  
-  .mobile-menu-exit {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  
-  .mobile-menu-exit-active {
-    opacity: 0;
-    transform: translateY(-10px);
-    transition: opacity 200ms, transform 200ms;
-  }
-}
-
-/* Ensure content doesn't shift when scrollbar appears */
-html {
-  scrollbar-gutter: stable;
-}
-
-/* Additional mobile optimizations */
-@media (max-width: 768px) {
-  body {
-    font-size: 14px;
-  }
-  
-  .container {
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
 }
