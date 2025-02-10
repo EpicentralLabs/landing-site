@@ -22,7 +22,10 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col">
       {/* Top Navigation */}
-      <nav className="w-full backdrop-blur-sm z-50 bg-black/20">
+      <nav className="w-full backdrop-blur-sm z-50 bg-black/20 relative">
+        {/* Remove the border-b and adjust the fade-out effect */}
+        <div className="absolute -bottom-16 left-0 right-0 h-16 bg-gradient-to-b from-black/20 via-black/10 to-transparent pointer-events-none"></div>
+        
         <div className="container mx-auto px-4">
           <div className="flex items-center h-16">
             {/* Logo */}
@@ -31,11 +34,11 @@ export default function Home() {
                 <Image 
                   src="/EpicentralLogo.png"
                   alt="Epicentral Logo"
-                  width={32}
-                  height={32}
+                  width={27}
+                  height={27}
                   className="object-contain"
                 />
-                <span className="text-sm font-extralight opacity-100 hover:opacity-100 transition-all hover:drop-shadow-[0_0_0.4rem_#ffffff70] duration-300">
+                <span className="text-base font-medium opacity-100 hover:opacity-100 transition-all hover:drop-shadow-[0_0_0.4rem_#ffffff70] duration-300">
                   Epicentral Labs
                 </span>
               </Link>
@@ -460,8 +463,11 @@ export default function Home() {
       </div>
 
       {/* Footer */}
-      <footer className="border-t border-neutral-800 py-8 backdrop-blur-sm bg-black/20">
-        <div className="container mx-auto px-4">
+      <footer className="relative backdrop-blur-sm bg-black/20">
+        {/* Top fade effect */}
+        <div className="absolute -top-16 left-0 right-0 h-16 bg-gradient-to-t from-black/20 via-black/10 to-transparent pointer-events-none"></div>
+        
+        <div className="container mx-auto px-4 py-8">
           <div className="flex flex-col items-center space-y-4">
             {/* Social Links */}
             <div className="flex items-center space-x-6">
