@@ -1,18 +1,11 @@
 "use client"
 
 import { Button } from "@/components/ui/button";
-import { ArrowRight, ArrowDown } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion"
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
-import { Bar, BarChart, Line, LineChart, XAxis, YAxis, ResponsiveContainer, Tooltip } from "recharts"
+import { Line, LineChart, XAxis, YAxis, ResponsiveContainer, Tooltip } from "recharts"
 import { useState } from "react"
 
 // Function to format numbers with k/m suffix (rounded to nearest thousand)
@@ -73,11 +66,6 @@ const activeProposals = [
   },
 ]
 
-// Add this helper to get current treasury value
-const getCurrentTreasury = (data: typeof allTimeData) => {
-  return formatValue(data[data.length - 1].treasury)
-}
-
 export default function DAOPage() {
   const [timeRange, setTimeRange] = useState<'AT' | 'YTD'>('AT')
 
@@ -85,11 +73,11 @@ export default function DAOPage() {
     <div className="min-h-screen flex flex-col">
       <Navbar />
       
-      {/* Modified Hero Section */}
-      <main className="flex-1 min-h-[80vh] flex items-center justify-center py-40">
-        <div className="container mx-auto px-4 flex flex-col lg:flex-row justify-between items-center gap-12">
-          {/* Left side content */}
-          <div className="max-w-2xl space-y-8 text-center lg:text-left">
+      {/* Hero Section - Adjusted for better centering */}
+      <main className="flex-1 flex flex-col items-center justify-center min-h-[calc(100vh-64px)] py-20"> {/* Subtract navbar height and add vertical padding */}
+        {/* Hero Content */}
+        <div className="container mx-auto px-4">
+          <div className="max-w-2xl mx-auto space-y-8 text-center">
             <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
               <span className="font-extralight drop-shadow-[0_0_0.3rem_#ffffff70]">
                 Epicentral<strong>DAO</strong>
@@ -98,102 +86,35 @@ export default function DAOPage() {
             <p className="text-xl text-white/70">
               A community-driven governance system for the future of DeFi on Solana
             </p>
-            <div className="flex items-center lg:justify-start justify-center gap-4">
-              <Button 
-                size="lg" 
-                className="bg-[#FFFFFF] hover:bg-[#FFFFFF]/90 transition-all duration-300 hover:scale-95"
-              >
-                Join DAO
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-              <Button 
-                size="lg" 
-                variant="outline" 
-                className="transition-all duration-300"
-                onClick={() => {
-                  document.getElementById('active-proposals')?.scrollIntoView({ 
-                    behavior: 'smooth',
-                    block: 'center'
-                  });
-                }}
-              >
-                View Proposals
-              </Button>
-            </div>
-
-            {/* Gradient Divider */}
-            <div className="relative w-full">
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent blur-sm"></div>
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent"></div>
-              <div className="h-px w-full bg-gradient-to-r from-transparent via-white/20 to-transparent relative"></div>
-            </div>
-          </div>
-
-          {/* Right side container - Treasury Chart only */}
-          <div className="w-full lg:w-[600px]">
-            <div className="w-full h-[400px] bg-black/30 backdrop-blur-md border border-white/10 rounded-xl p-4 lg:p-8">
-              <div className="flex justify-between items-center mb-4">
-                <div>
-                  <h3 className="text-xl font-medium text-white/90">Treasury Value</h3>
-                  <p className="text-sm text-white/50">
-                    Current: ${formatCurrentValue(timeRange === 'AT' ? allTimeData[allTimeData.length - 1].treasury : ytdData[ytdData.length - 1].treasury)}
-                  </p>
-                </div>
-                <div className="flex gap-2">
-                  <Button
-                    variant={timeRange === 'YTD' ? 'outline' : 'ghost'}
-                    size="sm"
-                    onClick={() => setTimeRange('YTD')}
-                    className="h-8 px-3 text-xs font-medium"
-                  >
-                    YTD
-                  </Button>
-                  <Button
-                    variant={timeRange === 'AT' ? 'outline' : 'ghost'}
-                    size="sm"
-                    onClick={() => setTimeRange('AT')}
-                    className="h-8 px-3 text-xs font-medium"
-                  >
-                    AT
-                  </Button>
-                </div>
+            <div className="flex flex-col items-center gap-8">
+              <div className="flex items-center justify-center gap-4">
+                <Button 
+                  size="lg" 
+                  className="bg-[#FFFFFF] hover:bg-[#FFFFFF]/90 transition-all duration-300 hover:scale-95"
+                >
+                  Join DAO
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+                <Button 
+                  size="lg" 
+                  variant="outline" 
+                  className="transition-all duration-300"
+                  onClick={() => {
+                    document.getElementById('active-proposals')?.scrollIntoView({ 
+                      behavior: 'smooth',
+                      block: 'center'
+                    });
+                  }}
+                >
+                  View Proposals
+                </Button>
               </div>
-              <div className="h-[250px] w-full">
-                <ResponsiveContainer width="100%" height="100%">
-                  <LineChart 
-                    data={timeRange === 'AT' ? allTimeData : ytdData}
-                    margin={{ top: 5, right: 5, left: 0, bottom: 0 }}
-                  >
-                    <XAxis 
-                      dataKey="month" 
-                      stroke="#ffffff50"
-                      tick={{ fill: '#ffffff80' }}
-                    />
-                    <YAxis 
-                      stroke="#ffffff50"
-                      tick={{ fill: '#ffffff80' }}
-                      tickFormatter={formatValue}
-                    />
-                    <Tooltip
-                      contentStyle={{
-                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
-                        border: '1px solid rgba(255, 255, 255, 0.1)',
-                        borderRadius: '6px',
-                      }}
-                      itemStyle={{ color: '#ffffff' }}
-                      formatter={(value: number) => [`$${formatValue(value)}`, 'Treasury']}
-                      labelStyle={{ color: '#ffffff80' }}
-                    />
-                    <Line 
-                      type="monotone"
-                      dataKey="treasury"
-                      name="Treasury Value"
-                      stroke="#ffffff"
-                      strokeWidth={2}
-                      dot={false}
-                    />
-                  </LineChart>
-                </ResponsiveContainer>
+
+              {/* Gradient Divider */}
+              <div className="relative w-[320px]">
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent blur-sm"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent"></div>
+                <div className="h-px w-full bg-gradient-to-r from-transparent via-white/20 to-transparent relative"></div>
               </div>
             </div>
           </div>
@@ -202,6 +123,76 @@ export default function DAOPage() {
 
       {/* DAO Information Section */}
       <section className="container mx-auto px-4 py-40">
+        {/* Treasury Chart - Moved here */}
+        <div className="max-w-7xl mx-auto mb-8">
+          <div className="w-full h-[400px] bg-black/30 backdrop-blur-md border border-white/10 rounded-xl p-4 lg:p-8">
+            <div className="flex justify-between items-center mb-4">
+              <div>
+                <h3 className="text-xl font-medium text-white/90">Treasury Value</h3>
+                <p className="text-sm text-white/50">
+                  Current: ${formatCurrentValue(timeRange === 'AT' ? allTimeData[allTimeData.length - 1].treasury : ytdData[ytdData.length - 1].treasury)}
+                </p>
+              </div>
+              <div className="flex gap-2">
+                <Button
+                  variant={timeRange === 'YTD' ? 'outline' : 'ghost'}
+                  size="sm"
+                  onClick={() => setTimeRange('YTD')}
+                  className="h-8 px-3 text-xs font-medium"
+                >
+                  YTD
+                </Button>
+                <Button
+                  variant={timeRange === 'AT' ? 'outline' : 'ghost'}
+                  size="sm"
+                  onClick={() => setTimeRange('AT')}
+                  className="h-8 px-3 text-xs font-medium"
+                >
+                  AT
+                </Button>
+              </div>
+            </div>
+            <div className="h-[250px] w-full">
+              <ResponsiveContainer width="100%" height="100%">
+                <LineChart 
+                  data={timeRange === 'AT' ? allTimeData : ytdData}
+                  margin={{ top: 5, right: 5, left: 0, bottom: 0 }}
+                >
+                  <XAxis 
+                    dataKey="month" 
+                    stroke="#ffffff50"
+                    tick={{ fill: '#ffffff80' }}
+                  />
+                  <YAxis 
+                    stroke="#ffffff50"
+                    tick={{ fill: '#ffffff80' }}
+                    tickFormatter={formatValue}
+                  />
+                  <Tooltip
+                    contentStyle={{
+                      backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                      border: '1px solid rgba(255, 255, 255, 0.1)',
+                      borderRadius: '6px',
+                    }}
+                    itemStyle={{ color: '#ffffff' }}
+                    formatter={(value: number) => [`$${formatValue(value)}`, 'Treasury']}
+                    labelStyle={{ color: '#ffffff80' }}
+                  />
+                  <Line 
+                    type="monotone"
+                    dataKey="treasury"
+                    name="Treasury Value"
+                    stroke="#ffffff"
+                    strokeWidth={2}
+                    dot={false}
+                  />
+                </LineChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+        </div>
+
+        {/* Metrics and Proposals Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
           {/* Active Proposals Container */}
           <div id="active-proposals" className="bg-black/30 backdrop-blur-md border border-white/10 rounded-xl p-4 lg:p-8">
@@ -302,81 +293,54 @@ export default function DAOPage() {
           </div>
         </div>
       </section>
-
+      <div className="w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent mb-16"></div>
       {/* How It Works Section */}
-      <div className="container mx-auto px-4 py-24">
-        <div className="max-w-4xl mx-auto space-y-16">
-          {/* How It Works Container */}
-          <div className="bg-black/30 backdrop-blur-md border border-white/10 rounded-xl p-8 md:p-12">
-            <div className="space-y-8">
-              <h2 className="text-3xl font-light text-white/90">
-                How It Works
-              </h2>
-              <Accordion type="single" collapsible className="w-full space-y-2">
-                <AccordionItem value="governance" className="border-white/10">
-                  <AccordionTrigger className="hover:no-underline group">
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center transition-all duration-300">
-                        <ArrowDown className="h-5 w-5 text-white/70 transition-transform duration-300 
-                                           group-hover:text-white" />
-                      </div>
-                      <h4 className="text-xl font-medium text-white/90 transition-all duration-300 
-                                    group-hover:text-white group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
-                        Governance Process
-                      </h4>
-                    </div>
-                  </AccordionTrigger>
-                  <AccordionContent className="text-white/70">
-                    <div className="pt-4 leading-relaxed">
-                      The governance process involves creating proposals, discussing them with the community, and voting using $LABS tokens. Each token represents one vote, ensuring a fair and democratic process.
-                    </div>
-                  </AccordionContent>
-                </AccordionItem>
+      <section className="container mx-auto px-4 py-24">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-3xl font-light text-white/90 mb-16 text-center drop-shadow-[0_0_0.3rem_#ffffff70]">
+            How does the DAO work?
+          </h2>
+          
+          <div className="relative flex flex-col items-center">
+            {/* Card 1 */}
+            <div className="relative z-30 max-w-lg bg-black/30 backdrop-blur-md border border-white/10 rounded-xl p-8 transform hover:-translate-y-2 transition-transform duration-300">
+              <h3 className="text-xl font-medium text-white/90 mb-2">1. Draft Proposal</h3>
+              <p className="text-base text-white/70">
+                Any member with <strong>1,000</strong> $LABS can draft a proposal in our <a href="https://discord.gg/5asAuY2sR8" className="text-[#4a85ff] hover:text-[#4a85ff] hover:drop-shadow-[0_0_0.3rem_#4a85ff] transition-all duration-300">Discord</a>. Proposals can range from parameter adjustments to new feature implementations.
+              </p>
+            </div>
 
-                <AccordionItem value="voting" className="border-white/10">
-                  <AccordionTrigger className="hover:no-underline group">
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center transition-all duration-300">
-                        <ArrowDown className="h-5 w-5 text-white/70 transition-transform duration-300 
-                                           group-hover:text-white" />
-                      </div>
-                      <h4 className="text-xl font-medium text-white/90 transition-all duration-300 
-                                    group-hover:text-white group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
-                        Voting Power
-                      </h4>
-                    </div>
-                  </AccordionTrigger>
-                  <AccordionContent className="text-white/70">
-                    <div className="pt-4 leading-relaxed">
-                      Voting power is determined by the amount of $LABS tokens held. Tokens can be staked to participate in governance and earn rewards from protocol fees.
-                    </div>
-                  </AccordionContent>
-                </AccordionItem>
+            {/* Card 2 */}
+            <div className="relative z-20 max-w-lg bg-black/30 backdrop-blur-md border border-white/10 rounded-xl p-8 -mt-4 ml-20 transform hover:-translate-y-2 transition-transform duration-300">
+              <h3 className="text-xl font-medium text-white/90 mb-2">2. Community Review & Feedback</h3>
+              <p className="text-base text-white/70">
+                The community discusses the proposal, providing feedback and suggestions during a review period before offically submitting the proposal on-chain.
+              </p>
+            </div>
 
-                <AccordionItem value="rewards" className="border-white/10">
-                  <AccordionTrigger className="hover:no-underline group">
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center transition-all duration-300">
-                        <ArrowDown className="h-5 w-5 text-white/70 transition-transform duration-300 
-                                           group-hover:text-white" />
-                      </div>
-                      <h4 className="text-xl font-medium text-white/90 transition-all duration-300 
-                                    group-hover:text-white group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
-                        Rewards & Benefits
-                      </h4>
-                    </div>
-                  </AccordionTrigger>
-                  <AccordionContent className="text-white/70">
-                    <div className="pt-4 leading-relaxed">
-                      DAO members receive various benefits including protocol fee sharing, exclusive access to new features, and the ability to shape the future of Epicentral Labs.
-                    </div>
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
+            {/* Card 3 */}
+            <div className="relative z-10 max-w-lg bg-black/30 backdrop-blur-md border border-white/10 rounded-xl p-8 -mt-4 ml-40 transform hover:-translate-y-2 transition-transform duration-300">
+              <h3 className="text-xl font-medium text-white/90 mb-2">3. Voting Period</h3>
+              <p className="text-base text-white/70">
+                $LABS token holders can stake their tokens in the Epicentral DAO to vote on proposals, with voting power proportional to their holdings.
+              </p>
+            </div>
+
+            {/* Card 4 */}
+            <div className="relative max-w-lg bg-black/30 backdrop-blur-md border border-white/10 rounded-xl p-8 -mt-4 ml-60 transform hover:-translate-y-2 transition-transform duration-300">
+              <h3 className="text-xl font-medium text-white/90 mb-2">4. Implementation</h3>
+              <p className="text-base text-white/70">
+                If a proposal is approved, it is implemented then executed via on-chain instructions or a new feature is added to the protocol by the Core Team.
+              </p>
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* Call to Action */}
+      {/* Call to Action */}
+      <div className="container mx-auto px-4 py-24">
+        <div className="max-w-4xl mx-auto space-y-16">
+          {/* Call to Action Container */}
           <div className="bg-black/30 backdrop-blur-md border border-white/10 rounded-xl p-8 md:p-12 text-center">
             <div className="space-y-6">
               <h2 className="text-3xl font-light text-white/90">
