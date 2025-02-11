@@ -5,7 +5,6 @@ import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
-import { Line, LineChart, XAxis, YAxis, ResponsiveContainer, Tooltip } from "recharts"
 import { useState } from "react"
 import { useDAOData } from "@/hooks/useDAOData";
 
@@ -23,49 +22,6 @@ const formatCurrentValue = (value: number) => {
     maximumFractionDigits: 2
   })
 }
-
-// Add YTD data
-const ytdData = [
-  { month: "Jan '25", treasury: 54000 },
-  { month: "Feb '25", treasury: 42000 },
-  { month: "Mar '25", treasury: 55000 },
-]
-
-// Update the all time data name
-const allTimeData = [
-  { month: "Jul '24", treasury: 2000 },
-  { month: "Aug '24", treasury: 6000 },
-  { month: "Sep '24", treasury: 5050 },
-  { month: "Oct '24", treasury: 4560 },
-  { month: "Nov '24", treasury: 15000 },
-  { month: "Dec '24", treasury: 120000 },
-  ...ytdData
-]
-
-// Add this near your other data
-const activeProposals = [
-  {
-    id: "P-123",
-    title: "Increase Staking Rewards by 2%",
-    status: "Active",
-    votes: { yes: 234, no: 45 },
-    endsIn: "2d 5h",
-  },
-  {
-    id: "P-122",
-    title: "Add New Governance Parameters",
-    status: "Active",
-    votes: { yes: 567, no: 123 },
-    endsIn: "3d 12h",
-  },
-  {
-    id: "P-121",
-    title: "Treasury Diversification Plan",
-    status: "Active",
-    votes: { yes: 890, no: 234 },
-    endsIn: "4d 8h",
-  },
-]
 
 export default function DAOPage() {
   const [timeRange, setTimeRange] = useState<'AT' | 'YTD'>('AT')
@@ -147,7 +103,7 @@ export default function DAOPage() {
               <div>
                 <h3 className="text-xl font-medium text-white/90">Treasury Value</h3>
                 <p className="text-sm text-white/50">
-                  Current: ${formatCurrentValue(timeRange === 'AT' ? allTimeData[allTimeData.length - 1].treasury : ytdData[ytdData.length - 1].treasury)}
+                  Current: ${loading ? "..." : formatCurrentValue(data?.treasuryBalance || 0)}
                 </p>
               </div>
               <div className="flex gap-2">
@@ -169,42 +125,8 @@ export default function DAOPage() {
                 </Button>
               </div>
             </div>
-            <div className="h-[250px] w-full">
-              <ResponsiveContainer width="100%" height="100%">
-                <LineChart 
-                  data={timeRange === 'AT' ? allTimeData : ytdData}
-                  margin={{ top: 5, right: 5, left: 0, bottom: 0 }}
-                >
-                  <XAxis 
-                    dataKey="month" 
-                    stroke="#ffffff50"
-                    tick={{ fill: '#ffffff80' }}
-                  />
-                  <YAxis 
-                    stroke="#ffffff50"
-                    tick={{ fill: '#ffffff80' }}
-                    tickFormatter={formatValue}
-                  />
-                  <Tooltip
-                    contentStyle={{
-                      backgroundColor: 'rgba(0, 0, 0, 0.8)',
-                      border: '1px solid rgba(255, 255, 255, 0.1)',
-                      borderRadius: '6px',
-                    }}
-                    itemStyle={{ color: '#ffffff' }}
-                    formatter={(value: number) => [`$${formatValue(value)}`, 'Treasury']}
-                    labelStyle={{ color: '#ffffff80' }}
-                  />
-                  <Line 
-                    type="monotone"
-                    dataKey="treasury"
-                    name="Treasury Value"
-                    stroke="#ffffff"
-                    strokeWidth={2}
-                    dot={false}
-                  />
-                </LineChart>
-              </ResponsiveContainer>
+            <div className="h-[250px] w-full flex items-center justify-center">
+              <p className="text-white/50">Historical data coming soon</p>
             </div>
           </div>
         </div>
