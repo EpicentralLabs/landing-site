@@ -48,6 +48,21 @@ export default function Navbar() {
               <div className="h-full w-px bg-gradient-to-b from-transparent via-white/20 to-transparent relative"></div>
             </div>
 
+            {/* Add DAO Link */}
+            <Link 
+              href="/dao"
+              className="text-sm font-medium opacity-60 hover:opacity-100 transition-all hover:drop-shadow-[0_0_0.3rem_#ffffff70] duration-300"
+            >
+              DAO
+            </Link>
+
+            {/* Vertical Gradient Divider */}
+            <div className="relative h-4 w-px">
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/20 to-transparent blur-sm"></div>
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/40 to-transparent"></div>
+              <div className="h-full w-px bg-gradient-to-b from-transparent via-white/20 to-transparent relative"></div>
+            </div>
+
             <Link 
               href="/docs"
               className="text-sm font-medium opacity-60 hover:opacity-100 transition-all hover:drop-shadow-[0_0_0.3rem_#ffffff70] duration-300"
@@ -150,6 +165,22 @@ export default function Navbar() {
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Home
+              </Link>
+              
+              {/* Gradient Divider */}
+              <div className="relative w-full">
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent blur-sm"></div>
+                <div className="h-px w-full bg-gradient-to-r from-transparent via-white/20 to-transparent relative"></div>
+              </div>
+              
+              {/* Add DAO Link in mobile menu */}
+              <Link 
+                href="/dao"
+                className="block text-base font-medium opacity-80 hover:opacity-100 transition-all 
+                           hover:drop-shadow-[0_0_0.3rem_#ffffff70] duration-300"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                DAO
               </Link>
               
               {/* Gradient Divider */}

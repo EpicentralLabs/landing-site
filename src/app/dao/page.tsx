@@ -116,6 +116,21 @@ export default function DAOPage() {
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent"></div>
                 <div className="h-px w-full bg-gradient-to-r from-transparent via-white/20 to-transparent relative"></div>
               </div>
+
+              {/* New "How does it work?" button */}
+              <Button 
+                size="sm"
+                variant="ghost" 
+                className="text-white/50 hover:text-white/70 transition-all duration-300"
+                onClick={() => {
+                  document.getElementById('how-it-works')?.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'center'
+                  });
+                }}
+              >
+                How does it work?
+              </Button>
             </div>
           </div>
         </div>
@@ -294,8 +309,8 @@ export default function DAOPage() {
         </div>
       </section>
       <div className="w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent mb-16"></div>
-      {/* How It Works Section */}
-      <section className="container mx-auto px-4 py-24">
+      {/* How It Works Section - Add id here */}
+      <section id="how-it-works" className="container mx-auto px-4 py-24">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-3xl font-light text-white/90 mb-16 text-center drop-shadow-[0_0_0.3rem_#ffffff70]">
             How does the DAO work?
