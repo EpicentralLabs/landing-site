@@ -1,6 +1,6 @@
 {
-  "name": "epicentral-landing-site",
-  "version": "0.1.0",
+  "name": "epicentral-website",
+  "version": "0.2.0",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
@@ -19,6 +19,7 @@
     "next-themes": "^0.2.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "recharts": "^2.15.1",
     "tailwind-merge": "^3.0.1",
     "tailwindcss-animate": "^1.0.7"
   },
