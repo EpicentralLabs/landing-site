@@ -16,6 +16,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "governance-idl-sdk": "^0.0.4",
+    "install": "^0.13.0",
     "lucide-react": "^0.475.0",
     "next": "15.1.6",
     "next-themes": "^0.2.1",
