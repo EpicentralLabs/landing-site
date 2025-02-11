@@ -7,6 +7,7 @@ import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { Line, LineChart, XAxis, YAxis, ResponsiveContainer, Tooltip } from "recharts"
 import { useState } from "react"
+import { useDAOData } from "@/hooks/useDAOData";
 
 // Function to format numbers with k/m suffix (rounded to nearest thousand)
 const formatValue = (value: number) => {
@@ -68,6 +69,7 @@ const activeProposals = [
 
 export default function DAOPage() {
   const [timeRange, setTimeRange] = useState<'AT' | 'YTD'>('AT')
+  const { data, loading } = useDAOData();
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -225,44 +227,52 @@ export default function DAOPage() {
             </div>
             
             <div className="space-y-3">
-              {activeProposals.map((proposal) => (
-                <div 
-                  key={proposal.id}
-                  className="flex items-center justify-between p-3 rounded-lg border border-white/5 bg-white/5 hover:bg-white/10 transition-colors"
-                >
-                  <div className="space-y-1">
-                    <div className="flex items-center gap-2">
-                      <span className="text-xs text-white/50">{proposal.id}</span>
-                      <span className="px-2 py-0.5 text-xs rounded-full bg-green-500/20 text-green-500">
-                        {proposal.status}
-                      </span>
-                    </div>
-                    <h4 className="text-sm text-white/90">{proposal.title}</h4>
-                    <div className="flex items-center gap-4 text-xs text-white/50">
-                      <span className="flex items-center gap-1">
-                        <span className="w-1.5 h-1.5 rounded-full bg-green-500" />
-                        Yes: {proposal.votes.yes}
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
-                        No: {proposal.votes.no}
-                      </span>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-4">
-                    <Button
-                      size="sm"
-                      className="bg-[#FFFFFF] hover:bg-[#FFFFFF]/90 text-black transition-all duration-300 hover:scale-95 h-7 px-3 text-xs font-medium"
-                    >
-                      Vote
-                    </Button>
-                    <div className="text-right">
-                      <div className="text-sm text-white/70 mb-1">Ends in</div>
-                      <div className="text-xs font-medium text-white/90">{proposal.endsIn}</div>
-                    </div>
-                  </div>
+              {loading ? (
+                <div className="animate-pulse space-y-3">
+                  {[1, 2, 3].map((i) => (
+                    <div key={i} className="h-24 bg-white/5 rounded-lg" />
+                  ))}
                 </div>
-              ))}
+              ) : (
+                data?.activeProposals.map((proposal) => (
+                  <div 
+                    key={proposal.id}
+                    className="flex items-center justify-between p-3 rounded-lg border border-white/5 bg-white/5 hover:bg-white/10 transition-colors"
+                  >
+                    <div className="space-y-1">
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs text-white/50">{proposal.id}</span>
+                        <span className="px-2 py-0.5 text-xs rounded-full bg-green-500/20 text-green-500">
+                          {proposal.status}
+                        </span>
+                      </div>
+                      <h4 className="text-sm text-white/90">{proposal.title}</h4>
+                      <div className="flex items-center gap-4 text-xs text-white/50">
+                        <span className="flex items-center gap-1">
+                          <span className="w-1.5 h-1.5 rounded-full bg-green-500" />
+                          Yes: {proposal.votes.yes}
+                        </span>
+                        <span className="flex items-center gap-1">
+                          <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
+                          No: {proposal.votes.no}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-4">
+                      <Button
+                        size="sm"
+                        className="bg-[#FFFFFF] hover:bg-[#FFFFFF]/90 text-black transition-all duration-300 hover:scale-95 h-7 px-3 text-xs font-medium"
+                      >
+                        Vote
+                      </Button>
+                      <div className="text-right">
+                        <div className="text-sm text-white/70 mb-1">Ends in</div>
+                        <div className="text-xs font-medium text-white/90">{proposal.endsIn}</div>
+                      </div>
+                    </div>
+                  </div>
+                ))
+              )}
             </div>
           </div>
 
@@ -275,22 +285,30 @@ export default function DAOPage() {
             <div className="grid grid-cols-2 gap-4">
               <div className="p-4 rounded-lg border border-white/5 bg-white/5">
                 <h4 className="text-sm text-white/70 mb-1">Treasury Balance</h4>
-                <p className="text-2xl font-medium text-white">$1.2M</p>
+                <p className="text-2xl font-medium text-white">
+                  ${loading ? "..." : formatValue(data?.treasuryBalance || 0)}
+                </p>
               </div>
               
               <div className="p-4 rounded-lg border border-white/5 bg-white/5">
                 <h4 className="text-sm text-white/70 mb-1">Members</h4>
-                <p className="text-2xl font-medium text-white">1,234</p>
+                <p className="text-2xl font-medium text-white">
+                  {loading ? "..." : formatValue(data?.memberCount || 0)}
+                </p>
               </div>
               
               <div className="p-4 rounded-lg border border-white/5 bg-white/5">
                 <h4 className="text-sm text-white/70 mb-1">Proposals</h4>
-                <p className="text-2xl font-medium text-white">156</p>
+                <p className="text-2xl font-medium text-white">
+                  {loading ? "..." : data?.proposalCount}
+                </p>
               </div>
               
               <div className="p-4 rounded-lg border border-white/5 bg-white/5">
                 <h4 className="text-sm text-white/70 mb-1">All Time Votes Casted</h4>
-                <p className="text-2xl font-medium text-white">45.2k</p>
+                <p className="text-2xl font-medium text-white">
+                  {loading ? "..." : formatValue(data?.totalVotes || 0)}
+                </p>
               </div>
 
               <div className="col-span-2 grid grid-cols-2 gap-4">
