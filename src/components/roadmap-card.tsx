@@ -64,7 +64,7 @@ export function RoadmapCard({
       <div className="relative bg-black/30 backdrop-blur-md border border-white/10 rounded-xl p-8 transform hover:-translate-y-1 transition-all duration-300">
         {/* Quarter Label */}
         <div className="flex items-center justify-between mb-6">
-          <h3 className="text-2xl font-light text-white/90">{quarter}</h3>
+          <h3 className="text-2xl font-light text-white/90 drop-shadow-[0_0_0.3rem_#ffffff70]">{quarter}</h3>
           <span
             className={`px-3 py-1 rounded-full text-sm ${getStatusColor(
               status
@@ -86,8 +86,7 @@ export function RoadmapCard({
           <div>
             <Tooltip>
               <TooltipTrigger asChild>
-                <h4 className="text-white/90 font-medium mb-4 flex items-center gap-2 border-b border-dotted border-white/20 w-fit cursor-help">
-                  <div className="w-2 h-2 rounded-full bg-white/20"></div>
+                <h4 className="text-white/90 font-medium mb-4 border-b border-dotted border-white/20 w-fit cursor-help drop-shadow-[0_0_0.3rem_#ffffff70]">
                   DAO & Community Growth
                 </h4>
               </TooltipTrigger>
@@ -109,8 +108,7 @@ export function RoadmapCard({
           <div>
             <Tooltip>
               <TooltipTrigger asChild>
-                <h4 className="text-white/90 font-medium mb-4 flex items-center gap-2 border-b border-dotted border-white/20 w-fit cursor-help">
-                  <div className="w-2 h-2 rounded-full bg-white/20"></div>
+                <h4 className="text-white/90 font-medium mb-4 border-b border-dotted border-white/20 w-fit cursor-help drop-shadow-[0_0_0.3rem_#ffffff70]">
                   Technical Infrastructure
                 </h4>
               </TooltipTrigger>

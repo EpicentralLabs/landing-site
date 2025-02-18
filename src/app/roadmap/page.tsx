@@ -44,19 +44,20 @@ export default function RoadmapPage() {
           <div className="space-y-6">
             <RoadmapCard
               quarter="Q1 2024"
-              title="Foundation & Community"
+              title="Foundation & Reputation Growth"
               status="in-progress"
               description="Establishing the core infrastructure and community foundation for the EpicentralDAO"
               items={[
                 { type: "community", text: "Host first X/Twitter AMA Call of 2025", status: "completed" },
                 { type: "community", text: "$LABS Verified on Jupiter Exchange", status: "completed" },
                 { type: "community", text: "$LABS Verified on Birdeye", status: "completed" },
-                { type: "community", text: "$LABS touched $0.01", status: "completed" },
-                { type: "community", text: "Epicentral Discord Server reaches 200 members", status: "completed" },
+                { type: "community", text: "Epicentral Discord Server reaches 500 members", status: "in-progress" },
                 { type: "community", text: "Epicentral Twitter Account reaches 1000 followers", status: "in-progress" },
                 { type: "community", text: "Realms Ecosystem DAO grants $10,000 to EpicentralDAO for Meteora Integration", status: "completed" },
                 { type: "community", text: "Epicentral Labs Whitepaper Debuted", status: "completed" },
-                { type: "community", text: "Collaborated with another Solana project (Sol Man DAO) for community growth", status: "in-progress" },
+                { type: "community", text: "Collaborated with another Solana project for community growth", status: "in-progress" },
+                { type: "community", text: "DAO Participation Rewards Program", status: "todo" },
+                { type: "community", text: "Contributor Participation Rewards Program", status: "todo" },
 
                 { type: "technical", text: "Option Pricing Model - OPM(Rust + Typescript)", status: "completed" },
                 { type: "technical", text: "Meteora Integration with Realms DAOs", status: "in-progress" },
@@ -78,9 +79,9 @@ export default function RoadmapPage() {
 
             <RoadmapCard
               quarter="Q2 2024"
-              title="Protocol Development"
+              title="Solana OPX"
               status="in-progress"
-              description="Building and testing core protocol features"
+              description="Continue building and testing the core protocol: Solana OPX."
               items={[
                 { type: "community", text: "DAO governance implementation" },
 
