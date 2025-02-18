@@ -47,7 +47,7 @@ export default function RoadmapPage() {
 
           <div className="space-y-6">
             <RoadmapCard
-              quarter="Q1 2024"
+              quarter="Q1 2025"
               title="Foundation & Reputation Growth"
               status="in-progress"
               description="Establishing the core infrastructure and community foundation for the EpicentralDAO"
@@ -82,7 +82,7 @@ export default function RoadmapPage() {
             />
 
             <RoadmapCard
-              quarter="Q2 2024"
+              quarter="Q2 2025"
               title="Solana OPX - Solana's First Decentralized Options Exchange"
               status="in-progress"
               description="Continue building and testing the core protocol: Solana OPX."
@@ -110,7 +110,7 @@ export default function RoadmapPage() {
             />
 
             <RoadmapCard
-              quarter="Q3 2024"
+              quarter="Q3 2025"
               title="Education & Implementation"
               status="in-progress"
               description="Teach the Solana Ecosystem about Options, Implement Options into other DeFi Protocols, and more."
@@ -125,7 +125,7 @@ export default function RoadmapPage() {
             />
 
             <RoadmapCard
-              quarter="Q4 2024"
+              quarter="Q4 2025"
               title="Awareness & Adoption"
               status="in-progress"
               description="Create a community-driven initiative to raise awareness about Solana OPX and Options Trading."
