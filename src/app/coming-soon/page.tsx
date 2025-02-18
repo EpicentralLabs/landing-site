@@ -19,16 +19,16 @@ export default function ComingSoon() {
               </span>
             </h1>
             <p className="text-lg text-white/70">
-              We're working hard to bring you something amazing. Stay tuned!
+              We're in the trenches working on something really cool, we promise -- Stay tuned!
             </p>
             <div className="flex items-center justify-center gap-4">
               <Button 
                 size="lg" 
                 className="bg-[#FFFFFF] hover:bg-[#FFFFFF]/90 transition-all duration-300 
                            hover:scale-95"
-                onClick={() => window.open('https://discord.gg/DbvkB5v29Q', '_blank')}
+                onClick={() => window.location.href = '/'}
               >
-                Join Discord
+                Back Home
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </div>
