@@ -162,21 +162,36 @@ export default function RoadmapPage() {
             </p>
           </div>
 
+          {/* Color Legend */}
+          <div className="mb-8 flex flex-wrap gap-4 justify-center">
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-green-500"></div>
+              <span className="text-white/70 text-sm">Completed</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-blue-500"></div>
+              <span className="text-white/70 text-sm">In Progress</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-purple-500"></div>
+              <span className="text-white/70 text-sm">Upcoming</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-white/20"></div>
+              <span className="text-white/70 text-sm">TBD</span>
+            </div>
+          </div>
+
           <div className="space-y-12">
             <RoadmapCard
               quarter="Q1 2024"
               title="Foundation & Community"
               status="completed"
-              description="Establishing the core infrastructure and community foundation"
+              description="Establishing the core infrastructure and community foundation for the EpicentralDAO"
               items={[
-                { type: "community", text: "Launch of $LABS token", color: "green" },
-                { type: "community", text: "Establishment of EpicentralDAO", color: "blue" },
-                { type: "community", text: "Community governance framework", color: "purple" },
-                { type: "community", text: "Initial partnerships and integrations", color: "grey" },
+                { type: "community", text: "Launch ", color: "green" },
+
                 { type: "technical", text: "Smart contract architecture design", color: "green" },
-                { type: "technical", text: "Core protocol development initiation", color: "blue" },
-                { type: "technical", text: "Security framework establishment", color: "purple" },
-                { type: "technical", text: "Development environment setup", color: "grey" }
               ]}
             />
 
@@ -187,13 +202,9 @@ export default function RoadmapPage() {
               description="Building and testing core protocol features"
               items={[
                 { type: "community", text: "DAO governance implementation" },
-                { type: "community", text: "Community ambassador program" },
-                { type: "community", text: "Educational content creation" },
-                { type: "community", text: "Partnership expansion" },
+
                 { type: "technical", text: "Solana OPX development" },
-                { type: "technical", text: "Smart contract audits" },
-                { type: "technical", text: "Governance parameter optimization" },
-                { type: "technical", text: "Enhanced community tools" }
+
               ]}
             />
 

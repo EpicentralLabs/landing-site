@@ -82,37 +82,33 @@ export function RoadmapCard({
       </div>
 
       {/* Two-Column Layout for Community and Technical */}
-      <div className="grid md:grid-cols-2 gap-8">
-        {/* Community Section */}
-        <div className="space-y-4">
-          <h5 className="text-lg font-medium text-white/90 flex items-center gap-2">
-            <div className="w-1.5 h-1.5 rounded-full bg-purple-500"></div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* Community Development */}
+        <div>
+          <h4 className="text-white/90 font-medium mb-4 flex items-center gap-2">
+            <div className="w-2 h-2 rounded-full bg-purple-500"></div>
             Community Development
-          </h5>
+          </h4>
           <ul className="space-y-3">
-            {communityItems.map((item, idx) => (
-              <li key={idx} className="flex items-center gap-3">
-                <div
-                  className={`w-2 h-2 rounded-full ${getBulletColor(item.color)}`}
-                />
+            {items.filter(item => item.type === "community").map((item, index) => (
+              <li key={index} className="flex items-center gap-2">
+                <div className={`w-2 h-2 rounded-full ${item.color ? `bg-${item.color}-500` : 'bg-white/20'}`}></div>
                 <span className="text-white/70">{item.text}</span>
               </li>
             ))}
           </ul>
         </div>
 
-        {/* Technical Section */}
-        <div className="space-y-4">
-          <h5 className="text-lg font-medium text-white/90 flex items-center gap-2">
-            <div className="w-1.5 h-1.5 rounded-full bg-blue-500"></div>
+        {/* Technical Infrastructure */}
+        <div>
+          <h4 className="text-white/90 font-medium mb-4 flex items-center gap-2">
+            <div className="w-2 h-2 rounded-full bg-purple-500"></div>
             Technical Infrastructure
-          </h5>
+          </h4>
           <ul className="space-y-3">
-            {technicalItems.map((item, idx) => (
-              <li key={idx} className="flex items-center gap-3">
-                <div
-                  className={`w-2 h-2 rounded-full ${getBulletColor(item.color)}`}
-                />
+            {items.filter(item => item.type === "technical").map((item, index) => (
+              <li key={index} className="flex items-center gap-2">
+                <div className={`w-2 h-2 rounded-full ${item.color ? `bg-${item.color}-500` : 'bg-white/20'}`}></div>
                 <span className="text-white/70">{item.text}</span>
               </li>
             ))}
