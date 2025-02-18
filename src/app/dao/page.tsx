@@ -91,6 +91,7 @@ export default function DAOPage() {
                 <Button 
                   size="lg" 
                   className="bg-[#FFFFFF] hover:bg-[#FFFFFF]/90 transition-all duration-300 hover:scale-95"
+                  onClick={() => window.open('https://app.realms.today/dao/LABS', '_blank')}
                 >
                   Join DAO
                   <ArrowRight className="ml-2 h-5 w-5" />
@@ -135,6 +136,20 @@ export default function DAOPage() {
           </div>
         </div>
       </main>
+
+      {/* New DAO Introduction Section */}
+      <section className="container mx-auto px-4 py-24">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl font-light text-white/90 mb-8">
+            What is a DAO?
+          </h2>
+          <p className="text-lg text-white/70">
+            A Decentralized Autonomous Organization (DAO) is a revolutionary form of governance that allows communities to make decisions collectively without centralized control. 
+            DAOs are important because they empower individuals to have a direct say in the direction and management of projects, ensuring transparency, inclusivity, and decentralization. 
+            By leveraging Solana's blockchain and goverance tools, EpicentralDAO provides a secure and efficient way to coordinate and manage resources, making them a vital component of the future of decentralized finance and beyond.
+          </p>
+        </div>
+      </section>
 
       {/* DAO Information Section */}
       <section className="container mx-auto px-4 py-40">
@@ -369,8 +384,18 @@ export default function DAOPage() {
                   size="lg"
                   className="bg-[#FFFFFF] hover:bg-[#FFFFFF]/90 text-black transition-all duration-300 
                              hover:drop-shadow-[0_0_0.1rem_#FFFFFF] hover:scale-95"
+                  onClick={() => window.open('https://jup.ag/swap/SOL-LABSh5DTebUcUbEoLzXKCiXFJLecDFiDWiBGUU1GpxR', '_blank')}
                 >
                   Get $LABS
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+                <Button 
+                  size="lg"
+                  className="bg-[#FFFFFF] hover:bg-[#FFFFFF]/90 text-black transition-all duration-300 
+                             hover:drop-shadow-[0_0_0.1rem_#FFFFFF] hover:scale-95"
+                  onClick={() => window.open('https://app.realms.today/dao/LABS', '_blank')}
+                >
+                  Join DAO
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </div>
