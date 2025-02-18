@@ -222,6 +222,62 @@ export default function Home() {
                   </Button>
                 </div>
               </div>
+
+              {/* Gradient Divider before $LABS section */}
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent blur-sm"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent"></div>
+                <div className="h-px w-full bg-gradient-to-r from-transparent via-white/20 to-transparent relative"></div>
+              </div>
+
+              {/* Powered by $LABS section */}
+              <div className="space-y-6">
+                <h3 className="text-2xl font-light text-white/90">
+                  Powered by $LABS
+                </h3>
+                <p className="text-base leading-relaxed text-white/70">
+                <a className="text-[#4a85ff] hover:drop-shadow-[0_0_8px_#4a85ff] transition-all duration-300">LABS</a> is a governance token for EpicentralDAO. Consider each token as a voice in the decision-making process for Epicentral Labs and its future. 
+                Token holders can expect to:
+                </p>
+                
+                <ul className="text-base leading-relaxed text-white/70 space-y-2">
+                  <li className="flex items-center gap-2">
+                    <span className="text-[#4a85ff]">•</span> Vote on protocol upgrades and parameter changes
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="text-[#4a85ff]">•</span> Propose new features and improvements
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="text-[#4a85ff]">•</span> Reduce Protocol Fees/Revenues
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="text-[#4a85ff]">•</span> Receive DAO Participation Rewards
+                  </li>
+                </ul>
+
+                <div className="space-y-6">
+                  <Button 
+                    size="sm"
+                    variant="secondary"
+                    className="bg-white/10 hover:bg-white/20 text-white transition-all duration-300 
+                              hover:drop-shadow-[0_0_0.1rem_rgba(255,255,255,0.3)] hover:scale-95 px-4"
+                    onClick={() => window.open('/labs-token', '_blank')}
+                  >
+                    Learn More
+                    <ArrowRight className="ml-0 h-4 w-4" />
+                  </Button>
+                </div>
+
+                {/* Network Graph iframe */}
+                <div className="w-full">
+                  <iframe
+                    src="https://widget.vybenetwork.com/network-graph?address=LABSh5DTebUcUbEoLzXKCiXFJLecDFiDWiBGUU1GpxR&entity=token&connectionNode=program"
+                    title="vybe-network-graph"
+                    allow="clipboard-write"
+                    className="w-full h-[500px] rounded-lg border border-white/10"
+                  />
+                </div>
+              </div>
             </div>
           </div>
 
