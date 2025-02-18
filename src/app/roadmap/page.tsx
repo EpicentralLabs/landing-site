@@ -69,7 +69,7 @@ export default function RoadmapPage() {
                 { type: "technical", text: "Solana OPX - API/RPC Integration", status: "in-progress" },
                 { type: "technical", text: "Solana OPX - Option Program Integration", status: "todo" },
                 { type: "technical", text: "Solana OPX - Trade Page", status: "in-progress" },
-                { type: "technical", text: "Solana OPX - Option Margin Lending Pool", status: "todo" },
+                { type: "technical", text: "Solana OPX - Option Margin Lending Pool (OMLP)", status: "todo" },
                 { type: "technical", text: "Option Programs - Create Option", status: "todo" },
                 { type: "technical", text: "Option Programs - Exercise Option", status: "todo" },
                 { type: "technical", text: "Option Programs - Validate Option Value via OPM", status: "todo" },
