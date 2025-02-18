@@ -263,7 +263,7 @@ export default function Home() {
                               hover:drop-shadow-[0_0_0.1rem_rgba(255,255,255,0.3)] hover:scale-95 px-4"
                     onClick={() => window.open('/labs-token', '_blank')}
                   >
-                    Learn More
+                    Tokenomics
                     <ArrowRight className="ml-0 h-4 w-4" />
                   </Button>
                 </div>
