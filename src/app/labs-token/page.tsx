@@ -49,14 +49,23 @@ const vestingScheduleData = [
   { month: 'Month 16', defi: 0, dao: 0, team: 182175, marketing: 0, contributors: 0 },
 ];
 
+// Update the wallet mapping
+const allocationWallets = {
+  'Public Allocation': 'https://solscan.io/account/3wxhFgvVYGStoQj3XvMArNQF66WamWcVy4EgwBJfK1bM',
+  'DeFi Allocation': 'https://solscan.io/account/6yuntQAS5gSwhhKaXG3QYbcwXPxhsbULu9Tzv9mizUUm',
+  'DAO Treasury': 'https://solscan.io/account/3BEvopNQ89zkM4r6ADva18i5fao1sqR1pmswyQyfj838',
+  'Marketing': 'https://solscan.io/account/6tpxdCf56XZQbdieLFZGDgaWpefc6SZPGy9Sg6MqYVRB',
+  'Contributor Bonus': 'https://solscan.io/account/DR1P6yBNXQ8YLBrpYpU3FjnnruStMRzm2y2cAA3D6ynm'
+} as const;
+
 // Add this custom tooltip component
 const CustomTooltip = ({ active, payload }: any) => {
   if (active && payload && payload.length) {
     return (
-      <div className="bg-black/80 backdrop-blur-md border border-white/10 rounded-lg p-4">
-        <p className="text-white/90 font-medium">{payload[0].payload.name}</p>
-        <p className="text-white/70">{payload[0].payload.amount} LABS</p>
-        <p className="text-white/70">{payload[0].payload.value}% of supply</p>
+      <div className="bg-black/80 backdrop-blur-md border border-white/10 rounded-lg p-3 md:p-4 max-w-[90vw] md:max-w-none">
+        <p className="text-white/90 font-medium text-sm md:text-base">{payload[0].payload.name}</p>
+        <p className="text-white/70 text-sm md:text-base">{payload[0].payload.amount} LABS</p>
+        <p className="text-white/70 text-sm md:text-base">{payload[0].payload.value}% of supply</p>
       </div>
     );
   }
@@ -170,21 +179,21 @@ export default function LabsTokenPage() {
       <Navbar />
       
       {/* Hero Section */}
-      <main className="flex-1 flex items-center justify-center min-h-[80vh] pt-48">
+      <main className="flex-1 flex items-center justify-center min-h-[80vh] pt-24 md:pt-48">
         <div className="container mx-auto px-4 flex flex-col items-center">
           <div className="max-w-3xl w-full text-center space-y-8">
-            <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
+            <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight">
               <span className="font-extralight drop-shadow-[0_0_0.3rem_#ffffff70]">
                 LABS Token
               </span>
             </h1>
-            <p className="text-lg text-white/70">
+            <p className="text-base md:text-lg text-white/70">
                 Each token is a voice in Epicentral Labs
             </p>
-            <div className="flex items-center justify-center gap-4">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Button 
                 size="lg" 
-                className="bg-[#FFFFFF] hover:bg-[#FFFFFF]/90 transition-all duration-300 hover:scale-95"
+                className="bg-[#FFFFFF] hover:bg-[#FFFFFF]/90 transition-all duration-300 hover:scale-95 w-full sm:w-auto"
                 onClick={() => window.open('https://jup.ag/swap/SOL-LABSh5DTebUcUbEoLzXKCiXFJLecDFiDWiBGUU1GpxR', '_blank')}
               >
                 Buy $LABS
@@ -193,7 +202,7 @@ export default function LabsTokenPage() {
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="transition-all duration-300"
+                className="transition-all duration-300 w-full sm:w-auto"
                 onClick={() => {
                   document.getElementById('tokenomics')?.scrollIntoView({ 
                     behavior: 'smooth',
@@ -213,22 +222,22 @@ export default function LabsTokenPage() {
       <section className="container mx-auto px-4 py-24">
         <div className="max-w-6xl mx-auto space-y-16">
           {/* Token Distribution */}
-          <div id="tokenomics" className="bg-black/30 backdrop-blur-md border border-white/10 rounded-xl p-8 md:p-12 
+          <div id="tokenomics" className="bg-black/30 backdrop-blur-md border border-white/10 rounded-xl p-4 md:p-8 lg:p-12 
                           hover:border-white/20 transition-all duration-500
                           shadow-[0_0_15px_rgba(0,0,0,0.2)]">
-            <h2 className="text-3xl font-light text-white/90 mb-12 drop-shadow-[0_0_0.3rem_#ffffff70]
+            <h2 className="text-2xl md:text-3xl font-light text-white/90 mb-6 md:mb-12 drop-shadow-[0_0_0.3rem_#ffffff70]
                            text-center">
               Token Distribution
-              <div className="mt-2 text-base font-normal text-white/50">
+              <div className="mt-2 text-sm md:text-base font-normal text-white/50">
                 Total Supply: 54,652,600 LABS
               </div>
-              <div className="mt-1 text-base font-normal text-white/70">
-                {calculateTotalUnlockedSupply().amount} LABS Unlocked ({calculateTotalUnlockedSupply().percentage}% of Total Supply)
+              <div className="mt-1 text-sm md:text-base font-normal text-white/70">
+                {calculateTotalUnlockedSupply().amount} LABS in Circulation ({calculateTotalUnlockedSupply().percentage}% of Total Supply)
               </div>
             </h2>
             
             {/* Chart Container with styling */}
-            <div className="w-full h-[400px] mb-12 relative">
+            <div className="w-full h-[300px] md:h-[400px] mb-6 md:mb-12 relative">
               <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/5 to-transparent 
                               opacity-50 rounded-xl"></div>
               <ResponsiveContainer width="100%" height="100%">
@@ -258,24 +267,25 @@ export default function LabsTokenPage() {
                     cursor={{ fill: 'transparent' }}
                   />
                   <Legend 
-                    layout="vertical" 
-                    align="right"
-                    verticalAlign="middle"
-                    formatter={(value, entry: any) => (
-                      <span className="text-white/70 hover:text-white/90 transition-colors duration-300">
+                    layout={window.innerWidth > 768 ? "vertical" : "horizontal"}
+                    align={window.innerWidth > 768 ? "right" : "center"}
+                    verticalAlign={window.innerWidth > 768 ? "middle" : "bottom"}
+                    wrapperStyle={{
+                      paddingLeft: window.innerWidth > 768 ? '20px' : '0',
+                      paddingTop: window.innerWidth <= 768 ? '20px' : '0',
+                    }}
+                    formatter={(value) => (
+                      <span className="text-white/70 text-sm md:text-base">
                         {value}
                       </span>
                     )}
-                    wrapperStyle={{
-                      paddingLeft: '20px',
-                    }}
                   />
                 </PieChart>
               </ResponsiveContainer>
             </div>
 
             {/* Distribution Cards with enhanced styling */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
               {tokenDistributionData.map((item, index) => (
                 <Card 
                   key={index} 
@@ -283,7 +293,7 @@ export default function LabsTokenPage() {
                              transition-all duration-300 hover:transform hover:scale-[1.02]
                              hover:shadow-[0_0_15px_rgba(255,255,255,0.1)]"
                 >
-                  <CardHeader>
+                  <CardHeader className="p-4 md:p-6">
                     <div className="flex items-center gap-3">
                       <div 
                         className="w-4 h-4 rounded-full shadow-[0_0_10px_rgba(255,255,255,0.2)]" 
@@ -292,7 +302,20 @@ export default function LabsTokenPage() {
                           boxShadow: `0 0 10px ${item.color}40`
                         }}
                       />
-                      <CardTitle className="text-white/90 text-lg">{item.name}</CardTitle>
+                      <CardTitle className="text-white/90 text-lg">
+                        {item.name === 'Core Team & Investors' ? (
+                          <span>{item.name}</span>
+                        ) : (
+                          <a 
+                            href={allocationWallets[item.name as keyof typeof allocationWallets]} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="hover:text-white/70 transition-colors duration-300"
+                          >
+                            {item.name}
+                          </a>
+                        )}
+                      </CardTitle>
                     </div>
                     <CardDescription className="text-white/70 mt-2 text-base">
                       {item.value}% of Total Supply
@@ -320,10 +343,12 @@ export default function LabsTokenPage() {
                         </div>
                       </div>
                       <div className="flex justify-between text-sm">
-                        <p className="text-white/50">
-                          {Math.round(calculateUnlockedPercentage(item.name))}% Unlocked
+                        <p className="text-white/50 text-xs">
+                          {item.name === 'Public Allocation' 
+                            ? '100% Locked & Burned' 
+                            : `${Math.round(calculateLockedPercentage(item.name))}% Locked (${Math.round(calculateUnlockedPercentage(item.name))}% Unlocked)`}
                         </p>
-                        <p className="text-white/50">
+                        <p className="text-white/50 text-xs">
                           {Number((Number(item.amount.replace(/,/g, '')) * calculateUnlockedPercentage(item.name) / 100).toFixed(0)).toLocaleString()} LABS
                         </p>
                       </div>
@@ -343,7 +368,7 @@ export default function LabsTokenPage() {
             </h2>
             
             {/* Add the notes section */}
-            <div className="mb-8 space-y-3">
+            <div className="mb-8 space-y-3 text-sm md:text-base">
               <p className="text-white/70 italic">
                 Note: Vesting schedules are designed to ensure long-term alignment of stakeholder interests 
                 and prevent immediate sell-offs that could destabilize the token's value. All vesting schedules were created immutable via <a href="https://streamflow.finance/" target="_blank" rel="noopener noreferrer" className="text-[#4a85ff] hover:drop-shadow-[0_0_8px_#4a85ff] transition-all duration-300">Streamflow</a>.
@@ -513,7 +538,7 @@ export default function LabsTokenPage() {
                 {getProgressLabel()}
               </div>
             </div>
-            <div className="w-full h-[400px]">
+            <div className="w-full h-[300px] md:h-[400px]">
               <ResponsiveContainer width="100%" height="100%">
                 <LineChart 
                   data={vestingScheduleData}
