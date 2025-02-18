@@ -33,6 +33,7 @@ export default function Home() {
                 size="lg" 
                 className="bg-[#FFFFFF] hover:bg-[#FFFFFF]/90 transition-all duration-300 
                            hover:scale-95"
+                onClick={() => window.location.href = '/coming-soon'}
               >
                 Solana OPX
               </Button>
@@ -40,6 +41,7 @@ export default function Home() {
                 size="lg" 
                 variant="outline" 
                 className="transition-all duration-300"
+                onClick={() => document.getElementById('epicentral-labs')?.scrollIntoView({ behavior: 'smooth' })}
               >
                 Learn More
               </Button>
@@ -56,85 +58,103 @@ export default function Home() {
               <div className="max-w-4xl mx-auto px-4">
                 <div className="grid grid-cols-3 gap-4 md:gap-6 place-items-center">
                   <div className="w-full flex items-center justify-center text-white/50 hover:text-white/80 transition-colors duration-300">
-                    <Image 
-                      src="/1.png"
-                      alt="Partner Logo 1"
-                      width={140}
-                      height={45}
-                      className="w-[120px] sm:w-[160px] md:w-[180px] object-contain opacity-50 hover:opacity-100 transition-opacity duration-300"
-                    />
+                    <a href="https://jup.ag/swap/SOL-LABSh5DTebUcUbEoLzXKCiXFJLecDFiDWiBGUU1GpxR" target="_blank" rel="noopener noreferrer">
+                      <Image 
+                        src="/1.png"
+                        alt="Partner Logo 1"
+                        width={140}
+                        height={45}
+                        className="w-[120px] sm:w-[160px] md:w-[180px] object-contain opacity-50 hover:opacity-100 transition-opacity duration-300"
+                      />
+                    </a>
                   </div>
                   <div className="w-full flex items-center justify-center text-white/50 hover:text-white/80 transition-colors duration-300">
-                    <Image 
-                      src="/2.png"
-                      alt="Partner Logo 2"
-                      width={140}
-                      height={45}
-                      className="w-[120px] sm:w-[160px] md:w-[180px] object-contain opacity-50 hover:opacity-100 transition-opacity duration-300"
-                    />
+                    <a href="https://www.governance.so/dao/5PP7vKjJyLw1MR55LoexRsCj3CpZj9MdD6aNXRrvxG42" target="_blank" rel="noopener noreferrer">
+                      <Image 
+                        src="/2.png"
+                        alt="Partner Logo 2"
+                        width={140}
+                        height={45}
+                        className="w-[120px] sm:w-[160px] md:w-[180px] object-contain opacity-50 hover:opacity-100 transition-opacity duration-300"
+                      />
+                    </a>
                   </div>
                   <div className="w-full flex items-center justify-center text-white/50 hover:text-white/80 transition-colors duration-300">
-                    <Image 
-                      src="/3.png"
-                      alt="Partner Logo 3"
-                      width={140}
-                      height={45}
-                      className="w-[120px] sm:w-[160px] md:w-[180px] object-contain opacity-50 hover:opacity-100 transition-opacity duration-300"
-                    />
+                    <a href="https://app.realms.today/dao/LABS" target="_blank" rel="noopener noreferrer">
+                      <Image 
+                        src="/3.png"
+                        alt="Partner Logo 3"
+                        width={140}
+                        height={45}
+                        className="w-[120px] sm:w-[160px] md:w-[180px] object-contain opacity-50 hover:opacity-100 transition-opacity duration-300"
+                      />
+                    </a>
                   </div>
                   <div className="w-full flex items-center justify-center text-white/50 hover:text-white/80 transition-colors duration-300">
-                    <Image 
-                      src="/4.png"
-                      alt="Partner Logo 4"
-                      width={140}
-                      height={45}
-                      className="w-[120px] sm:w-[160px] md:w-[180px] object-contain opacity-50 hover:opacity-100 transition-opacity duration-300"
-                    />
+                    <a href="https://raydium.io/swap/?inputMint=EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v&outputMint=LABSh5DTebUcUbEoLzXKCiXFJLecDFiDWiBGUU1GpxR" target="_blank" rel="noopener noreferrer">
+                      <Image 
+                        src="/4.png"
+                        alt="Partner Logo 4"
+                        width={140}
+                        height={45}
+                        className="w-[120px] sm:w-[160px] md:w-[180px] object-contain opacity-50 hover:opacity-100 transition-opacity duration-300"
+                      />
+                    </a>
                   </div>
                   <div className="w-full flex items-center justify-center text-white/50 hover:text-white/80 transition-colors duration-300">
-                    <Image 
-                      src="/5.png"
-                      alt="Partner Logo 5"
-                      width={140}
-                      height={45}
-                      className="w-[120px] sm:w-[160px] md:w-[180px] object-contain opacity-50 hover:opacity-100 transition-opacity duration-300"
-                    />
+                    <a href="https://streamflow.finance/" target="_blank" rel="noopener noreferrer">
+                      <Image 
+                        src="/5.png"
+                        alt="Partner Logo 5"
+                        width={140}
+                        height={45}
+                        className="w-[120px] sm:w-[160px] md:w-[180px] object-contain opacity-50 hover:opacity-100 transition-opacity duration-300"
+                      />
+                    </a>
                   </div>
                   <div className="w-full flex items-center justify-center text-white/50 hover:text-white/80 transition-colors duration-300">
-                    <Image 
-                      src="/6.png"
-                      alt="Partner Logo 6"
-                      width={140}
-                      height={45}
-                      className="w-[120px] sm:w-[160px] md:w-[180px] object-contain opacity-50 hover:opacity-100 transition-opacity duration-300"
-                    />
+                    <a href="https://switchboard.xyz/" target="_blank" rel="noopener noreferrer">
+                      <Image 
+                        src="/6.png"
+                        alt="Partner Logo 6"
+                        width={140}
+                        height={45}
+                        className="w-[120px] sm:w-[160px] md:w-[180px] object-contain opacity-50 hover:opacity-100 transition-opacity duration-300"
+                      />
+                    </a>
                   </div>
                   <div className="w-full flex items-center justify-center text-white/50 hover:text-white/80 transition-colors duration-300">
-                    <Image 
-                      src="/7.png"
-                      alt="Partner Logo 7"
-                      width={140}
-                      height={45}
-                      className="w-[120px] sm:w-[160px] md:w-[180px] object-contain opacity-50 hover:opacity-100 transition-opacity duration-300"
-                    />
+                    <a href="https://app.realms.today/dao/RED" target="_blank" rel="noopener noreferrer">
+                      <Image 
+                        src="/7.png"
+                        alt="Partner Logo 7"
+                        width={140}
+                        height={45}
+                        className="w-[120px] sm:w-[160px] md:w-[180px] object-contain opacity-50 hover:opacity-100 transition-opacity duration-300"
+                      />
+                    </a>
                   </div>
                   <div className="w-full flex items-center justify-center text-white/50 hover:text-white/80 transition-colors duration-300">
-                    <Image 
-                      src="/8.png"
-                      alt="Partner Logo 8"
-                      width={140}
-                      height={45}
-                      className="w-[120px] sm:w-[160px] md:w-[180px] object-contain opacity-50 hover:opacity-100 transition-opacity duration-300"
-                    />
+                    <a href="https://app.realms.today/dao/LABS" target="_blank" rel="noopener noreferrer">
+                      <Image 
+                        src="/8.png"
+                        alt="Partner Logo 8"
+                        width={140}
+                        height={45}
+                        className="w-[120px] sm:w-[160px] md:w-[180px] object-contain opacity-50 hover:opacity-100 transition-opacity duration-300"
+                      />
+                    </a>
                   </div>
                   <div className="w-full flex items-center justify-center text-white/50 hover:text-white/80 transition-colors duration-300">
-                    <Image 
-                      src="/9.png"
-                      alt="Partner Logo 9"
-                      width={140}
-                      height={45}
-                      className="w-[120px] sm:w-[160px] md:w-[180px] object-contain opacity-50 hover:opacity-100 transition-opacity duration-300"
-                    />
+                    <a href="https://www.meteora.ag/" target="_blank" rel="noopener noreferrer">
+                      <Image 
+                        src="/9.png"
+                        alt="Partner Logo 9"
+                        width={140}
+                        height={45}
+                        className="w-[120px] sm:w-[160px] md:w-[180px] object-contain opacity-50 hover:opacity-100 transition-opacity duration-300"
+                      />
+                    </a>
                   </div>
                 </div>
               </div>
@@ -147,7 +167,7 @@ export default function Home() {
       <div id="about-section" className="container mx-auto px-4 py-48">
         <div className="max-w-4xl mx-auto space-y-16">
           {/* Combined Info Container */}
-          <div className="bg-black/30 backdrop-blur-md border border-white/10 rounded-xl p-8 md:p-12 mb-4">
+          <div id="epicentral-labs" className="bg-black/30 backdrop-blur-md border border-white/10 rounded-xl p-8 md:p-12 mb-4 scroll-mt-32">
             <div className="space-y-12 text-left">
               {/* What is Epicentral Labs? */}
               <div className="space-y-6">
