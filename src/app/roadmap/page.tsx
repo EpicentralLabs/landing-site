@@ -21,7 +21,11 @@ export default function RoadmapPage() {
             </h1>
 
             <p className="text-white/70 max-w-2xl mx-auto mt-4">
-              This is an overview of the roadmap for 2025 set by the EpicentralDAO.
+              This is an overview of the roadmap items for 2025 set by the Epicentral Core Team (in no particular order). 
+              Specifics of each quarter will be updated as dates get closer.
+            </p>
+            <p className="text-white/70 max-w-2xl mx-auto mt-4">
+            <u>Some items are subject to change.</u>
             </p>
           </div>
 
@@ -57,7 +61,6 @@ export default function RoadmapPage() {
                 { type: "community", text: "Epicentral Labs Whitepaper Debuted", status: "completed" },
                 { type: "community", text: "Collaborated with another Solana project for community growth", status: "in-progress" },
                 { type: "community", text: "DAO Participation Rewards Program", status: "todo" },
-                { type: "community", text: "Contributor Participation Rewards Program", status: "todo" },
 
                 { type: "technical", text: "Option Pricing Model - OPM(Rust + Typescript)", status: "completed" },
                 { type: "technical", text: "Meteora Integration with Realms DAOs", status: "in-progress" },
@@ -65,6 +68,7 @@ export default function RoadmapPage() {
                 { type: "technical", text: "Website Revamp - Roadmap Page", status: "completed" },
                 { type: "technical", text: "Website Revamp - $LABS Tokenomics Page", status: "in-progress" },
                 { type: "technical", text: "Website Revamp - EpicentralDAO Page", status: "in-progress" },
+                { type: "technical", text: "Website Revamp - Deploy Finalized Website", status: "todo" },
                 { type: "technical", text: "Documentation Site Revamp", status: "todo" },
                 { type: "technical", text: "Solana OPX - UI Design", status: "in-progress" },
                 { type: "technical", text: "Solana OPX - API/RPC Integration", status: "in-progress" },
@@ -79,17 +83,59 @@ export default function RoadmapPage() {
 
             <RoadmapCard
               quarter="Q2 2024"
-              title="Solana OPX"
+              title="Solana OPX - Solana's First Decentralized Options Exchange"
               status="in-progress"
               description="Continue building and testing the core protocol: Solana OPX."
               items={[
-                { type: "community", text: "DAO governance implementation" },
+                { type: "community", text: "Epicentral Discord Server reaches 1000 members", status: "in-progress" },
+                { type: "community", text: "Epicentral Twitter Account reaches 1500 followers", status: "in-progress" },
+                { type: "community", text: "Contributor Participation Rewards Program", status: "todo" },
+                { type: "community", text: "Initialize a Bug Bounty Program for Solana OPX", status: "todo" },
+                { type: "community", text: "Recieve a second round of grants greater than $10k", status: "todo" },
+                { type: "community", text: "Host 3 AMA Calls on X/Twitter", status: "todo" },
+                { type: "community", text: "Determine Solana OPX Protocol Fees", status: "completed" },
 
-                { type: "technical", text: "Solana OPX development" },
-
+                { type: "technical", text: "Solana OPX - $SOL Devnet Trading", status: "todo"},
+                { type: "technical", text: "Solana OPX - Devnet Deployment", status: "todo"},
+                { type: "technical", text: "Solana OPX - $SOL Mainnet Trading", status: "todo"},
+                { type: "technical", text: "Solana OPX - $LABS Devnet Trading", status: "todo"},
+                { type: "technical", text: "Solana OPX - Mainnet Deployment", status: "todo"},
+                { type: "technical", text: "Solana Option Standard SDK - Utilizing Option Pricing Model (OPM)", status: "todo"},
+                { type: "technical", text: "Solana Option Standard SDK - Option Program CPI", status: "todo"},
+                { type: "technical", text: "Solana Option Standard SDK - Option Margin Lending Pool (OMLP)", status: "todo"},
+                { type: "technical", text: "Documentation Site Revamp - Option Pricing Model (OPM)", status: "todo"},
+                { type: "technical", text: "Documentation Site Revamp - Option Margin Lending Pool (OMLP)", status: "todo"},
+                { type: "technical", text: "Documentation Site Revamp - Option Programs", status: "todo" },
               ]}
             />
 
+            <RoadmapCard
+              quarter="Q3 2024"
+              title="Education & Implementation"
+              status="in-progress"
+              description="Teach the Solana Ecosystem about Options, Implement Options into other DeFi Protocols, and more."
+              items={[
+                { type: "community", text: "DAO Proposal: $LABS Token Buyback using Protocol Fees", status: "todo" },
+                { type: "community", text: "Create educational content for Solana OPX/Options Trading", status: "todo" },
+
+                { type: "technical", text: "Implement Programmable Fee Model via DAO proposals", status: "todo"},
+                { type: "technical", text: "Integrate Options into other DeFi Protocols (DeFiTuna, Adrena, etc.)", status: "todo"},
+                { type: "technical", text: "Create Video Content for SOS SDK, Options Trading, and more", status: "todo"},
+              ]}
+            />
+
+            <RoadmapCard
+              quarter="Q4 2024"
+              title="Awareness & Adoption"
+              status="in-progress"
+              description="Create a community-driven initiative to raise awareness about Solana OPX and Options Trading."
+              items={[
+                { type: "community", text: "Create educational content for Solana OPX/Options Trading", status: "todo" },
+                { type: "community", text: "Speak or mention of Solana OPX/Options at Solana Breakpoint 2025", status: "todo" },
+
+                { type: "technical", text: "Integrate Options into more DeFi Protocols", status: "todo"},
+              ]}
+            />
             {/* Add more RoadmapCard components as needed */}
           </div>
         </div>
