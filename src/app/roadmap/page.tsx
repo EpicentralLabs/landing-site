@@ -147,10 +147,10 @@ export default function RoadmapPage() {
           <div className="bg-black/30 backdrop-blur-md border border-white/10 rounded-xl p-8 md:p-12 text-center">
             <div className="space-y-6">
               <h2 className="text-3xl font-light text-white/90">
-                Join Our Journey
+                Want to Contribute?
               </h2>
               <p className="text-white/70 max-w-2xl mx-auto">
-                Be part of shaping the future of DeFi on Solana. Join our community and contribute to the development of innovative financial solutions.
+                Become a Verified Contributor and help shape the future of DeFi on Solana.
               </p>
               <div className="flex items-center justify-center gap-4">
                 <Button 
@@ -165,10 +165,10 @@ export default function RoadmapPage() {
                 <Button 
                   size="lg"
                   className="bg-[#FFFFFF] hover:bg-[#FFFFFF]/90 text-black transition-all duration-300 
-                             hover:drop-shadow-[0_0_0.1rem_#FFFFFF] hover:scale-95"
-                  onClick={() => window.open('https://app.realms.today/dao/LABS', '_blank')}
+                              hover:drop-shadow-[0_0_0.1rem_#FFFFFF] hover:scale-95 px-4"
+                  onClick={() => window.open('https://github.com/EpicentralLabs', '_blank')}
                 >
-                  Join DAO
+                  GitHub
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </div>
