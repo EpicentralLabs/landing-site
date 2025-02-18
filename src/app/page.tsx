@@ -215,7 +215,7 @@ export default function Home() {
                     variant="secondary"
                     className="bg-white/10 hover:bg-white/20 text-white transition-all duration-300 
                               hover:drop-shadow-[0_0_0.1rem_rgba(255,255,255,0.3)] hover:scale-95 px-4"
-                    onClick={() => window.location.href = '/coming-soon'}
+                    onClick={() => window.location.href = '/roadmap'}
                   >
                     Roadmap
                     <ArrowRight className="ml-0 h-4 w-4" />
