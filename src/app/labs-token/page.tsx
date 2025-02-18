@@ -18,6 +18,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { useState, useEffect } from 'react';
 
 // Token distribution data with allocation details and colors
 const tokenDistributionData = [
@@ -58,8 +59,28 @@ const allocationWallets = {
   'Contributor Bonus': 'https://solscan.io/account/DR1P6yBNXQ8YLBrpYpU3FjnnruStMRzm2y2cAA3D6ynm'
 } as const;
 
-// Custom tooltip component for the pie chart
-const CustomTooltip = ({ active, payload }: any) => {
+// 1. Fix the any types with proper interfaces
+interface CustomTooltipProps {
+  active?: boolean;
+  payload?: Array<{
+    payload: {
+      name: string;
+      amount: string;
+      value: number;
+    };
+  }>;
+}
+
+interface CustomTickProps {
+  x?: number;
+  y?: number;
+  payload?: {
+    value: string;
+  };
+}
+
+// Update the tooltip component with proper typing
+const CustomTooltip = ({ active, payload }: CustomTooltipProps) => {
   if (active && payload && payload.length) {
     return (
       <div className="bg-black/80 backdrop-blur-md border border-white/10 rounded-lg p-3 md:p-4 max-w-[90vw] md:max-w-none">
@@ -72,9 +93,9 @@ const CustomTooltip = ({ active, payload }: any) => {
   return null;
 };
 
-// Custom tick component for the vesting timeline chart x-axis
-const CustomTick = (props: any) => {
-  const { x, y, payload } = props;
+// Update the tick component with proper typing
+const CustomTick = ({ x = 0, y = 0, payload }: CustomTickProps) => {
+  if (!payload) return null;
   return (
     <g transform={`translate(${x},${y})`}>
       <text 
@@ -102,15 +123,14 @@ const calculateTimeProgress = () => {
   return Math.max(0, Math.min(16, monthDiff));
 };
 
-// Calculate exact position on the vesting timeline for the reference line
+// 2. Remove unused nextMonth variable in calculateExactPosition
 const calculateExactPosition = () => {
   const progress = calculateTimeProgress();
   if (progress < 0) return 0;
   if (progress >= 16) return 15;
   
-  // Get the month indexes for interpolation
+  // Get the month index for interpolation
   const currentMonth = Math.floor(progress);
-  const nextMonth = Math.min(currentMonth + 1, 16);
   
   // Calculate the precise position between months
   const monthProgress = progress - currentMonth;
@@ -174,6 +194,39 @@ const calculateTotalUnlockedSupply = () => {
     amount: unlockedAmount.toLocaleString(),
     percentage: ((unlockedAmount / totalSupply) * 100).toFixed(1)
   };
+};
+
+// Update the Legend component to use dynamic layout based on client-side check
+const PieChartLegend = () => {
+  const [isWideScreen, setIsWideScreen] = useState(false);
+
+  useEffect(() => {
+    setIsWideScreen(window.innerWidth > 768);
+    
+    const handleResize = () => {
+      setIsWideScreen(window.innerWidth > 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  return (
+    <Legend 
+      layout={isWideScreen ? "vertical" : "horizontal"}
+      align={isWideScreen ? "right" : "center"}
+      verticalAlign={isWideScreen ? "middle" : "bottom"}
+      wrapperStyle={{
+        paddingLeft: isWideScreen ? '20px' : '0',
+        paddingTop: !isWideScreen ? '20px' : '0',
+      }}
+      formatter={(value) => (
+        <span className="text-white/70 text-sm md:text-base">
+          {value}
+        </span>
+      )}
+    />
+  );
 };
 
 export default function LabsTokenPage() {
@@ -272,20 +325,7 @@ export default function LabsTokenPage() {
                     content={<CustomTooltip />}
                     cursor={{ fill: 'transparent' }}
                   />
-                  <Legend 
-                    layout={window.innerWidth > 768 ? "vertical" : "horizontal"}
-                    align={window.innerWidth > 768 ? "right" : "center"}
-                    verticalAlign={window.innerWidth > 768 ? "middle" : "bottom"}
-                    wrapperStyle={{
-                      paddingLeft: window.innerWidth > 768 ? '20px' : '0',
-                      paddingTop: window.innerWidth <= 768 ? '20px' : '0',
-                    }}
-                    formatter={(value) => (
-                      <span className="text-white/70 text-sm md:text-base">
-                        {value}
-                      </span>
-                    )}
-                  />
+                  <PieChartLegend />
                 </PieChart>
               </ResponsiveContainer>
             </div>
@@ -377,7 +417,7 @@ export default function LabsTokenPage() {
             <div className="mb-8 space-y-3 text-sm md:text-base">
               <p className="text-white/70 italic">
                 Note: Vesting schedules are designed to ensure long-term alignment of stakeholder interests 
-                and prevent immediate sell-offs that could destabilize the token's value. All vesting schedules were created immutable via <a href="https://streamflow.finance/" target="_blank" rel="noopener noreferrer" className="text-[#4a85ff] hover:drop-shadow-[0_0_8px_#4a85ff] transition-all duration-300">Streamflow</a>.
+                and prevent immediate sell-offs that could destabilize the token&apos;s value. All vesting schedules were created immutable via <a href="https://streamflow.finance/" target="_blank" rel="noopener noreferrer" className="text-[#4a85ff] hover:drop-shadow-[0_0_8px_#4a85ff] transition-all duration-300">Streamflow</a>.
               </p>
               <p className="text-white/70 italic">
                 Schedule begins on <span className="text-[#4a85ff] font-medium">July 28th, 2024</span>

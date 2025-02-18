@@ -33,7 +33,7 @@ export default function Navbar() {
           </div>
           
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-4">
             <Link 
               href="/"
               className="text-sm font-medium opacity-60 hover:opacity-100 transition-all hover:drop-shadow-[0_0_0.3rem_#ffffff70] duration-300"
@@ -42,8 +42,23 @@ export default function Navbar() {
             </Link>
             
             {/* Vertical Gradient Divider */}
-            <div className="relative h-4 w-px">
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/20 to-transparent blur-sm"></div>
+            <div className="relative h-3 w-px">
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/20 to-transparent blur-[2px]"></div>
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/40 to-transparent"></div>
+              <div className="h-full w-px bg-gradient-to-b from-transparent via-white/20 to-transparent relative"></div>
+            </div>
+
+            {/* Add LABS Link */}
+            <Link 
+              href="/labs-token"
+              className="text-sm font-medium opacity-60 hover:opacity-100 transition-all hover:drop-shadow-[0_0_0.3rem_#ffffff70] duration-300"
+            >
+              LABS
+            </Link>
+
+            {/* Vertical Gradient Divider */}
+            <div className="relative h-3 w-px">
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/20 to-transparent blur-[2px]"></div>
               <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/40 to-transparent"></div>
               <div className="h-full w-px bg-gradient-to-b from-transparent via-white/20 to-transparent relative"></div>
             </div>
@@ -57,8 +72,8 @@ export default function Navbar() {
             </Link>
 
             {/* Vertical Gradient Divider */}
-            <div className="relative h-4 w-px">
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/20 to-transparent blur-sm"></div>
+            <div className="relative h-3 w-px">
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/20 to-transparent blur-[2px]"></div>
               <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/40 to-transparent"></div>
               <div className="h-full w-px bg-gradient-to-b from-transparent via-white/20 to-transparent relative"></div>
             </div>
@@ -71,8 +86,8 @@ export default function Navbar() {
             </Link>
 
             {/* Vertical Gradient Divider */}
-            <div className="relative h-4 w-px">
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/20 to-transparent blur-sm"></div>
+            <div className="relative h-3 w-px">
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/20 to-transparent blur-[2px]"></div>
               <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/40 to-transparent"></div>
               <div className="h-full w-px bg-gradient-to-b from-transparent via-white/20 to-transparent relative"></div>
             </div>
@@ -165,7 +180,7 @@ export default function Navbar() {
         {/* Mobile Menu */}
         {mobileMenuOpen && (
           <div className="md:hidden fixed inset-x-0 top-16 bg-black/60 backdrop-blur-lg border-t border-white/10 animate-in fade-in slide-in-from-top duration-300">
-            <div className="px-6 py-6 space-y-6">
+            <div className="px-6 py-4 space-y-4">
               <Link 
                 href="/"
                 className="block text-base font-medium opacity-80 hover:opacity-100 transition-all 
@@ -173,6 +188,22 @@ export default function Navbar() {
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Home
+              </Link>
+              
+              {/* Gradient Divider */}
+              <div className="relative w-full">
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent blur-sm"></div>
+                <div className="h-px w-full bg-gradient-to-r from-transparent via-white/20 to-transparent relative"></div>
+              </div>
+              
+              {/* Add LABS Link in mobile menu */}
+              <Link 
+                href="/labs-token"
+                className="block text-base font-medium opacity-80 hover:opacity-100 transition-all 
+                           hover:drop-shadow-[0_0_0.3rem_#ffffff70] duration-300"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                LABS
               </Link>
               
               {/* Gradient Divider */}
@@ -197,8 +228,9 @@ export default function Navbar() {
                 <div className="h-px w-full bg-gradient-to-r from-transparent via-white/20 to-transparent relative"></div>
               </div>
               
+              {/* Mobile Menu Docs Link - updating href */}
               <Link 
-                href="/docs"
+                href="/coming-soon"
                 className="block text-base font-medium opacity-80 hover:opacity-100 transition-all 
                            hover:drop-shadow-[0_0_0.3rem_#ffffff70] duration-300"
                 onClick={() => setMobileMenuOpen(false)}
