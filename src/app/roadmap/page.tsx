@@ -6,143 +6,6 @@ import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { RoadmapCard } from "@/components/roadmap-card";
 
-// Updated data structure
-type RoadmapItem = {
-  quarter: string;
-  title: string;
-  status: "completed" | "in-progress" | "upcoming";
-  description: string;
-  community: {
-    title: string;
-    items: string[];
-  };
-  technical: {
-    title: string;
-    items: string[];
-  };
-}
-
-const roadmapData: RoadmapItem[] = [
-  {
-    quarter: "Q1 2024",
-    title: "Foundation & Community",
-    status: "completed",
-    description: "Establishing the core infrastructure and community foundation",
-    community: {
-      title: "Community Development",
-      items: [
-        "Launch of $LABS token",
-        "Establishment of EpicentralDAO",
-        "Community governance framework",
-        "Initial partnerships and integrations"
-      ]
-    },
-    technical: {
-      title: "Technical Infrastructure",
-      items: [
-        "Smart contract architecture design",
-        "Core protocol development initiation",
-        "Security framework establishment",
-        "Development environment setup"
-      ]
-    }
-  },
-  {
-    quarter: "Q2 2024",
-    title: "Protocol Development",
-    status: "in-progress",
-    description: "Building and testing core protocol features",
-    community: {
-      title: "Community Growth",
-      items: [
-        "DAO governance implementation",
-        "Community ambassador program",
-        "Educational content creation",
-        "Partnership expansion"
-      ]
-    },
-    technical: {
-      title: "Protocol Development",
-      items: [
-        "Solana OPX development",
-        "Smart contract audits",
-        "Governance parameter optimization",
-        "Enhanced community tools"
-      ]
-    }
-  },
-  {
-    quarter: "Q3 2024",
-    title: "Product Launch",
-    status: "upcoming",
-    description: "Launching core products and expanding ecosystem",
-    community: {
-      title: "Product Launch",
-      items: [
-        "Solana OPX mainnet launch",
-        "Advanced trading features",
-        "Cross-protocol integrations",
-        "Expanded partnership network"
-      ]
-    },
-    technical: {
-      title: "Product Launch",
-      items: [
-        "Product launch preparation",
-        "Marketing and outreach",
-        "User acquisition strategies",
-        "Community engagement"
-      ]
-    }
-  },
-  {
-    quarter: "Q4 2024",
-    title: "Ecosystem Growth",
-    status: "upcoming",
-    description: "Scaling the ecosystem and enhancing functionality",
-    community: {
-      title: "Ecosystem Growth",
-      items: [
-        "Additional financial products",
-        "Enhanced governance features",
-        "Protocol revenue optimization",
-        "Global expansion initiatives"
-      ]
-    },
-    technical: {
-      title: "Ecosystem Growth",
-      items: [
-        "Ecosystem expansion strategies",
-        "New product development",
-        "Global market penetration",
-        "Community feedback integration"
-      ]
-    }
-  }
-];
-
-const getStatusColor = (status: RoadmapItem["status"]) => {
-  switch (status) {
-    case "completed":
-      return "bg-green-500";
-    case "in-progress":
-      return "bg-blue-500";
-    case "upcoming":
-      return "bg-white/20";
-  }
-};
-
-const getStatusText = (status: RoadmapItem["status"]) => {
-  switch (status) {
-    case "completed":
-      return "Completed";
-    case "in-progress":
-      return "In Progress";
-    case "upcoming":
-      return "Upcoming";
-  }
-};
-
 export default function RoadmapPage() {
   return (
     <div className="min-h-screen flex flex-col">
@@ -173,25 +36,43 @@ export default function RoadmapPage() {
               <span className="text-white/70 text-sm">In Progress</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-purple-500"></div>
-              <span className="text-white/70 text-sm">Upcoming</span>
-            </div>
-            <div className="flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-white/20"></div>
-              <span className="text-white/70 text-sm">TBD</span>
+              <span className="text-white/70 text-sm">TODO</span>
             </div>
           </div>
 
-          <div className="space-y-12">
+          <div className="space-y-6">
             <RoadmapCard
               quarter="Q1 2024"
               title="Foundation & Community"
-              status="completed"
+              status="in-progress"
               description="Establishing the core infrastructure and community foundation for the EpicentralDAO"
               items={[
-                { type: "community", text: "Launch ", color: "green" },
+                { type: "community", text: "Host first X/Twitter AMA Call of 2025", status: "completed" },
+                { type: "community", text: "$LABS Verified on Jupiter Exchange", status: "completed" },
+                { type: "community", text: "$LABS Verified on Birdeye", status: "completed" },
+                { type: "community", text: "$LABS touched $0.01", status: "completed" },
+                { type: "community", text: "Epicentral Discord Server reaches 200 members", status: "completed" },
+                { type: "community", text: "Epicentral Twitter Account reaches 1000 followers", status: "in-progress" },
+                { type: "community", text: "Realms Ecosystem DAO grants $10,000 to EpicentralDAO for Meteora Integration", status: "completed" },
+                { type: "community", text: "Epicentral Labs Whitepaper Debuted", status: "completed" },
+                { type: "community", text: "Collaborated with another Solana project (Sol Man DAO) for community growth", status: "in-progress" },
 
-                { type: "technical", text: "Smart contract architecture design", color: "green" },
+                { type: "technical", text: "Option Pricing Model - OPM(Rust + Typescript)", status: "completed" },
+                { type: "technical", text: "Meteora Integration with Realms DAOs", status: "in-progress" },
+                { type: "technical", text: "Website Revamp - Landing Page", status: "completed" },
+                { type: "technical", text: "Website Revamp - Roadmap Page", status: "completed" },
+                { type: "technical", text: "Website Revamp - $LABS Tokenomics Page", status: "in-progress" },
+                { type: "technical", text: "Website Revamp - EpicentralDAO Page", status: "in-progress" },
+                { type: "technical", text: "Documentation Site Revamp", status: "todo" },
+                { type: "technical", text: "Solana OPX - UI Design", status: "in-progress" },
+                { type: "technical", text: "Solana OPX - API/RPC Integration", status: "in-progress" },
+                { type: "technical", text: "Solana OPX - Option Program Integration", status: "todo" },
+                { type: "technical", text: "Solana OPX - Trade Page", status: "in-progress" },
+                { type: "technical", text: "Solana OPX - Option Margin Lending Pool", status: "todo" },
+                { type: "technical", text: "Option Programs - Create Option", status: "todo" },
+                { type: "technical", text: "Option Programs - Exercise Option", status: "todo" },
+                { type: "technical", text: "Option Programs - Validate Option Value via OPM", status: "todo" },
               ]}
             />
 

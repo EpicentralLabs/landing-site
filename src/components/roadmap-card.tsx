@@ -1,31 +1,29 @@
 "use client"
 
-type ColorChoice = "green" | "blue" | "purple" | "grey";
+type StatusChoice = "completed" | "in-progress" | "todo";
 
 interface RoadmapCardProps {
   quarter: string;
   title: string;
-  status: "completed" | "in-progress" | "upcoming";
+  status: "completed" | "in-progress";
   description: string;
   items: {
     text: string;
     type: "community" | "technical";
-    color?: ColorChoice; // Now only accepts specific colors
+    status?: StatusChoice;
   }[];
 }
 
-const getBulletColor = (color?: ColorChoice) => {
-  switch (color) {
-    case "green":
+const getItemStatusColor = (status?: StatusChoice) => {
+  switch (status) {
+    case "completed":
       return "bg-green-500";
-    case "blue":
+    case "in-progress":
       return "bg-blue-500";
-    case "purple":
-      return "bg-purple-500";
-    case "grey":
+    case "todo":
       return "bg-white/20";
     default:
-      return "bg-white/20"; // Default color if none specified
+      return "bg-white/20";
   }
 };
 
@@ -35,8 +33,6 @@ const getStatusColor = (status: RoadmapCardProps["status"]) => {
       return "bg-green-500";
     case "in-progress":
       return "bg-blue-500";
-    case "upcoming":
-      return "bg-white/20";
   }
 };
 
@@ -46,8 +42,6 @@ const getStatusText = (status: RoadmapCardProps["status"]) => {
       return "Completed";
     case "in-progress":
       return "In Progress";
-    case "upcoming":
-      return "Upcoming";
   }
 };
 
@@ -58,9 +52,6 @@ export function RoadmapCard({
   description,
   items
 }: RoadmapCardProps) {
-  const communityItems = items.filter(item => item.type === "community");
-  const technicalItems = items.filter(item => item.type === "technical");
-
   return (
     <div className="relative bg-black/30 backdrop-blur-md border border-white/10 rounded-xl p-8 transform hover:-translate-y-1 transition-all duration-300">
       {/* Quarter Label */}
@@ -83,16 +74,16 @@ export function RoadmapCard({
 
       {/* Two-Column Layout for Community and Technical */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {/* Community Development */}
+        {/* DAO & Community Growth */}
         <div>
           <h4 className="text-white/90 font-medium mb-4 flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-purple-500"></div>
-            Community Development
+            <div className="w-2 h-2 rounded-full bg-white/20"></div>
+            DAO & Community Growth
           </h4>
           <ul className="space-y-3">
             {items.filter(item => item.type === "community").map((item, index) => (
               <li key={index} className="flex items-center gap-2">
-                <div className={`w-2 h-2 rounded-full ${item.color ? `bg-${item.color}-500` : 'bg-white/20'}`}></div>
+                <div className={`w-2 h-2 rounded-full ${getItemStatusColor(item.status)}`}></div>
                 <span className="text-white/70">{item.text}</span>
               </li>
             ))}
@@ -102,13 +93,13 @@ export function RoadmapCard({
         {/* Technical Infrastructure */}
         <div>
           <h4 className="text-white/90 font-medium mb-4 flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-purple-500"></div>
+            <div className="w-2 h-2 rounded-full bg-white/20"></div>
             Technical Infrastructure
           </h4>
           <ul className="space-y-3">
             {items.filter(item => item.type === "technical").map((item, index) => (
               <li key={index} className="flex items-center gap-2">
-                <div className={`w-2 h-2 rounded-full ${item.color ? `bg-${item.color}-500` : 'bg-white/20'}`}></div>
+                <div className={`w-2 h-2 rounded-full ${getItemStatusColor(item.status)}`}></div>
                 <span className="text-white/70">{item.text}</span>
               </li>
             ))}
