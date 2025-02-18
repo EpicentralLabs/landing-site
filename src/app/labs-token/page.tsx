@@ -19,7 +19,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-// Add this data array
+// Token distribution data with allocation details and colors
 const tokenDistributionData = [
   { name: 'Public Allocation', value: 50, amount: '27,326,300', color: '#4a85ff' },
   { name: 'DeFi Allocation', value: 20, amount: '10,930,520', color: '#34d399' },
@@ -29,7 +29,7 @@ const tokenDistributionData = [
   { name: 'Contributor Bonus', value: 3, amount: '1,639,578', color: '#6366f1' },
 ];
 
-// Add this data array at the top with the other data
+// Vesting schedule data showing monthly token unlocks for each allocation
 const vestingScheduleData = [
   { month: 'Cliff', defi: 0, dao: 1457402, team: 546531, marketing: 910877, contributors: 273263 },
   { month: 'Month 2', defi: 910877, dao: 728701, team: 182175, marketing: 910877, contributors: 273263 },
@@ -49,7 +49,7 @@ const vestingScheduleData = [
   { month: 'Month 16', defi: 0, dao: 0, team: 182175, marketing: 0, contributors: 0 },
 ];
 
-// Update the wallet mapping
+// Mapping of allocation names to their respective Solscan wallet URLs
 const allocationWallets = {
   'Public Allocation': 'https://solscan.io/account/3wxhFgvVYGStoQj3XvMArNQF66WamWcVy4EgwBJfK1bM',
   'DeFi Allocation': 'https://solscan.io/account/6yuntQAS5gSwhhKaXG3QYbcwXPxhsbULu9Tzv9mizUUm',
@@ -58,7 +58,7 @@ const allocationWallets = {
   'Contributor Bonus': 'https://solscan.io/account/DR1P6yBNXQ8YLBrpYpU3FjnnruStMRzm2y2cAA3D6ynm'
 } as const;
 
-// Add this custom tooltip component
+// Custom tooltip component for the pie chart
 const CustomTooltip = ({ active, payload }: any) => {
   if (active && payload && payload.length) {
     return (
@@ -72,7 +72,7 @@ const CustomTooltip = ({ active, payload }: any) => {
   return null;
 };
 
-// Add this custom tick component at the top with other components
+// Custom tick component for the vesting timeline chart x-axis
 const CustomTick = (props: any) => {
   const { x, y, payload } = props;
   return (
@@ -92,15 +92,17 @@ const CustomTick = (props: any) => {
   );
 };
 
-// Add these helper functions near the top of the file
+// Constants and helper functions for vesting calculations
 const START_DATE = new Date('2024-07-28');
 
+// Calculate months elapsed since vesting start
 const calculateTimeProgress = () => {
   const now = new Date();
   const monthDiff = (now.getTime() - START_DATE.getTime()) / (1000 * 60 * 60 * 24 * 30.44); // Using average month length
   return Math.max(0, Math.min(16, monthDiff));
 };
 
+// Calculate exact position on the vesting timeline for the reference line
 const calculateExactPosition = () => {
   const progress = calculateTimeProgress();
   if (progress < 0) return 0;
@@ -116,6 +118,7 @@ const calculateExactPosition = () => {
   return currentMonth + monthProgress;
 };
 
+// Get human-readable progress label for the vesting timeline
 const getProgressLabel = () => {
   const now = new Date();
   if (now < START_DATE) {
@@ -128,7 +131,7 @@ const getProgressLabel = () => {
   return `Month ${Math.floor(monthProgress) + 1} of 16`;
 };
 
-// Add this helper function to calculate locked amounts
+// Calculate the percentage of tokens still locked for a given allocation
 const calculateLockedPercentage = (allocation: string) => {
   const now = new Date();
   if (now < START_DATE) return 100; // Everything locked before start
@@ -152,12 +155,12 @@ const calculateLockedPercentage = (allocation: string) => {
   return Math.max(0, period.initialLock * (1 - progress / period.months));
 };
 
-// Add this helper function to calculate unlocked amounts
+// Calculate the percentage of tokens unlocked for a given allocation
 const calculateUnlockedPercentage = (allocation: string) => {
   return 100 - calculateLockedPercentage(allocation);
 };
 
-// Add function to calculate total unlocked supply
+// Calculate total unlocked supply across all allocations
 const calculateTotalUnlockedSupply = () => {
   const totalSupply = 54652600;
   let unlockedAmount = 0;
