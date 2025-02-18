@@ -143,7 +143,7 @@ export default function DAOPage() {
           <div className="w-full h-[400px] bg-black/30 backdrop-blur-md border border-white/10 rounded-xl p-4 lg:p-8">
             <div className="flex justify-between items-center mb-4">
               <div>
-                <h3 className="text-xl font-medium text-white/90">Treasury Value</h3>
+                <h3 className="text-xl font-medium text-white/90">Treasury Value (PLACEHOLDER)</h3>
                 <p className="text-sm text-white/50">
                   Current: ${formatCurrentValue(timeRange === 'AT' ? allTimeData[allTimeData.length - 1].treasury : ytdData[ytdData.length - 1].treasury)}
                 </p>
@@ -212,7 +212,7 @@ export default function DAOPage() {
           {/* Active Proposals Container */}
           <div id="active-proposals" className="bg-black/30 backdrop-blur-md border border-white/10 rounded-xl p-4 lg:p-8">
             <div className="flex justify-between items-center mb-4">
-              <h3 className="text-xl font-medium text-white/90">Active Proposals</h3>
+              <h3 className="text-xl font-medium text-white/90">Active Proposals (PLACEHOLDERS)</h3>
               <Link href="https://app.realms.today/dao/LABS">
                 <Button
                   variant="ghost"
@@ -269,7 +269,7 @@ export default function DAOPage() {
           {/* Overview Container */}
           <div className="bg-black/30 backdrop-blur-md border border-white/10 rounded-xl p-4 lg:p-8">
             <div className="flex justify-between items-center mb-4">
-              <h3 className="text-xl font-medium text-white/90">Overview</h3>
+              <h3 className="text-xl font-medium text-white/90">Overview (PLACEHOLDERS)</h3>
             </div>
             
             <div className="grid grid-cols-2 gap-4">
