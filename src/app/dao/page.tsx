@@ -137,6 +137,8 @@ export default function DAOPage() {
         </div>
       </main>
 
+      <div className="w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent mb-16"></div> 
+
       {/* New DAO Introduction Section */}
       <section className="container mx-auto px-4 py-24">
         <div className="max-w-4xl mx-auto text-center">
@@ -323,7 +325,7 @@ export default function DAOPage() {
           </div>
         </div>
       </section>
-      <div className="w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent mb-16"></div>
+       
       {/* How It Works Section - Add id here */}
       <section id="how-it-works" className="container mx-auto px-4 py-24">
         <div className="max-w-5xl mx-auto">
