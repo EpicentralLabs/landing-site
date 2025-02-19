@@ -19,7 +19,7 @@ export default function ComingSoon() {
               </span>
             </h1>
             <p className="text-lg text-white/70">
-              We're in the trenches working on something really cool, we promise -- Stay tuned!
+              We&apos;re in the trenches working on something really cool, we promise -- stay tuned!
             </p>
             <div className="flex items-center justify-center gap-4">
               <Button 

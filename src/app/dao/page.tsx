@@ -2,26 +2,8 @@
 
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import Link from "next/link";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
-import { Line, LineChart, XAxis, YAxis, ResponsiveContainer, Tooltip } from "recharts"
-import { useState } from "react"
-
-// Function to format numbers with k/m suffix (rounded to nearest thousand)
-const formatValue = (value: number) => {
-  if (value >= 1000000) return `${Math.round(value / 1000000)}m`
-  if (value >= 1000) return `${Math.round(value / 1000)}k`
-  return Math.round(value).toString()
-}
-
-// Function to format current value with 2 decimal places
-const formatCurrentValue = (value: number) => {
-  return value.toLocaleString('en-US', {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2
-  })
-}
 
 export default function DAOPage() {
   return (
@@ -62,7 +44,7 @@ export default function DAOPage() {
                     });
                   }}
                 >
-                  What's a DAO?
+                  What&apos;s a DAO?
                 </Button>
               </div>
 
@@ -104,7 +86,7 @@ export default function DAOPage() {
           <p className="text-lg text-white/70">
             A Decentralized Autonomous Organization (DAO) is a revolutionary form of governance that allows communities to make decisions collectively without centralized control. 
             DAOs are important because they empower individuals to have a direct say in the direction and management of projects, ensuring transparency, inclusivity, and decentralization. 
-            By leveraging Solana's blockchain and goverance tools, EpicentralDAO provides a secure and efficient way to coordinate and manage resources, making them a vital component of the future of decentralized finance and beyond.
+            By leveraging Solana&apos;s blockchain and goverance tools, EpicentralDAO provides a secure and efficient way to coordinate and manage resources, making them a vital component of the future of decentralized finance and beyond.
           </p>
         </div>
       </section>
