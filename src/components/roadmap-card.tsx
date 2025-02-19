@@ -52,6 +52,13 @@ const getStatusText = (status: RoadmapCardProps["status"]) => {
   }
 };
 
+// Sorting order for status
+const statusOrder: Record<StatusChoice, number> = {
+  completed: 0,
+  "in-progress": 1,
+  todo: 2,
+};
+
 export function RoadmapCard({
   quarter,
   title,
@@ -59,6 +66,30 @@ export function RoadmapCard({
   description,
   items
 }: RoadmapCardProps) {
+  // Filter and sort community items
+  const communityItems = items
+    .filter(item => item.type === "community")
+    .sort((a, b) => {
+      // First, sort by status
+      const statusComparison = statusOrder[a.status || "todo"] - statusOrder[b.status || "todo"];
+      if (statusComparison !== 0) return statusComparison;
+
+      // If statuses are equal, sort alphabetically by text
+      return a.text.localeCompare(b.text);
+    });
+
+  // Filter and sort technical items
+  const technicalItems = items
+    .filter(item => item.type === "technical")
+    .sort((a, b) => {
+      // First, sort by status
+      const statusComparison = statusOrder[a.status || "todo"] - statusOrder[b.status || "todo"];
+      if (statusComparison !== 0) return statusComparison;
+
+      // If statuses are equal, sort alphabetically by text
+      return a.text.localeCompare(b.text);
+    });
+
   return (
     <TooltipProvider delayDuration={200}>
       <div className="relative bg-black/30 backdrop-blur-md border border-white/10 rounded-xl p-8 transform hover:-translate-y-1 transition-all duration-300">
@@ -95,7 +126,7 @@ export function RoadmapCard({
               </TooltipContent>
             </Tooltip>
             <ul className="space-y-3">
-              {items.filter(item => item.type === "community").map((item, index) => (
+              {communityItems.map((item, index) => (
                 <li key={index} className="flex items-center gap-2">
                   <div className={`w-2 h-2 rounded-full ${getItemStatusColor(item.status)}`}></div>
                   <span className="text-white/70">{item.text}</span>
@@ -117,7 +148,7 @@ export function RoadmapCard({
               </TooltipContent>
             </Tooltip>
             <ul className="space-y-3">
-              {items.filter(item => item.type === "technical").map((item, index) => (
+              {technicalItems.map((item, index) => (
                 <li key={index} className="flex items-center gap-2">
                   <div className={`w-2 h-2 rounded-full ${getItemStatusColor(item.status)}`}></div>
                   <span className="text-white/70">{item.text}</span>
@@ -129,4 +160,4 @@ export function RoadmapCard({
       </div>
     </TooltipProvider>
   );
-} 
+}
