@@ -86,7 +86,7 @@ export const calculateTimeProgress = (START_DATE: Date): number => {
    * @param {Date} START_DATE - The starting date for the vesting schedule.
    * @returns {object} An object containing the total unlocked amount and percentage.
    */
-  export const calculateTotalUnlockedSupply = (tokenDistributionData: any[], START_DATE: Date): { amount: string; percentage: string } => {
+  export const calculateTotalUnlockedSupply = (tokenDistributionData: { name: string; amount: string }[], START_DATE: Date): { amount: string; percentage: string } => {
     const totalSupply = 54652600;
     let unlockedAmount = 0;
   
