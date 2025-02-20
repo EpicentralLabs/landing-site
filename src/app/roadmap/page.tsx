@@ -1,10 +1,11 @@
-"use client"
+"use client";
 
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { RoadmapCard } from "@/components/roadmap-card";
+import { ItemType, StatusChoice } from "@/types/roadmap/RoadmapCardProps";
 
 export default function RoadmapPage() {
   return (
@@ -21,8 +22,9 @@ export default function RoadmapPage() {
             </h1>
 
             <p className="text-white/70 max-w-2xl mx-auto mt-4">
-              This is an overview of the roadmap items for 2025 set by the Epicentral Core Team (in no particular order). 
-              Specifics of each quarter will be updated as dates get closer.
+              This is an overview of the roadmap items for 2025 set by the
+              Epicentral Core Team (in no particular order). Specifics of each
+              quarter will be updated as dates get closer.
             </p>
             <p className="text-white/70 max-w-2xl mx-auto mt-4">
             <u>Some items are subject to change.</u>
@@ -49,91 +51,295 @@ export default function RoadmapPage() {
             <RoadmapCard
               quarter="Q1 2025"
               title="Foundation & Reputation Growth"
-              status="in-progress"
+              status={StatusChoice.InProgress}
               description="Establishing the core infrastructure and community foundation for the EpicentralDAO"
               items={[
-                { type: "community", text: "Host first X/Twitter AMA Call of 2025", status: "completed" },
-                { type: "community", text: "$LABS Verified on Jupiter Exchange", status: "completed" },
-                { type: "community", text: "$LABS Verified on Birdeye", status: "completed" },
-                { type: "community", text: "Epicentral Discord Server reaches 500 members", status: "in-progress" },
-                { type: "community", text: "Epicentral Twitter Account reaches 1000 followers", status: "in-progress" },
-                { type: "community", text: "Realms Ecosystem DAO grants $10,000 to EpicentralDAO for Meteora Integration", status: "completed" },
-                { type: "community", text: "Epicentral Labs Whitepaper Debuted", status: "completed" },
-                { type: "community", text: "Collaborated with another Solana project for community growth", status: "in-progress" },
-                { type: "community", text: "DAO Participation Rewards Program", status: "todo" },
+                {
+                  type: ItemType.Community,
+                  text: "Host first X/Twitter AMA Call of 2025",
+                  status: StatusChoice.Completed,
+                },
+                {
+                  type: ItemType.Community,
+                  text: "$LABS Verified on Jupiter Exchange",
+                  status: StatusChoice.Completed,
+                },
+                {
+                  type: ItemType.Community,
+                  text: "$LABS Verified on Birdeye",
+                  status: StatusChoice.Completed,
+                },
+                {
+                  type: ItemType.Community,
+                  text: "Epicentral Discord Server reaches 500 members",
+                  status: StatusChoice.InProgress,
+                },
+                {
+                  type: ItemType.Community,
+                  text: "Epicentral Twitter Account reaches 1000 followers",
+                  status: StatusChoice.InProgress,
+                },
+                {
+                  type: ItemType.Community,
+                  text: "Realms Ecosystem DAO grants $10,000 to EpicentralDAO for Meteora Integration",
+                  status: StatusChoice.Completed,
+                },
+                {
+                  type: ItemType.Community,
+                  text: "Epicentral Labs Whitepaper Debuted",
+                  status: StatusChoice.Completed,
+                },
+                {
+                  type: ItemType.Community,
+                  text: "Collaborated with another Solana project for community growth",
+                  status: StatusChoice.InProgress,
+                },
+                {
+                  type: ItemType.Community,
+                  text: "DAO Participation Rewards Program",
+                  status: StatusChoice.Todo,
+                },
 
-                { type: "technical", text: "Option Pricing Model - OPM(Rust + Typescript)", status: "completed" },
-                { type: "technical", text: "Meteora Integration with Realms DAOs", status: "in-progress" },
-                { type: "technical", text: "Website Revamp - Landing Page", status: "completed" },
-                { type: "technical", text: "Website Revamp - Roadmap Page", status: "completed" },
-                { type: "technical", text: "Website Revamp - $LABS Tokenomics Page", status: "in-progress" },
-                { type: "technical", text: "Website Revamp - EpicentralDAO Page", status: "in-progress" },
-                { type: "technical", text: "Website Revamp - Deploy Finalized Website", status: "todo" },
-                { type: "technical", text: "Documentation Site Revamp", status: "todo" },
-                { type: "technical", text: "Solana OPX - UI Design", status: "in-progress" },
-                { type: "technical", text: "Solana OPX - API/RPC Integration", status: "in-progress" },
-                { type: "technical", text: "Solana OPX - Option Program Integration", status: "todo" },
-                { type: "technical", text: "Solana OPX - Trade Page", status: "in-progress" },
-                { type: "technical", text: "Solana OPX - Option Margin Lending Pool (OMLP)", status: "todo" },
-                { type: "technical", text: "Option Programs - Create Option", status: "todo" },
-                { type: "technical", text: "Option Programs - Exercise Option", status: "todo" },
-                { type: "technical", text: "Option Programs - Validate Option Value via OPM", status: "todo" },
+                {
+                  type: ItemType.Technical,
+                  text: "Option Pricing Model - OPM(Rust + Typescript)",
+                  status: StatusChoice.Completed,
+                },
+                {
+                  type: ItemType.Technical,
+                  text: "Meteora Integration with Realms DAOs",
+                  status: StatusChoice.InProgress,
+                },
+                {
+                  type: ItemType.Technical,
+                  text: "Website Revamp - Landing Page",
+                  status: StatusChoice.Completed,
+                },
+                {
+                  type: ItemType.Technical,
+                  text: "Website Revamp - Roadmap Page",
+                  status: StatusChoice.Completed,
+                },
+                {
+                  type: ItemType.Technical,
+                  text: "Website Revamp - $LABS Tokenomics Page",
+                  status: StatusChoice.InProgress,
+                },
+                {
+                  type: ItemType.Technical,
+                  text: "Website Revamp - EpicentralDAO Page",
+                  status: StatusChoice.InProgress,
+                },
+                {
+                  type: ItemType.Technical,
+                  text: "Website Revamp - Deploy Finalized Website",
+                  status: StatusChoice.Todo,
+                },
+                {
+                  type: ItemType.Technical,
+                  text: "Documentation Site Revamp",
+                  status: StatusChoice.Todo,
+                },
+                {
+                  type: ItemType.Technical,
+                  text: "Solana OPX - UI Design",
+                  status: StatusChoice.InProgress,
+                },
+                {
+                  type: ItemType.Technical,
+                  text: "Solana OPX - API/RPC Integration",
+                  status: StatusChoice.InProgress,
+                },
+                {
+                  type: ItemType.Technical,
+                  text: "Solana OPX - Option Program Integration",
+                  status: StatusChoice.Todo,
+                },
+                {
+                  type: ItemType.Technical,
+                  text: "Solana OPX - Trade Page",
+                  status: StatusChoice.InProgress,
+                },
+                {
+                  type: ItemType.Technical,
+                  text: "Solana OPX - Option Margin Lending Pool (OMLP)",
+                  status: StatusChoice.Todo,
+                },
+                {
+                  type: ItemType.Technical,
+                  text: "Option Programs - Create Option",
+                  status: StatusChoice.Todo,
+                },
+                {
+                  type: ItemType.Technical,
+                  text: "Option Programs - Exercise Option",
+                  status: StatusChoice.Todo,
+                },
+                {
+                  type: ItemType.Technical,
+                  text: "Option Programs - Validate Option Value via OPM",
+                  status: StatusChoice.Todo,
+                },
               ]}
             />
 
             <RoadmapCard
               quarter="Q2 2025"
               title="Solana OPX - Solana's First Decentralized Options Exchange"
-              status="in-progress"
+              status={StatusChoice.InProgress}
               description="Continue building and testing the core protocol: Solana OPX."
               items={[
-                { type: "community", text: "Epicentral Discord Server reaches 1000 members", status: "in-progress" },
-                { type: "community", text: "Epicentral Twitter Account reaches 1500 followers", status: "in-progress" },
-                { type: "community", text: "Contributor Participation Rewards Program", status: "todo" },
-                { type: "community", text: "Initialize a Bug Bounty Program for Solana OPX", status: "todo" },
-                { type: "community", text: "Recieve a second round of grants greater than $10k", status: "todo" },
-                { type: "community", text: "Host 3 AMA Calls on X/Twitter", status: "todo" },
-                { type: "community", text: "Determine Solana OPX Protocol Fees", status: "completed" },
+                {
+                  type: ItemType.Community,
+                  text: "Epicentral Discord Server reaches 1000 members",
+                  status: StatusChoice.InProgress,
+                },
+                {
+                  type: ItemType.Community,
+                  text: "Epicentral Twitter Account reaches 1500 followers",
+                  status: StatusChoice.InProgress,
+                },
+                {
+                  type: ItemType.Community,
+                  text: "Contributor Participation Rewards Program",
+                  status: StatusChoice.Todo,
+                },
+                {
+                  type: ItemType.Community,
+                  text: "Initialize a Bug Bounty Program for Solana OPX",
+                  status: StatusChoice.Todo,
+                },
+                {
+                  type: ItemType.Community,
+                  text: "Recieve a second round of grants greater than $10k",
+                  status: StatusChoice.Todo,
+                },
+                {
+                  type: ItemType.Community,
+                  text: "Host 3 AMA Calls on X/Twitter",
+                  status: StatusChoice.Todo,
+                },
+                {
+                  type: ItemType.Community,
+                  text: "Determine Solana OPX Protocol Fees",
+                  status: StatusChoice.Completed,
+                },
 
-                { type: "technical", text: "Solana OPX - $SOL Devnet Trading", status: "todo"},
-                { type: "technical", text: "Solana OPX - Devnet Deployment", status: "todo"},
-                { type: "technical", text: "Solana OPX - $SOL Mainnet Trading", status: "todo"},
-                { type: "technical", text: "Solana OPX - $LABS Devnet Trading", status: "todo"},
-                { type: "technical", text: "Solana OPX - Mainnet Deployment", status: "todo"},
-                { type: "technical", text: "Solana Option Standard SDK - Utilizing Option Pricing Model (OPM)", status: "todo"},
-                { type: "technical", text: "Solana Option Standard SDK - Option Program CPI", status: "todo"},
-                { type: "technical", text: "Solana Option Standard SDK - Option Margin Lending Pool (OMLP)", status: "todo"},
-                { type: "technical", text: "Documentation Site Revamp - Option Pricing Model (OPM)", status: "todo"},
-                { type: "technical", text: "Documentation Site Revamp - Option Margin Lending Pool (OMLP)", status: "todo"},
-                { type: "technical", text: "Documentation Site Revamp - Option Programs", status: "todo" },
+                {
+                  type: ItemType.Technical,
+                  text: "Solana OPX - $SOL Devnet Trading",
+                  status: StatusChoice.Todo,
+                },
+                {
+                  type: ItemType.Technical,
+                  text: "Solana OPX - Devnet Deployment",
+                  status: StatusChoice.Todo,
+                },
+                {
+                  type: ItemType.Technical,
+                  text: "Solana OPX - $SOL Mainnet Trading",
+                  status: StatusChoice.Todo,
+                },
+                {
+                  type: ItemType.Technical,
+                  text: "Solana OPX - $LABS Devnet Trading",
+                  status: StatusChoice.Todo,
+                },
+                {
+                  type: ItemType.Technical,
+                  text: "Solana OPX - Mainnet Deployment",
+                  status: StatusChoice.Todo,
+                },
+                {
+                  type: ItemType.Technical,
+                  text: "Solana Option Standard SDK - Utilizing Option Pricing Model (OPM)",
+                  status: StatusChoice.Todo,
+                },
+                {
+                  type: ItemType.Technical,
+                  text: "Solana Option Standard SDK - Option Program CPI",
+                  status: StatusChoice.Todo,
+                },
+                {
+                  type: ItemType.Technical,
+                  text: "Solana Option Standard SDK - Option Margin Lending Pool (OMLP)",
+                  status: StatusChoice.Todo,
+                },
+                {
+                  type: ItemType.Technical,
+                  text: "Documentation Site Revamp - Option Pricing Model (OPM)",
+                  status: StatusChoice.Todo,
+                },
+                {
+                  type: ItemType.Technical,
+                  text: "Documentation Site Revamp - Option Margin Lending Pool (OMLP)",
+                  status: StatusChoice.Todo,
+                },
+                {
+                  type: ItemType.Technical,
+                  text: "Documentation Site Revamp - Option Programs",
+                  status: StatusChoice.Todo,
+                },
               ]}
             />
 
             <RoadmapCard
               quarter="Q3 2025"
               title="Education & Implementation"
-              status="in-progress"
+              status={StatusChoice.InProgress}
               description="Teach the Solana Ecosystem about Options, Implement Options into other DeFi Protocols, and more."
               items={[
-                { type: "community", text: "DAO Proposal: $LABS Token Buyback using Protocol Fees", status: "todo" },
-                { type: "community", text: "Create educational content for Solana OPX/Options Trading", status: "todo" },
+                {
+                  type: ItemType.Community,
+                  text: "DAO Proposal: $LABS Token Buyback using Protocol Fees",
+                  status: StatusChoice.Todo,
+                },
+                {
+                  type: ItemType.Community,
+                  text: "Create educational content for Solana OPX/Options Trading",
+                  status: StatusChoice.Todo,
+                },
 
-                { type: "technical", text: "Implement Programmable Fee Model via DAO proposals", status: "todo"},
-                { type: "technical", text: "Integrate Options into other DeFi Protocols (DeFiTuna, Adrena, etc.)", status: "todo"},
-                { type: "technical", text: "Create Video Content for SOS SDK, Options Trading, and more", status: "todo"},
+                {
+                  type: ItemType.Technical,
+                  text: "Implement Programmable Fee Model via DAO proposals",
+                  status: StatusChoice.Todo,
+                },
+                {
+                  type: ItemType.Technical,
+                  text: "Integrate Options into other DeFi Protocols (DeFiTuna, Adrena, etc.)",
+                  status: StatusChoice.Todo,
+                },
+                {
+                  type: ItemType.Technical,
+                  text: "Create Video Content for SOS SDK, Options Trading, and more",
+                  status: StatusChoice.Todo,
+                },
               ]}
             />
 
             <RoadmapCard
               quarter="Q4 2025"
               title="Awareness & Adoption"
-              status="in-progress"
+              status={StatusChoice.InProgress}
               description="Create a community-driven initiative to raise awareness about Solana OPX and Options Trading."
               items={[
-                { type: "community", text: "Create educational content for Solana OPX/Options Trading", status: "todo" },
-                { type: "community", text: "Speak or mention of Solana OPX/Options at Solana Breakpoint 2025", status: "todo" },
+                {
+                  type: ItemType.Community,
+                  text: "Create educational content for Solana OPX/Options Trading",
+                  status: StatusChoice.Todo,
+                },
+                {
+                  type: ItemType.Community,
+                  text: "Speak or mention of Solana OPX/Options at Solana Breakpoint 2025",
+                  status: StatusChoice.Todo,
+                },
 
-                { type: "technical", text: "Integrate Options into more DeFi Protocols", status: "todo"},
+                {
+                  type: ItemType.Technical,
+                  text: "Integrate Options into more DeFi Protocols",
+                  status: StatusChoice.Todo,
+                },
               ]}
             />
             {/* Add more RoadmapCard components as needed */}
