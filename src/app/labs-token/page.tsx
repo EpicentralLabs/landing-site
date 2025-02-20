@@ -1,5 +1,7 @@
 "use client"
-
+import { useState, useEffect } from 'react';
+import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip, LineChart, CartesianGrid, XAxis, YAxis, Line, ReferenceLine, Label } from 'recharts';
+import { ArrowUp, ArrowDown, DollarSign } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import Navbar from "@/components/navbar";
@@ -11,73 +13,30 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip, LineChart, CartesianGrid, XAxis, YAxis, Line, ReferenceLine, Label } from 'recharts';
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { useState, useEffect } from 'react';
+import { fetchTokenData } from "@/utils/api/useFetchTokenData";
+import { TokenData } from "@/types/tokenData";
+import { CustomTooltipProps } from "@/types/customTooltipProps";
+import { CustomTickProps } from "@/types/CustomTickProps";
+import { allocationWallets } from "@/constants/allocationWallets";
+import { tokenDistributionData } from "@/constants/tokenDistributionData";
+import { vestingScheduleData } from "@/constants/vestingScheduleData";
+import { calculateExactPosition, 
+  calculateLockedPercentage, 
+  calculateTimeProgress, 
+  calculateTotalUnlockedSupply, 
+  calculateUnlockedPercentage, 
+  getProgressLabel 
+} from "@/helpers/vestingHelpers";
 
-// Token distribution data with allocation details and colors
-const tokenDistributionData = [
-  { name: 'Public Allocation', value: 50, amount: '27,326,300', color: '#4a85ff' },
-  { name: 'DeFi Allocation', value: 20, amount: '10,930,520', color: '#34d399' },
-  { name: 'DAO Treasury', value: 16, amount: '8,744,416', color: '#f59e0b' },
-  { name: 'Core Team & Investors', value: 6, amount: '3,879,156', color: '#ec4899' },
-  { name: 'Marketing', value: 5, amount: '2,732,630', color: '#8b5cf6' },
-  { name: 'Contributor Bonus', value: 3, amount: '1,639,578', color: '#6366f1' },
-];
 
-// Vesting schedule data showing monthly token unlocks for each allocation
-const vestingScheduleData = [
-  { month: 'Cliff', defi: 0, dao: 1457402, team: 546531, marketing: 910877, contributors: 273263 },
-  { month: 'Month 2', defi: 910877, dao: 728701, team: 182175, marketing: 910877, contributors: 273263 },
-  { month: 'Month 3', defi: 910877, dao: 728701, team: 182175, marketing: 910877, contributors: 273263 },
-  { month: 'Month 4', defi: 910877, dao: 728701, team: 182175, marketing: 0, contributors: 273263 },
-  { month: 'Month 5', defi: 910877, dao: 728701, team: 182175, marketing: 0, contributors: 273263 },
-  { month: 'Month 6', defi: 910877, dao: 728701, team: 182175, marketing: 0, contributors: 273263 },
-  { month: 'Month 7', defi: 910877, dao: 728701, team: 182175, marketing: 0, contributors: 0 },
-  { month: 'Month 8', defi: 910877, dao: 728701, team: 182175, marketing: 0, contributors: 0 },
-  { month: 'Month 9', defi: 910877, dao: 728701, team: 182175, marketing: 0, contributors: 0 },
-  { month: 'Month 10', defi: 910877, dao: 728701, team: 182175, marketing: 0, contributors: 0 },
-  { month: 'Month 11', defi: 910877, dao: 728701, team: 182175, marketing: 0, contributors: 0 },
-  { month: 'Month 12', defi: 910877, dao: 728701, team: 182175, marketing: 0, contributors: 0 },
-  { month: 'Month 13', defi: 910877, dao: 0, team: 182175, marketing: 0, contributors: 0 },
-  { month: 'Month 14', defi: 0, dao: 0, team: 182175, marketing: 0, contributors: 0 },
-  { month: 'Month 15', defi: 0, dao: 0, team: 182175, marketing: 0, contributors: 0 },
-  { month: 'Month 16', defi: 0, dao: 0, team: 182175, marketing: 0, contributors: 0 },
-];
 
-// Mapping of allocation names to their respective Solscan wallet URLs
-const allocationWallets = {
-  'Public Allocation': 'https://solscan.io/account/3wxhFgvVYGStoQj3XvMArNQF66WamWcVy4EgwBJfK1bM',
-  'DeFi Allocation': 'https://solscan.io/account/6yuntQAS5gSwhhKaXG3QYbcwXPxhsbULu9Tzv9mizUUm',
-  'DAO Treasury': 'https://solscan.io/account/3BEvopNQ89zkM4r6ADva18i5fao1sqR1pmswyQyfj838',
-  'Marketing': 'https://solscan.io/account/6tpxdCf56XZQbdieLFZGDgaWpefc6SZPGy9Sg6MqYVRB',
-  'Contributor Bonus': 'https://solscan.io/account/DR1P6yBNXQ8YLBrpYpU3FjnnruStMRzm2y2cAA3D6ynm'
-} as const;
 
-// 1. Fix the any types with proper interfaces
-interface CustomTooltipProps {
-  active?: boolean;
-  payload?: Array<{
-    payload: {
-      name: string;
-      amount: string;
-      value: number;
-    };
-  }>;
-}
-
-interface CustomTickProps {
-  x?: number;
-  y?: number;
-  payload?: {
-    value: string;
-  };
-}
 
 // Update the tooltip component with proper typing
 const CustomTooltip = ({ active, payload }: CustomTooltipProps) => {
@@ -116,85 +75,24 @@ const CustomTick = ({ x = 0, y = 0, payload }: CustomTickProps) => {
 // Constants and helper functions for vesting calculations
 const START_DATE = new Date('2024-07-28');
 
-// Calculate months elapsed since vesting start
-const calculateTimeProgress = () => {
-  const now = new Date();
-  const monthDiff = (now.getTime() - START_DATE.getTime()) / (1000 * 60 * 60 * 24 * 30.44); // Using average month length
-  return Math.max(0, Math.min(16, monthDiff));
-};
+const timeProgress = calculateTimeProgress(START_DATE);
 
-// 2. Remove unused nextMonth variable in calculateExactPosition
-const calculateExactPosition = () => {
-  const progress = calculateTimeProgress();
-  if (progress < 0) return 0;
-  if (progress >= 16) return 15;
-  
-  // Get the month index for interpolation
-  const currentMonth = Math.floor(progress);
-  
-  // Calculate the precise position between months
-  const monthProgress = progress - currentMonth;
-  
-  return currentMonth + monthProgress;
-};
+// Calculate the exact vesting position
+const exactPosition = calculateExactPosition(START_DATE);
 
-// Get human-readable progress label for the vesting timeline
-const getProgressLabel = () => {
-  const now = new Date();
-  if (now < START_DATE) {
-    return 'Vesting starts in ' + Math.ceil((START_DATE.getTime() - now.getTime()) / (1000 * 60 * 60 * 24)) + ' days';
-  }
-  const monthProgress = calculateTimeProgress();
-  if (monthProgress >= 16) {
-    return 'Vesting completed';
-  }
-  return `Month ${Math.floor(monthProgress) + 1} of 16`;
-};
+// Get the human-readable progress label
+const progressLabel = getProgressLabel(START_DATE);
 
-// Calculate the percentage of tokens still locked for a given allocation
-const calculateLockedPercentage = (allocation: string) => {
-  const now = new Date();
-  if (now < START_DATE) return 100; // Everything locked before start
-  
-  const progress = calculateTimeProgress();
-  
-  // Define vesting periods and calculate remaining locked %
-  const vestingPeriods = {
-    'DeFi Allocation': { months: 14, initialLock: 100 },
-    'DAO Treasury': { months: 13, initialLock: 100 },
-    'Core Team & Investors': { months: 17, initialLock: 100 },
-    'Marketing': { months: 3, initialLock: 100 },
-    'Contributor Bonus': { months: 8, initialLock: 100 },
-    'Public Allocation': { months: 0, initialLock: 0 }, // No lock for public allocation
-  };
+// Calculate the locked percentage for a specific allocation
+const lockedPercentage = calculateLockedPercentage('DeFi Allocation', START_DATE);
 
-  const period = vestingPeriods[allocation as keyof typeof vestingPeriods];
-  if (!period) return 0;
+// Calculate the unlocked percentage for a specific allocation
+const unlockedPercentage = calculateUnlockedPercentage('DeFi Allocation', START_DATE);
 
-  if (progress >= period.months) return 0;
-  return Math.max(0, period.initialLock * (1 - progress / period.months));
-};
+// Calculate the total unlocked supply
+const totalUnlockedSupply = calculateTotalUnlockedSupply(tokenDistributionData, START_DATE);
 
-// Calculate the percentage of tokens unlocked for a given allocation
-const calculateUnlockedPercentage = (allocation: string) => {
-  return 100 - calculateLockedPercentage(allocation);
-};
-
-// Calculate total unlocked supply across all allocations
-const calculateTotalUnlockedSupply = () => {
-  const totalSupply = 54652600;
-  let unlockedAmount = 0;
-
-  tokenDistributionData.forEach(item => {
-    const unlockedPercentage = calculateUnlockedPercentage(item.name);
-    unlockedAmount += (Number(item.amount.replace(/,/g, '')) * unlockedPercentage / 100);
-  });
-
-  return {
-    amount: unlockedAmount.toLocaleString(),
-    percentage: ((unlockedAmount / totalSupply) * 100).toFixed(1)
-  };
-};
+console.log(timeProgress, exactPosition, progressLabel, lockedPercentage, unlockedPercentage, totalUnlockedSupply);
 
 // Update the Legend component to use dynamic layout based on client-side check
 const PieChartLegend = () => {
@@ -230,6 +128,44 @@ const PieChartLegend = () => {
 };
 
 export default function LabsTokenPage() {
+  
+const [data, setData] = useState<TokenData | null>(null);
+const [loading, setLoading] = useState(true);
+const [error, setError] = useState<string | null>(null);
+const [isMounted, setIsMounted] = useState(false);
+useEffect(() => {
+  setIsMounted(true);
+}, []);
+
+useEffect(() => {
+  if (!isMounted) return;
+
+  const fetchData = async () => {
+    setLoading(true);
+    try {
+      const chain = "solana";
+      const address = "LABSh5DTebUcUbEoLzXKCiXFJLecDFiDWiBGUU1GpxR";
+      const result = await fetchTokenData(chain, address);
+      setData(result);
+    } catch (err) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("An unknown error occurred");
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  fetchData();
+}, [isMounted]);
+
+if (!isMounted) {
+  return null;
+}
+
+
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
@@ -279,6 +215,74 @@ export default function LabsTokenPage() {
 
       {/* Token Distribution Section */}
       <section className="container mx-auto px-4 py-24">
+      <div className="max-w-7xl mx-auto p-6 space-y-12">
+  <div
+    id="labs_token"
+    className="bg-black/30 backdrop-blur-md border border-white/10 rounded-xl p-6 md:p-8 lg:p-12 hover:border-white/20 transition-all duration-500 shadow-lg"
+  >
+    {loading && <p className="text-white text-lg animate-pulse">Loading...</p>}
+    {error && <p className="text-red-500 text-lg">{error}</p>}
+
+    {data && (
+      <div className="space-y-8">
+<h2 className="text-2xl md:text-3xl font-light text-white/90 mb-6 md:mb-12 drop-shadow-[0_0_0.3rem_#ffffff70]
+                           text-center">
+              Token Information
+              </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-black/40 rounded-lg p-6 shadow-md space-y-4 hover:scale-105 transition-transform duration-300">
+            <p className="text-lg text-white">
+              <strong className="text-xl">{data.baseToken.name}</strong> (
+              {data.baseToken.symbol})
+            </p>
+            <p className="text-2xl font-bold text-white">
+              <DollarSign className="inline-block text-green-400" />{" "}
+              {parseFloat(data.priceUsd || "0").toFixed(9)}
+            </p>
+          </div>
+
+          <div className="bg-black/40 rounded-lg p-6 shadow-md space-y-4 hover:scale-105 transition-transform duration-300">
+            <p className="text-lg text-white">
+              <strong className="text-white">Price Change (24h): </strong>
+              <span
+                className={`font-bold ${
+                  data.priceChange.h24 > 0 ? "text-green-400" : "text-red-400"
+                }`}
+              >
+                {data.priceChange.h24}%{" "}
+                {data.priceChange.h24 > 0 ? (
+                  <ArrowUp className="inline-block" />
+                ) : (
+                  <ArrowDown className="inline-block" />
+                )}
+              </span>
+            </p>
+
+            <p className="text-lg text-white">
+              <strong>Volume (24h): </strong>
+              <span className="font-bold">
+                ${new Intl.NumberFormat("en-US", { style: "decimal", maximumFractionDigits: 2 }).format(data.volume.h24)}
+              </span>
+            </p>
+          </div>
+        </div>
+
+        <div className="bg-black/40 rounded-lg p-6 shadow-md space-y-4 hover:scale-105 transition-transform duration-300">
+          <p className="text-lg text-white">
+            <strong>Market Cap:</strong> ${data.marketCap.toLocaleString()}
+          </p>
+          <p className="text-lg text-white">
+            <strong>Liquidity (USD): </strong>
+            <span className="font-bold">
+              ${new Intl.NumberFormat("en-US", { style: "decimal", maximumFractionDigits: 2 }).format(data.liquidity.usd)}
+            </span>
+          </p>
+        </div>
+      </div>
+    )}
+  </div>
+</div>
+
         <div className="max-w-6xl mx-auto space-y-16">
           {/* Token Distribution */}
           <div id="tokenomics" className="bg-black/30 backdrop-blur-md border border-white/10 rounded-xl p-4 md:p-8 lg:p-12 
@@ -291,7 +295,7 @@ export default function LabsTokenPage() {
                 Total Supply: 54,652,600 LABS
               </div>
               <div className="mt-1 text-sm md:text-base font-normal text-white/70">
-                {calculateTotalUnlockedSupply().amount} LABS in Circulation ({calculateTotalUnlockedSupply().percentage}% of Total Supply)
+                {calculateTotalUnlockedSupply(tokenDistributionData, START_DATE).amount} LABS in Circulation ({calculateTotalUnlockedSupply(tokenDistributionData, START_DATE).percentage}% of Total Supply)
               </div>
             </h2>
             
@@ -383,7 +387,7 @@ export default function LabsTokenPage() {
                           <div 
                             className="absolute inset-0 bg-black/50"
                             style={{ 
-                              width: `${calculateLockedPercentage(item.name)}%`,
+                              width: `${calculateLockedPercentage(item.name, START_DATE)}%`,
                             }}
                           />
                         </div>
@@ -392,10 +396,10 @@ export default function LabsTokenPage() {
                         <p className="text-white/50 text-xs">
                           {item.name === 'Public Allocation' 
                             ? '100% Locked & Burned' 
-                            : `${Math.round(calculateLockedPercentage(item.name))}% Locked (${Math.round(calculateUnlockedPercentage(item.name))}% Unlocked)`}
+                            : `${Math.round(calculateLockedPercentage(item.name, START_DATE))}% Locked (${Math.round(calculateUnlockedPercentage(item.name, START_DATE))}% Unlocked)`}
                         </p>
                         <p className="text-white/50 text-xs">
-                          {Number((Number(item.amount.replace(/,/g, '')) * calculateUnlockedPercentage(item.name) / 100).toFixed(0)).toLocaleString()} LABS
+                          {Number((Number(item.amount.replace(/,/g, '')) * calculateUnlockedPercentage(item.name, START_DATE) / 100).toFixed(0)).toLocaleString()} LABS
                         </p>
                       </div>
                     </div>
@@ -581,7 +585,7 @@ export default function LabsTokenPage() {
             <div className="flex justify-between items-center mb-6">
               <h3 className="text-xl font-medium text-white/90">Vesting Timeline</h3>
               <div className="text-white/70 text-sm px-3 py-1 bg-white/5 rounded-full border border-white/10">
-                {getProgressLabel()}
+                {getProgressLabel(START_DATE)}
               </div>
             </div>
             <div className="w-full h-[300px] md:h-[400px]">
@@ -592,13 +596,13 @@ export default function LabsTokenPage() {
                 >
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
                   <ReferenceLine
-                    x={vestingScheduleData[Math.floor(calculateExactPosition())]?.month}
+                    x={vestingScheduleData[Math.floor(calculateExactPosition(START_DATE))]?.month}
                     stroke="rgba(255,255,255,0.8)"
                     strokeDasharray="3 3"
                     strokeWidth={2}
                     label={
                       <Label
-                        value={`Current (${(calculateTimeProgress()).toFixed(1)} months)`}
+                        value={`Current (${(calculateTimeProgress(START_DATE)).toFixed(1)} months)`}
                         position="insideTopRight"
                         fill="rgba(255,255,255,0.8)"
                         fontSize={12}
