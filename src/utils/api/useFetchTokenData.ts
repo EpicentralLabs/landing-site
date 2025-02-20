@@ -1,4 +1,5 @@
 import { TokenData } from "@/types/tokenData";
+import { validateSolanaAddress } from '@/types/solana-utils/isBase58';
 
 /**
  * Fetches token data from the DexScreener API.
@@ -12,6 +13,12 @@ export const fetchTokenData = async (
   chain: string,
   address: string
 ): Promise<TokenData> => {
+  try {
+    validateSolanaAddress(address);
+  } catch (error) {
+    throw new Error(`Invalid Solana address: ${address}`);
+  }
+
   const url = `https://api.dexscreener.com/token-pairs/v1/${chain}/${address}`;
   const options = {
     method: "GET",

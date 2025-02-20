@@ -138,7 +138,7 @@ export default function RoadmapPage() {
                 {
                   type: ItemType.Technical,
                   text: "Documentation Site Revamp",
-                  status: StatusChoice.Todo,
+                  status: StatusChoice.InProgress,
                 },
                 {
                   type: ItemType.Technical,

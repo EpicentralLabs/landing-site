@@ -1,0 +1,15 @@
+{
+    "entryPoints": ["src"],
+    "entryPointStrategy": "expand",
+    "exclude": ["**/app/**/*"],
+    "favicon": "src/app/favicon.ico",
+    "out": "public/docs",
+    "name": "Epicentral Labs Documentation",
+    "readme": "README.md",
+    "theme": "default",
+    "customTitle": "Epicentral Labs",
+    "customDescription": "Epicentral Labs Documentation",
+    "footerTypedocVersion": false,
+    "footerLastModified": true,
+
+}

@@ -79,7 +79,7 @@ export default function Navbar() {
             </div>
 
             <Link 
-              href="/coming-soon"
+              href="/docs"
               className="text-sm font-medium opacity-60 hover:opacity-100 transition-all hover:drop-shadow-[0_0_0.3rem_#ffffff70] duration-300"
             >
               Docs
