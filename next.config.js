@@ -4,6 +4,15 @@ const nextConfig = {
   devIndicators: {
     buildActivity: false,
   },
-}
+  redirects() {
+    return [
+      {
+        source: '/docs',
+        destination: '/docs/index.html',
+        permanent: false,
+      },
+    ];
+  },
+};
 
-module.exports = nextConfig 
+module.exports = nextConfig;
