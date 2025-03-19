@@ -3,11 +3,13 @@
  * - Completed: The item has been finished.
  * - InProgress: The item is currently being worked on.
  * - Todo: The item has not been started yet.
+ * - Cancelled: The item has been cancelled and will not be completed.
  */
 export enum StatusChoice {
     Completed = "completed",
     InProgress = "in-progress",
     Todo = "todo",
+    Cancelled = "cancelled",
   }
   
   /**

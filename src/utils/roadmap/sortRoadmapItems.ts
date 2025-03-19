@@ -1,16 +1,24 @@
 import { RoadmapItem, StatusChoice } from "@/types/roadmap/RoadmapCardProps";
 
-// Sorting order for status
+/**
+ * Priority order for roadmap item statuses.
+ * Lower numbers have higher display priority.
+ */
 const statusOrder: Record<StatusChoice, number> = {
   "completed": 0, // Completed status has the highest priority
   "in-progress": 1, // In-progress comes next
-  "todo": 2, // Todo comes last
+  "todo": 2, // Todo comes after in-progress
+  "cancelled": 3, // Cancelled comes last
 };
 
 /**
  * Sorts a list of roadmap items by their status and text.
+ * 
+ * IMPORTANT: Each roadmap item must have a unique 'text' property to avoid React key conflicts.
+ * Duplicate item texts will cause React errors due to duplicate keys when rendering.
+ * 
  * @param items - The array of `RoadmapItem` objects to be sorted.
- * @returns A sorted array of `RoadmapItem` objects, first by status (completed, in-progress, todo), 
+ * @returns A sorted array of `RoadmapItem` objects, first by status (completed, in-progress, todo, cancelled), 
  *          and then alphabetically by text when statuses are the same.
  */
 export const sortItems = (items: RoadmapItem[]) => {
