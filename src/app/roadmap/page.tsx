@@ -315,6 +315,11 @@ export default function RoadmapPage() {
                   text: "Create Video Content for SOS SDK, Options Trading, and more",
                   status: StatusChoice.Todo,
                 },
+                {
+                  type: ItemType.Technical,
+                  text: "Create Trade Leaderboard for Solana OPX",
+                  status: StatusChoice.Todo,
+                },
               ]}
             />
 
