@@ -45,6 +45,10 @@ export default function RoadmapPage() {
               <div className="w-2 h-2 rounded-full bg-white/20"></div>
               <span className="text-white/70 text-sm">TODO</span>
             </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-red-500"></div>
+              <span className="text-white/70 text-sm">Cancelled</span>
+            </div>
           </div>
 
           <div className="space-y-6">
@@ -81,7 +85,7 @@ export default function RoadmapPage() {
                 },
                 {
                   type: ItemType.Community,
-                  text: "Realms Ecosystem DAO grants $10,000 to EpicentralDAO for Meteora Integration",
+                  text: "Realms Ecosystem DAO Grant: $10,000",
                   status: StatusChoice.Completed,
                 },
                 {
@@ -91,13 +95,13 @@ export default function RoadmapPage() {
                 },
                 {
                   type: ItemType.Community,
-                  text: "Collaborated with another Solana project for community growth",
-                  status: StatusChoice.InProgress,
+                  text: "Collaborated with another Solana Project",
+                  status: StatusChoice.Completed,
                 },
                 {
                   type: ItemType.Community,
                   text: "DAO Participation Rewards Program",
-                  status: StatusChoice.Todo,
+                  status: StatusChoice.InProgress,
                 },
 
                 {
@@ -108,6 +112,11 @@ export default function RoadmapPage() {
                 {
                   type: ItemType.Technical,
                   text: "Meteora Integration with Realms DAOs",
+                  status: StatusChoice.Cancelled,
+                },
+                {
+                  type: ItemType.Technical,
+                  text: "Orca Integration with Realms DAOs",
                   status: StatusChoice.InProgress,
                 },
                 {
@@ -123,26 +132,36 @@ export default function RoadmapPage() {
                 {
                   type: ItemType.Technical,
                   text: "Website Revamp - $LABS Tokenomics Page",
-                  status: StatusChoice.InProgress,
+                  status: StatusChoice.Completed,
                 },
                 {
                   type: ItemType.Technical,
                   text: "Website Revamp - EpicentralDAO Page",
-                  status: StatusChoice.InProgress,
+                  status: StatusChoice.Completed,
                 },
                 {
                   type: ItemType.Technical,
                   text: "Website Revamp - Deploy Finalized Website",
-                  status: StatusChoice.Todo,
+                  status: StatusChoice.Completed,
                 },
                 {
                   type: ItemType.Technical,
-                  text: "Documentation Site Revamp",
-                  status: StatusChoice.Todo,
+                  text: "Documentation Site",
+                  status: StatusChoice.InProgress,
                 },
                 {
                   type: ItemType.Technical,
-                  text: "Solana OPX - UI Design",
+                  text: "Solana OPX - Option Lab: UI/UX Design",
+                  status: StatusChoice.Completed,
+                },
+                {
+                  type: ItemType.Technical,
+                  text: "Solana OPX - Option Lab: Functionality",
+                  status: StatusChoice.InProgress,
+                },
+                {
+                  type: ItemType.Technical,
+                  text: "Solana OPX - Option Margin Lending Pool (OMLP): UI/UX Design",
                   status: StatusChoice.InProgress,
                 },
                 {
@@ -153,16 +172,26 @@ export default function RoadmapPage() {
                 {
                   type: ItemType.Technical,
                   text: "Solana OPX - Option Program Integration",
-                  status: StatusChoice.Todo,
-                },
-                {
-                  type: ItemType.Technical,
-                  text: "Solana OPX - Trade Page",
                   status: StatusChoice.InProgress,
                 },
                 {
                   type: ItemType.Technical,
-                  text: "Solana OPX - Option Margin Lending Pool (OMLP)",
+                  text: "Solana OPX - Trade Page: UI/UX Design",
+                  status: StatusChoice.InProgress,
+                },
+                {
+                  type: ItemType.Technical,
+                  text: "Solana OPX - Trade Page: Functionality",
+                  status: StatusChoice.Todo,
+                },
+                {
+                  type: ItemType.Technical,
+                  text: "Solana OPX - Option Margin Lending Pool (OMLP): Functionality",
+                  status: StatusChoice.InProgress,
+                },
+                {
+                  type: ItemType.Technical,
+                  text: "OMLP Program",
                   status: StatusChoice.Todo,
                 },
                 {
@@ -177,7 +206,7 @@ export default function RoadmapPage() {
                 },
                 {
                   type: ItemType.Technical,
-                  text: "Option Programs - Validate Option Value via OPM",
+                  text: "Option Programs - Validate Option",
                   status: StatusChoice.Todo,
                 },
               ]}
@@ -221,23 +250,22 @@ export default function RoadmapPage() {
                 },
                 {
                   type: ItemType.Community,
-                  text: "Determine Solana OPX Protocol Fees",
-                  status: StatusChoice.Completed,
+                  text: "Determine Solana OPX Protocol Fees Revamp",
+                  status: StatusChoice.InProgress,
                 },
-
                 {
-                  type: ItemType.Technical,
-                  text: "Solana OPX - $SOL Devnet Trading",
+                  type: ItemType.Community,
+                  text: "Host a Trailer Competition for Solana OPX",
                   status: StatusChoice.Todo,
                 },
                 {
                   type: ItemType.Technical,
-                  text: "Solana OPX - Devnet Deployment",
+                  text: "Solana OPX - Deploy to Devnet",
                   status: StatusChoice.Todo,
                 },
                 {
                   type: ItemType.Technical,
-                  text: "Solana OPX - $SOL Mainnet Trading",
+                  text: "Solana OPX - Release for Beta Testing",
                   status: StatusChoice.Todo,
                 },
                 {
@@ -313,6 +341,11 @@ export default function RoadmapPage() {
                 {
                   type: ItemType.Technical,
                   text: "Create Video Content for SOS SDK, Options Trading, and more",
+                  status: StatusChoice.Todo,
+                },
+                {
+                  type: ItemType.Technical,
+                  text: "Create Trade Leaderboard for Solana OPX",
                   status: StatusChoice.Todo,
                 },
               ]}

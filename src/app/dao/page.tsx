@@ -33,6 +33,16 @@ export default function DAOPage() {
                   Join DAO
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
+                {/* Add Cabana Exchange Button */}
+                <Button 
+                  size="lg" 
+                  variant="outline"
+                  className="transition-all duration-300 hover:scale-95"
+                  onClick={() => window.open('https://cabana.exchange/token/LABSh5DTebUcUbEoLzXKCiXFJLecDFiDWiBGUU1GpxR', '_blank')}
+                >
+                  Trade on Cabana
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
                 <Button 
                   size="lg" 
                   variant="outline" 
