@@ -37,9 +37,14 @@ export default function DAOPage() {
                 <Button 
                   size="lg" 
                   variant="outline"
-                  className="transition-all duration-300 hover:scale-95"
-                  onClick={() => window.open('https://cabana.exchange/token/LABSh5DTebUcUbEoLzXKCiXFJLecDFiDWiBGUU1GpxR', '_blank')}
+                  className="transition-all duration-300 hover:scale-95 flex items-center"
+                  onClick={() => window.open('https://cabana.exchange/swap/EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v-LABSh5DTebUcUbEoLzXKCiXFJLecDFiDWiBGUU1GpxR?daoRef=Epicentral', '_blank')}
                 >
+                  <img 
+                    src="/cabana_logo.png" 
+                    alt="Cabana Exchange" 
+                    className="h-5 w-5 mr-2"
+                  />
                   Trade on Cabana
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
