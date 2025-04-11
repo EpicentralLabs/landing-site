@@ -55,7 +55,7 @@ export default function RoadmapPage() {
             <RoadmapCard
               quarter="Q1 2025"
               title="Foundation & Reputation Growth"
-              status={StatusChoice.InProgress}
+              status={StatusChoice.Completed}
               description="Establishing the core infrastructure and community foundation for the EpicentralDAO"
               items={[
                 {
