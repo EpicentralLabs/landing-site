@@ -1,7 +1,7 @@
 "use client"
 import { useState, useEffect } from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip, LineChart, CartesianGrid, XAxis, YAxis, Line, ReferenceLine, Label } from 'recharts';
-import { ArrowUp, ArrowDown, DollarSign } from "lucide-react";
+import { ArrowUp, ArrowDown, DollarSign, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import Navbar from "@/components/navbar";
@@ -19,6 +19,12 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { fetchTokenData } from "@/utils/api/useFetchTokenData";
 import { TokenData } from "@/types/tokenData";
 import { CustomTooltipProps } from "@/types/customTooltipProps";
@@ -183,14 +189,52 @@ if (!isMounted) {
               Each token is a voice in Epicentral Labs
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button 
-                size="lg" 
-                className="bg-[#FFFFFF] hover:bg-[#FFFFFF]/90 transition-all duration-300 hover:scale-95 w-full sm:w-auto"
-                onClick={() => window.open('https://jup.ag/swap/SOL-LABSh5DTebUcUbEoLzXKCiXFJLecDFiDWiBGUU1GpxR', '_blank')}
-              >
-                Buy $LABS
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button 
+                    size="lg" 
+                    className="bg-[#FFFFFF] hover:bg-[#FFFFFF]/90 transition-all duration-300 hover:scale-95 w-full sm:w-auto"
+                  >
+                    Buy $LABS
+                    <ChevronDown className="ml-2 h-5 w-5" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="bg-black/80 backdrop-blur-md border border-white/10 text-white">
+                  <DropdownMenuItem 
+                    className="text-white hover:bg-white/10 focus:bg-white/10 cursor-pointer"
+                    onClick={() => window.open('https://jup.ag/swap/SOL-LABSh5DTebUcUbEoLzXKCiXFJLecDFiDWiBGUU1GpxR', '_blank')}
+                  >
+                    <img 
+                      src="/jupiter_logo.png" 
+                      alt="Jupiter" 
+                      className="h-5 w-5 mr-2 rounded-full"
+                    />
+                    Jupiter
+                  </DropdownMenuItem>
+                  <DropdownMenuItem 
+                    className="text-white hover:bg-white/10 focus:bg-white/10 cursor-pointer"
+                    onClick={() => window.open('https://cabana.exchange/swap/EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v-LABSh5DTebUcUbEoLzXKCiXFJLecDFiDWiBGUU1GpxR?daoRef=Epicentral', '_blank')}
+                  >
+                    <img 
+                      src="/cabana_logo.png" 
+                      alt="Cabana Exchange" 
+                      className="h-4 w-4 mr-2 rounded-full"
+                    />
+                    Cabana Exchange
+                  </DropdownMenuItem>
+                  <DropdownMenuItem 
+                    className="text-white hover:bg-white/10 focus:bg-white/10 cursor-pointer"
+                    onClick={() => window.open('https://raydium.io/swap/?inputCurrency=sol&outputCurrency=LABSh5DTebUcUbEoLzXKCiXFJLecDFiDWiBGUU1GpxR', '_blank')}
+                  >
+                    <img 
+                      src="/raydium_logo.jpg" 
+                      alt="Raydium" 
+                      className="h-5 w-5 mr-2 rounded-full"
+                    />
+                    Raydium
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
               <Button 
                 size="lg" 
                 variant="outline" 
