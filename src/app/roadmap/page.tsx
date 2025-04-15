@@ -45,6 +45,10 @@ export default function RoadmapPage() {
               <div className="w-2 h-2 rounded-full bg-white/20"></div>
               <span className="text-white/70 text-sm">TODO</span>
             </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-red-500"></div>
+              <span className="text-white/70 text-sm">Cancelled</span>
+            </div>
           </div>
 
           <div className="space-y-6">
@@ -90,6 +94,17 @@ export default function RoadmapPage() {
                   status: StatusChoice.Completed,
                 },
                 {
+                  type: ItemType.Community,
+                  text: "Collaborated with another Solana Project",
+                  status: StatusChoice.Completed,
+                },
+                {
+                  type: ItemType.Community,
+                  text: "DAO Participation Rewards Program",
+                  status: StatusChoice.InProgress,
+                },
+
+                {
                   type: ItemType.Technical,
                   text: "Option Pricing Model - OPM(Rust + Typescript)",
                   status: StatusChoice.Completed,
@@ -97,6 +112,11 @@ export default function RoadmapPage() {
                 {
                   type: ItemType.Technical,
                   text: "Orca Plugin Integration with Realms DAOs",
+                  status: StatusChoice.Cancelled,
+                },
+                {
+                  type: ItemType.Technical,
+                  text: "Orca Integration with Realms DAOs",
                   status: StatusChoice.InProgress,
                 },
                 {
@@ -127,12 +147,23 @@ export default function RoadmapPage() {
                 {
                   type: ItemType.Technical,
                   text: "OPX - UI Design",
+                  status: StatusChoice.InProgress,
+                },
+                {
+                  type: ItemType.Technical,
+                  text: "Solana OPX - Option Lab: UI/UX Design",
                   status: StatusChoice.Completed,
                 },
                 {
                   type: ItemType.Technical,
                   text: "OPX - API/RPC Integration",
                   status: StatusChoice.Completed,
+                  status: StatusChoice.InProgress,
+                },
+                {
+                  type: ItemType.Technical,
+                  text: "Solana OPX - Option Margin Lending Pool (OMLP): UI/UX Design",
+                  status: StatusChoice.InProgress,
                 },
                 {
                   type: ItemType.Technical,
@@ -150,13 +181,28 @@ export default function RoadmapPage() {
               items={[
                 {
                   type: ItemType.Technical,
-                  text: "Option Programs - Validate Option Value via OPM",
+                  text: "Solana OPX - Option Program Integration",
+                  status: StatusChoice.InProgress,
+                },
+                {
+                  type: ItemType.Technical,
+                  text: "Solana OPX - Trade Page: UI/UX Design",
+                  status: StatusChoice.InProgress,
+                },
+                {
+                  type: ItemType.Technical,
+                  text: "Solana OPX - Trade Page: Functionality",
                   status: StatusChoice.Todo,
                 },
                 {
                   type: ItemType.Technical,
                   text: "Option Programs - Exercise Option",
                   status: StatusChoice.InProgress,
+                },
+                {
+                  type: ItemType.Technical,
+                  text: "OMLP Program",
+                  status: StatusChoice.Todo,
                 },
                 {
                   type: ItemType.Technical,
@@ -170,7 +216,21 @@ export default function RoadmapPage() {
                 },
                 {
                   type: ItemType.Technical,
-                  text: "OPX - Option Program Integration",
+                  text: "Option Programs - Validate Option",
+                  status: StatusChoice.Todo,
+                },
+              ]}
+            />
+
+            <RoadmapCard
+              quarter="Q2 2025"
+              title="Solana OPX - Solana's First Decentralized Options Exchange"
+              status={StatusChoice.InProgress}
+              description="Continue building and testing the core protocol: Solana OPX."
+              items={[
+                {
+                  type: ItemType.Community,
+                  text: "Epicentral Discord Server reaches 1000 members",
                   status: StatusChoice.InProgress,
                 },
                 {
@@ -202,6 +262,26 @@ export default function RoadmapPage() {
                   type: ItemType.Community,
                   text: "Determine OPX Protocol Fees",
                   status: StatusChoice.InProgress,
+                },
+                {
+                  type: ItemType.Community,
+                  text: "Host a Trailer Competition for Solana OPX",
+                  status: StatusChoice.Todo,
+                },
+                {
+                  type: ItemType.Technical,
+                  text: "Solana OPX - Deploy to Devnet",
+                  status: StatusChoice.Todo,
+                },
+                {
+                  type: ItemType.Technical,
+                  text: "Solana OPX - Release for Beta Testing",
+                  status: StatusChoice.Todo,
+                },
+                {
+                  type: ItemType.Technical,
+                  text: "Solana OPX - $LABS Devnet Trading",
+                  status: StatusChoice.Todo,
                 },
                 {
                   type: ItemType.Technical,
@@ -266,6 +346,11 @@ export default function RoadmapPage() {
                 {
                   type: ItemType.Technical,
                   text: "Create Video Content for SOS SDK, Options Trading, and more",
+                  status: StatusChoice.Todo,
+                },
+                {
+                  type: ItemType.Technical,
+                  text: "Create Trade Leaderboard for Solana OPX",
                   status: StatusChoice.Todo,
                 },
               ]}

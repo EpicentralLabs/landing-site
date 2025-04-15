@@ -58,6 +58,19 @@ export default function Footer() {
             </Link>
 
             <Link 
+              href="https://cabana.exchange/swap/EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v-LABSh5DTebUcUbEoLzXKCiXFJLecDFiDWiBGUU1GpxR?daoRef=Epicentral" 
+              target="_blank"
+              className="text-white/70 hover:text-white transition-all duration-300 
+                         hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]"
+            >
+              <img 
+                src="/cabana_logo.png" 
+                alt="Cabana Exchange" 
+                className="h-5 w-5"
+              />
+            </Link>
+
+            <Link 
               href="https://discord.gg/5asAuY2sR8"
               target="_blank"
               className="text-white/70 hover:text-white transition-all duration-300 
