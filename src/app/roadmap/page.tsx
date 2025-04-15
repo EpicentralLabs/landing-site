@@ -99,19 +99,13 @@ export default function RoadmapPage() {
                   status: StatusChoice.Completed,
                 },
                 {
-                  type: ItemType.Community,
-                  text: "DAO Participation Rewards Program",
-                  status: StatusChoice.InProgress,
-                },
-
-                {
                   type: ItemType.Technical,
                   text: "Option Pricing Model - OPM(Rust + Typescript)",
                   status: StatusChoice.Completed,
                 },
                 {
                   type: ItemType.Technical,
-                  text: "Orca Plugin Integration with Realms DAOs",
+                  text: "Meteora Plugin Integration with Realms DAOs",
                   status: StatusChoice.Cancelled,
                 },
                 {
@@ -147,23 +141,22 @@ export default function RoadmapPage() {
                 {
                   type: ItemType.Technical,
                   text: "OPX - UI Design",
-                  status: StatusChoice.InProgress,
+                  status: StatusChoice.Completed,
                 },
                 {
                   type: ItemType.Technical,
-                  text: "Solana OPX - Option Lab: UI/UX Design",
+                  text: "OPX - Option Lab: UI/UX Design",
                   status: StatusChoice.Completed,
                 },
                 {
                   type: ItemType.Technical,
                   text: "OPX - API/RPC Integration",
                   status: StatusChoice.Completed,
-                  status: StatusChoice.InProgress,
                 },
                 {
                   type: ItemType.Technical,
-                  text: "Solana OPX - Option Margin Lending Pool (OMLP): UI/UX Design",
-                  status: StatusChoice.InProgress,
+                  text: "OPX - Option Margin Lending Pool (OMLP): UI/UX Design",
+                  status: StatusChoice.Completed,
                 },
                 {
                   type: ItemType.Technical,
