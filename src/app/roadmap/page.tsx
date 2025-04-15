@@ -170,32 +170,22 @@ export default function RoadmapPage() {
               quarter="Q2 2025"
               title="OPX - Solana's Official Options Exchange"
               status={StatusChoice.InProgress}
-              description="Continue building and testing the core protocol: Solana OPX."
+              description="Continue building and testing the core protocol: OPX."
               items={[
                 {
                   type: ItemType.Technical,
-                  text: "Solana OPX - Option Program Integration",
+                  text: "Option Programs - Validate Option",
                   status: StatusChoice.InProgress,
                 },
                 {
                   type: ItemType.Technical,
-                  text: "Solana OPX - Trade Page: UI/UX Design",
+                  text: "OMLP Program(s)",
                   status: StatusChoice.InProgress,
-                },
-                {
-                  type: ItemType.Technical,
-                  text: "Solana OPX - Trade Page: Functionality",
-                  status: StatusChoice.Todo,
                 },
                 {
                   type: ItemType.Technical,
                   text: "Option Programs - Exercise Option",
                   status: StatusChoice.InProgress,
-                },
-                {
-                  type: ItemType.Technical,
-                  text: "OMLP Program",
-                  status: StatusChoice.Todo,
                 },
                 {
                   type: ItemType.Technical,
@@ -207,20 +197,6 @@ export default function RoadmapPage() {
                   text: "OPX - Option Margin Liquidity Pool (OMLP)",
                   status: StatusChoice.InProgress,
                 },
-                {
-                  type: ItemType.Technical,
-                  text: "Option Programs - Validate Option",
-                  status: StatusChoice.Todo,
-                },
-              ]}
-            />
-
-            <RoadmapCard
-              quarter="Q2 2025"
-              title="Solana OPX - Solana's First Decentralized Options Exchange"
-              status={StatusChoice.InProgress}
-              description="Continue building and testing the core protocol: Solana OPX."
-              items={[
                 {
                   type: ItemType.Community,
                   text: "Epicentral Discord Server reaches 1000 members",
@@ -258,22 +234,12 @@ export default function RoadmapPage() {
                 },
                 {
                   type: ItemType.Community,
-                  text: "Host a Trailer Competition for Solana OPX",
+                  text: "Host a Trailer Competition for OPX",
                   status: StatusChoice.Todo,
                 },
                 {
                   type: ItemType.Technical,
-                  text: "Solana OPX - Deploy to Devnet",
-                  status: StatusChoice.Todo,
-                },
-                {
-                  type: ItemType.Technical,
-                  text: "Solana OPX - Release for Beta Testing",
-                  status: StatusChoice.Todo,
-                },
-                {
-                  type: ItemType.Technical,
-                  text: "Solana OPX - $LABS Devnet Trading",
+                  text: "OPX - Release for Beta",
                   status: StatusChoice.Todo,
                 },
                 {
@@ -322,7 +288,7 @@ export default function RoadmapPage() {
               items={[
                 {
                   type: ItemType.Community,
-                  text: "Create educational content for Solana OPX/Options Trading",
+                  text: "Create educational content for OPX/Options Trading",
                   status: StatusChoice.Todo,
                 },
 
@@ -343,7 +309,7 @@ export default function RoadmapPage() {
                 },
                 {
                   type: ItemType.Technical,
-                  text: "Create Trade Leaderboard for Solana OPX",
+                  text: "Create Trade Leaderboard for OPX",
                   status: StatusChoice.Todo,
                 },
               ]}
@@ -353,16 +319,16 @@ export default function RoadmapPage() {
               quarter="Q4 2025"
               title="Awareness & Adoption"
               status={StatusChoice.InProgress}
-              description="Create a community-driven initiative to raise awareness about Solana OPX and Options Trading."
+              description="Create a community-driven initiative to raise awareness about OPX and Options Trading."
               items={[
                 {
                   type: ItemType.Community,
-                  text: "Create educational content for Solana OPX/Options Trading",
+                  text: "Create educational content for OPX/Options Trading",
                   status: StatusChoice.Todo,
                 },
                 {
                   type: ItemType.Community,
-                  text: "Speak or mention of Solana OPX/Options at Solana Breakpoint 2025",
+                  text: "Speak or mention of OPX/Options at Solana Breakpoint 2025",
                   status: StatusChoice.Todo,
                 },
 
