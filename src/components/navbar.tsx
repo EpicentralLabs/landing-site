@@ -78,20 +78,6 @@ export default function Navbar() {
               <div className="h-full w-px bg-gradient-to-b from-transparent via-white/20 to-transparent relative"></div>
             </div>
 
-            <Link 
-              href="/coming-soon"
-              className="text-sm font-medium opacity-60 hover:opacity-100 transition-all hover:drop-shadow-[0_0_0.3rem_#ffffff70] duration-300"
-            >
-              Docs
-            </Link>
-
-            {/* Vertical Gradient Divider */}
-            <div className="relative h-3 w-px">
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/20 to-transparent blur-[2px]"></div>
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/40 to-transparent"></div>
-              <div className="h-full w-px bg-gradient-to-b from-transparent via-white/20 to-transparent relative"></div>
-            </div>
-
             {/* Add Roadmap Link */}
             <Link 
               href="/roadmap"

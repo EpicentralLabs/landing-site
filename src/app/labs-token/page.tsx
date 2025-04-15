@@ -201,7 +201,7 @@ if (!isMounted) {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="bg-black/80 backdrop-blur-md border border-white/10 text-white">
                   <DropdownMenuItem 
-                    className="text-white hover:bg-white/10 focus:bg-white/10 cursor-pointer"
+                    className="text-white hover:bg-white/10 focus:bg-white/10 cursor-pointer flex items-center"
                     onClick={() => window.open('https://jup.ag/swap/SOL-LABSh5DTebUcUbEoLzXKCiXFJLecDFiDWiBGUU1GpxR', '_blank')}
                   >
                     <img 
@@ -212,7 +212,7 @@ if (!isMounted) {
                     Jupiter
                   </DropdownMenuItem>
                   <DropdownMenuItem 
-                    className="text-white hover:bg-white/10 focus:bg-white/10 cursor-pointer"
+                    className="text-white hover:bg-white/10 focus:bg-white/10 cursor-pointer flex items-center"
                     onClick={() => window.open('https://cabana.exchange/swap/EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v-LABSh5DTebUcUbEoLzXKCiXFJLecDFiDWiBGUU1GpxR?daoRef=Epicentral', '_blank')}
                   >
                     <img 
@@ -223,7 +223,7 @@ if (!isMounted) {
                     Cabana Exchange
                   </DropdownMenuItem>
                   <DropdownMenuItem 
-                    className="text-white hover:bg-white/10 focus:bg-white/10 cursor-pointer"
+                    className="text-white hover:bg-white/10 focus:bg-white/10 cursor-pointer flex items-center"
                     onClick={() => window.open('https://raydium.io/swap/?inputCurrency=sol&outputCurrency=LABSh5DTebUcUbEoLzXKCiXFJLecDFiDWiBGUU1GpxR', '_blank')}
                   >
                     <img 
