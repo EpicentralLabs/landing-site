@@ -13,7 +13,6 @@ import {
 } from "@/components/ui/accordion"
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
-import { useState } from 'react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -52,10 +51,12 @@ export default function Home() {
                     className="text-white hover:bg-white/10 focus:bg-white/10 cursor-pointer flex items-center"
                     onClick={() => window.open('https://jup.ag/swap/SOL-LABSh5DTebUcUbEoLzXKCiXFJLecDFiDWiBGUU1GpxR', '_blank')}
                   >
-                    <img 
+                    <Image 
                       src="/jupiter_logo.png" 
                       alt="Jupiter" 
-                      className="h-5 w-5 mr-2 rounded-full"
+                      width={20}
+                      height={20}
+                      className="mr-2 rounded-full"
                     />
                     Jupiter
                   </DropdownMenuItem>
@@ -63,10 +64,12 @@ export default function Home() {
                     className="text-white hover:bg-white/10 focus:bg-white/10 cursor-pointer flex items-center"
                     onClick={() => window.open('https://cabana.exchange/swap/EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v-LABSh5DTebUcUbEoLzXKCiXFJLecDFiDWiBGUU1GpxR?daoRef=Epicentral', '_blank')}
                   >
-                    <img 
+                    <Image 
                       src="/cabana_logo.png" 
                       alt="Cabana Exchange" 
-                      className="h-4 w-4 mr-2 rounded-full"
+                      width={16}
+                      height={16}
+                      className="mr-2 rounded-full"
                     />
                     Cabana Exchange
                   </DropdownMenuItem>
@@ -74,10 +77,12 @@ export default function Home() {
                     className="text-white hover:bg-white/10 focus:bg-white/10 cursor-pointer flex items-center"
                     onClick={() => window.open('https://raydium.io/swap/?inputCurrency=sol&outputCurrency=LABSh5DTebUcUbEoLzXKCiXFJLecDFiDWiBGUU1GpxR', '_blank')}
                   >
-                    <img 
+                    <Image 
                       src="/raydium_logo.jpg" 
                       alt="Raydium" 
-                      className="h-5 w-5 mr-2 rounded-full"
+                      width={20}
+                      height={20}
+                      className="mr-2 rounded-full"
                     />
                     Raydium
                   </DropdownMenuItem>
