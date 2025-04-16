@@ -2,7 +2,7 @@
 "use client"
 
 import { Button } from "@/components/ui/button";
-import { ArrowRight, ArrowDown } from "lucide-react";
+import { ArrowRight, ArrowDown, ChevronDown } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -13,6 +13,12 @@ import {
 } from "@/components/ui/accordion"
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 export default function Home() {
   return (
@@ -29,14 +35,59 @@ export default function Home() {
               </span>
             </h1>
             <div className="flex items-center justify-center gap-4">
-              <Button 
-                size="lg" 
-                className="bg-[#FFFFFF] hover:bg-[#FFFFFF]/90 transition-all duration-300 
-                           hover:scale-95"
-                onClick={() => window.location.href = '/coming-soon'}
-              >
-                Solana OPX
-              </Button>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button 
+                    size="lg" 
+                    className="bg-[#FFFFFF] hover:bg-[#FFFFFF]/90 transition-all duration-300 
+                               hover:scale-95"
+                  >
+                    Get $LABS
+                    <ChevronDown className="ml-2 h-4 w-4" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="bg-black/80 backdrop-blur-md border border-white/10 text-white">
+                  <DropdownMenuItem 
+                    className="text-white hover:bg-white/10 focus:bg-white/10 cursor-pointer flex items-center"
+                    onClick={() => window.open('https://jup.ag/swap/SOL-LABSh5DTebUcUbEoLzXKCiXFJLecDFiDWiBGUU1GpxR', '_blank')}
+                  >
+                    <Image 
+                      src="/jupiter_logo.png" 
+                      alt="Jupiter" 
+                      width={20}
+                      height={20}
+                      className="mr-2 rounded-full"
+                    />
+                    Jupiter
+                  </DropdownMenuItem>
+                  <DropdownMenuItem 
+                    className="text-white hover:bg-white/10 focus:bg-white/10 cursor-pointer flex items-center"
+                    onClick={() => window.open('https://cabana.exchange/swap/EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v-LABSh5DTebUcUbEoLzXKCiXFJLecDFiDWiBGUU1GpxR?daoRef=Epicentral', '_blank')}
+                  >
+                    <Image 
+                      src="/cabana_logo.png" 
+                      alt="Cabana Exchange" 
+                      width={16}
+                      height={16}
+                      className="mr-2 rounded-full"
+                    />
+                    Cabana Exchange
+                  </DropdownMenuItem>
+                  <DropdownMenuItem 
+                    className="text-white hover:bg-white/10 focus:bg-white/10 cursor-pointer flex items-center"
+                    onClick={() => window.open('https://raydium.io/swap/?inputCurrency=sol&outputCurrency=LABSh5DTebUcUbEoLzXKCiXFJLecDFiDWiBGUU1GpxR', '_blank')}
+                  >
+                    <Image 
+                      src="/raydium_logo.jpg" 
+                      alt="Raydium" 
+                      width={20}
+                      height={20}
+                      className="mr-2 rounded-full"
+                    />
+                    Raydium
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
               <Button 
                 size="lg" 
                 variant="outline" 
