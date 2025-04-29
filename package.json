@@ -1,29 +1,34 @@
 {
   "name": "epicentral-website",
-  "version": "0.7.8",
+  "version": "0.7.9",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "update-deps-patch": "ncu -u --target patch && pnpm install",
+    "update-deps-minor": "ncu -u --target minor && pnpm install",
+    "depcheck": "pnpm exec depcheck",
+    "dedupe": "pnpm dedupe"
   },
   "dependencies": {
-    "@radix-ui/react-accordion": "^1.2.3",
-    "@radix-ui/react-dropdown-menu": "^2.1.7",
-    "@radix-ui/react-separator": "^1.1.2",
+    "@radix-ui/react-accordion": "^1.2.8",
+    "@radix-ui/react-dropdown-menu": "^2.1.12",
+    "@radix-ui/react-separator": "^1.1.4",
     "@radix-ui/react-slot": "^1.1.2",
     "@radix-ui/react-tooltip": "^1.1.8",
     "@vercel/analytics": "^1.5.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "depcheck": "^1.4.7",
     "lucide-react": "^0.475.0",
-    "next": "15.2.4",
+    "next": "15.2.5",
     "next-themes": "^0.2.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "recharts": "^2.15.1",
-    "tailwind-merge": "^3.0.1",
+    "recharts": "^2.15.3",
+    "tailwind-merge": "^3.0.2",
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
@@ -32,9 +37,10 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "15.1.6",
+    "eslint-config-next": "15.1.7",
+    "eslint-plugin-react-hooks": "^5.2.0",
     "postcss": "^8",
-    "tailwindcss": "^3.4.1",
+    "tailwindcss": "^3.4.17",
     "typescript": "^5"
   }
 }

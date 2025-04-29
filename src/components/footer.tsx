@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -63,9 +64,11 @@ export default function Footer() {
               className="text-white/70 hover:text-white transition-all duration-300 
                          hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]"
             >
-              <img 
+              <Image 
                 src="/cabana_logo.png" 
                 alt="Cabana Exchange" 
+                width={20}
+                height={20}
                 className="h-5 w-5"
               />
             </Link>
