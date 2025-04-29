@@ -3,7 +3,6 @@
 
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ArrowDown, ChevronDown } from "lucide-react";
-import Link from "next/link";
 import Image from "next/image";
 import {
   Accordion,
