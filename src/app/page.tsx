@@ -226,9 +226,9 @@ export default function Home() {
                   What is Epicentral Labs?
                 </h3>
                 <p className="text-base leading-relaxed text-white/70">
-                  Epicentral Labs is a community-governed protocol focused on improving decentralized
-                  finance (DeFi) infrastructure on <a href="https://solana.com/" className="text-[#4a85ff] hover:drop-shadow-[0_0_8px_#4a85ff] transition-all duration-300">Solana</a> through program governance and powered by the <span className="text-[#4a85ff]">$LABS</span> token. The name &ldquo;Epicentral&rdquo; is
-                  inspired by seismology, symbolizing the aim to be a focal point for innovation in finance and
+                  <b>Epicentral Labs is a community-governed protocol focused on bringing options trading
+                  to</b> <a href="https://solana.com/" className="text-[#4a85ff] hover:drop-shadow-[0_0_8px_#4a85ff] transition-all duration-300 underline">Solana</a>. The name &ldquo;Epicentral&rdquo; is
+                  inspired by seismology, symbolizing the aim to be a focal point for innovation in decentralized finance and
                   blockchain development.
                 </p>
                 <div className="flex items-center">
@@ -257,8 +257,10 @@ export default function Home() {
                   Our Mission
                 </h3>
                 <p className="text-base leading-relaxed text-white/70">
-                  Our goal is to expand decentralized finance capabilities by developing innovative financial derivatives through governance mechanisms.
-                  Through collaboration with existing protocols and the development of new solutions, we create integrable tools for the Solana DeFi ecosystem.
+                  <b>To create a "Gold Standard" for on-chain option contracts on Solana</b>. We aim to expand decentralized finance by building derivatives that work. With the help of community, and other protocols, our goal is to create an integrable tool for the Solana DeFi ecosystem.
+                </p>
+                <p className="text-base leading-relaxed text-white/70">
+                  Take a look at our 2025 roadmap to see what's in the works!
                 </p>
                 <div className="flex items-center">
                   <Button 
@@ -287,24 +289,30 @@ export default function Home() {
                   Powered by $LABS
                 </h3>
                 <p className="text-base leading-relaxed text-white/70">
-                <a className="text-[#4a85ff] hover:drop-shadow-[0_0_8px_#4a85ff] transition-all duration-300">LABS</a> is a governance token for EpicentralDAO. Consider each token as a voice in the decision-making process for Epicentral Labs and its future. 
-                Token holders can expect to:
+                <b><a className="text-[#4a85ff] hover:drop-shadow-[0_0_8px_#4a85ff] transition-all duration-300">LABS</a> is our governance token for</b> <a href="/dao" className="text-[#4a85ff] hover:drop-shadow-[0_0_8px_#4a85ff] transition-all duration-300 underline">EpicentralDAO</a>. Each token is a vote in the decision-making process for Epicentral Labs.
+                </p>
+                <p className="text-base leading-relaxed text-white/70 font-bold">
+                  As a token holder:
                 </p>
                 
                 <ul className="text-base leading-relaxed text-white/70 space-y-2">
                   <li className="flex items-center gap-2">
-                    <span className="text-[#4a85ff]">•</span> Vote on protocol upgrades and parameter changes
+                    <span className="text-[#4a85ff]">•</span> Decide which assets are added to the protocol
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="text-[#4a85ff]">•</span> Propose new features and improvements
                   </li>
                   <li className="flex items-center gap-2">
-                    <span className="text-[#4a85ff]">•</span> Reduce Protocol Fees/Revenues
+                    <span className="text-[#4a85ff]">•</span> Vote on protocol parameter changes
                   </li>
                   <li className="flex items-center gap-2">
-                    <span className="text-[#4a85ff]">•</span> Receive DAO Participation Rewards
+                    <span className="text-[#4a85ff]">•</span> Stake your $LABS to grow your voting power
                   </li>
                 </ul>
+
+                <p className="text-base leading-relaxed text-white/70">
+                  To learn more about $LABS, check out the tokenomics page below:
+                </p>
 
                 <div className="space-y-6">
                   <Button 
@@ -336,7 +344,7 @@ export default function Home() {
           <div className="bg-black/30 backdrop-blur-md border border-white/10 rounded-xl p-8 md:p-12">
             <div className="space-y-6">
               <h3 className="text-2xl font-light text-white/90">
-                Our Focuses
+                <i>What We're Shipping:</i>
               </h3>
               <Accordion type="single" collapsible className="w-full space-y-2">
                 <AccordionItem value="governance" className="border-white/10">
@@ -348,14 +356,14 @@ export default function Home() {
                       </div>
                       <h4 className="text-xl font-medium text-white/90 transition-all duration-300 
                                     group-hover:text-white group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
-                        Solana OPX
+                        <i>OPX</i>
                       </h4>
                     </div>
                   </AccordionTrigger>
                   <AccordionContent className="text-white/70">
                     <div className="pt-4 leading-relaxed space-y-4">
                       <p>
-                        Solana's First Decentralized Options Exchange. Allowing for traders to hedge, speculate, and diversify their portfolios. 
+                        Solana's Options Exchange: Allowing for traders to hedge, speculate, and diversify their portfolios by utilizing single or multi-legged strategies.  
                       </p>
                       <div className="flex items-center">
                         <Button 
@@ -364,7 +372,7 @@ export default function Home() {
                                      hover:drop-shadow-[0_0_0.1rem_#FFFFFF] hover:scale-95 px-4"
                           onClick={() => window.location.href = '/coming-soon'}
                         >
-                          Trade Now
+                          Coming Soon!
                           <ArrowRight className="ml-0 h-4 w-4" />
                         </Button>
                       </div>
@@ -381,7 +389,7 @@ export default function Home() {
                       </div>
                       <h4 className="text-xl font-medium text-white/90 transition-all duration-300 
                                     group-hover:text-white group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
-                        Option Programs
+                        <i>Option Programs</i>
                       </h4>
                     </div>
                   </AccordionTrigger>
@@ -396,7 +404,7 @@ export default function Home() {
                                      hover:drop-shadow-[0_0_0.1rem_#FFFFFF] hover:scale-95 px-4"
                           onClick={() => window.location.href = '/coming-soon'}
                         >
-                          Read Docs
+                          Coming Soon!
                           <ArrowRight className="ml-0 h-4 w-4" />
                         </Button>
                       </div>
@@ -413,7 +421,7 @@ export default function Home() {
                       </div>
                       <h4 className="text-xl font-medium text-white/90 transition-all duration-300 
                                     group-hover:text-white group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
-                        Solana Options Standard SDK
+                        <i>Solana Options Standard SDK</i>
                       </h4>
                     </div>
                   </AccordionTrigger>
@@ -430,39 +438,6 @@ export default function Home() {
                           GitHub
                           <ArrowRight className="ml-0 h-4 w-4" />
                         </Button>
-                      </div>
-                    </div>
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="community" className="border-white/10">
-                  <AccordionTrigger className="hover:no-underline group">
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center transition-all duration-300">
-                        <ArrowDown className="h-5 w-5 text-white/70 transition-transform duration-300 
-                                           group-hover:text-white" />
-                      </div>
-                      <h4 className="text-xl font-medium text-white/90 transition-all duration-300 
-                                    group-hover:text-white group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
-                        Epicentral DAO
-                      </h4>
-                    </div>
-                  </AccordionTrigger>
-                  <AccordionContent className="text-white/70">
-                    <div className="pt-4 leading-relaxed">
-                      Short for &ldquo;Decentralized Autonomous Organization&rdquo;, is considered a shared treasury or bank account and is stored on the blockchain. This is the governing body of the Epicentral Labs Protocol. 
-                      The Epicentral DAO is strictly community-driven, where members can propose and vote on changes to the protocol using the <span className="text-[#4a85ff]">$LABS</span> token.
-                      <div className="flex items-center mt-4">
-                        <Link href="/dao">
-                          <Button 
-                            size="sm"
-                            className="bg-[#FFFFFF] hover:bg-[#FFFFFF]/90 text-black transition-all duration-300 
-                                       hover:drop-shadow-[0_0_0.1rem_#FFFFFF] hover:scale-95 px-4"
-                          >
-                            Join DAO
-                            <ArrowRight className="ml-0 h-4 w-4" />
-                          </Button>
-                        </Link>
                       </div>
                     </div>
                   </AccordionContent>
