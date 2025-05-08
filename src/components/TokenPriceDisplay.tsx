@@ -58,6 +58,16 @@ export default function TokenPriceDisplay({ tokenAddress }: TokenPriceDisplayPro
     ? new Date(data.updateUnixTime * 1000).toLocaleTimeString()
     : '';
 
+  // Extract price change percentage for 24h
+  const priceChange24h = data && data.priceChange24h !== undefined
+    ? data.priceChange24h.toFixed(2)
+    : null;
+  
+  // Determine color for price change (green for positive, red for negative)
+  const priceChangeColor = priceChange24h && parseFloat(priceChange24h) >= 0 
+    ? "text-green-400" 
+    : "text-red-400";
+
   return (
     <div className="bg-black/40 rounded-lg p-6 shadow-md space-y-4 hover:scale-105 transition-transform duration-300">
       <div className="flex items-center justify-between">
@@ -65,6 +75,11 @@ export default function TokenPriceDisplay({ tokenAddress }: TokenPriceDisplayPro
           <p className="text-lg text-white">
             <strong className="text-xl">Epicentral Labs</strong> (LABS)
           </p>
+          {priceChange24h && (
+            <p className={`text-sm font-medium ${priceChangeColor}`}>
+              24h: {parseFloat(priceChange24h) >= 0 ? "+" : ""}{priceChange24h}%
+            </p>
+          )}
         </div>
         <div>
           <p className="text-2xl font-bold text-white">
