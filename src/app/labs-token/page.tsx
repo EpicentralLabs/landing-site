@@ -240,6 +240,19 @@ if (!isMounted) {
       {/* Token Distribution Section */}
       <section className="container mx-auto px-4 py-24">
       <div className="max-w-7xl mx-auto p-6 space-y-12">
+        {/* BirdEye TradingView Chart */}
+        <div className="bg-black/30 backdrop-blur-md border border-white/10 rounded-xl p-2 md:p-3 lg:p-4 hover:border-white/20 transition-all duration-500 shadow-lg">
+          <h2 className="text-2xl md:text-3xl font-light text-white/90 mb-3 md:mb-4 drop-shadow-[0_0_0.3rem_#ffffff70] text-center">
+            LABS Token Chart
+          </h2>
+          <iframe 
+            width="100%" 
+            height="600" 
+            src="https://birdeye.so/tv-widget/LABSh5DTebUcUbEoLzXKCiXFJLecDFiDWiBGUU1GpxR?chain=solana&viewMode=pair&chartInterval=240&chartType=Candle&chartTimezone=America%2FNew_York&chartLeftToolbar=show&theme=dark&cssCustomProperties=--tv-color-platform-background%3A%230b0b0b00&cssCustomProperties=--tv-color-pane-background%3A%2313162100&chartOverrides=paneProperties.backgroundGradientStartColor%3Argba%280%2C+0%2C+0%2C+1%29&chartOverrides=paneProperties.backgroundGradientEndColor%3Argba%280%2C+0%2C+0%2C+0%29" 
+            frameBorder="0" 
+            allowFullScreen
+          ></iframe>
+        </div>
   <div
     id="labs_token"
     className="bg-black/30 backdrop-blur-md border border-white/10 rounded-xl p-6 md:p-8 lg:p-12 hover:border-white/20 transition-all duration-500 shadow-lg"
@@ -253,7 +266,7 @@ if (!isMounted) {
   </div>
 </div>
 
-        <div className="max-w-6xl mx-auto space-y-16">
+        <div className="max-w-7xl mx-auto space-y-16">
           {/* Token Distribution */}
           <div id="tokenomics" className="bg-black/30 backdrop-blur-md border border-white/10 rounded-xl p-4 md:p-8 lg:p-12 
                           hover:border-white/20 transition-all duration-500
