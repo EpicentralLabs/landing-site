@@ -1,7 +1,7 @@
 "use client"
 import { useState, useEffect } from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip, LineChart, CartesianGrid, XAxis, YAxis, Line, ReferenceLine, Label } from 'recharts';
-import { ArrowUp, ArrowDown, DollarSign, ChevronDown } from "lucide-react";
+import { DollarSign, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import Navbar from "@/components/navbar";
@@ -25,8 +25,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { fetchTokenData } from "@/utils/api/useFetchTokenData";
-import { TokenData } from "@/types/tokenData";
+import TokenPriceDisplay from "@/components/TokenPriceDisplay";
 import { CustomTooltipProps } from "@/types/customTooltipProps";
 import { CustomTickProps } from "@/types/CustomTickProps";
 import { allocationWallets } from "@/constants/allocationWallets";
@@ -136,37 +135,11 @@ const PieChartLegend = () => {
 
 export default function LabsTokenPage() {
   
-const [data, setData] = useState<TokenData | null>(null);
-const [loading, setLoading] = useState(true);
-const [error, setError] = useState<string | null>(null);
 const [isMounted, setIsMounted] = useState(false);
+
 useEffect(() => {
   setIsMounted(true);
 }, []);
-
-useEffect(() => {
-  if (!isMounted) return;
-
-  const fetchData = async () => {
-    setLoading(true);
-    try {
-      const chain = "solana";
-      const address = "LABSh5DTebUcUbEoLzXKCiXFJLecDFiDWiBGUU1GpxR";
-      const result = await fetchTokenData(chain, address);
-      setData(result);
-    } catch (err) {
-      if (err instanceof Error) {
-        setError(err.message);
-      } else {
-        setError("An unknown error occurred");
-      }
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  fetchData();
-}, [isMounted]);
 
 if (!isMounted) {
   return null;
@@ -271,66 +244,12 @@ if (!isMounted) {
     id="labs_token"
     className="bg-black/30 backdrop-blur-md border border-white/10 rounded-xl p-6 md:p-8 lg:p-12 hover:border-white/20 transition-all duration-500 shadow-lg"
   >
-    {loading && <p className="text-white text-lg animate-pulse">Loading...</p>}
-    {error && <p className="text-red-500 text-lg">{error}</p>}
-
-    {data && (
-      <div className="space-y-8">
-<h2 className="text-2xl md:text-3xl font-light text-white/90 mb-6 md:mb-12 drop-shadow-[0_0_0.3rem_#ffffff70]
-                           text-center">
-              Token Information
-              </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-black/40 rounded-lg p-6 shadow-md space-y-4 hover:scale-105 transition-transform duration-300">
-            <p className="text-lg text-white">
-              <strong className="text-xl">{data.baseToken.name}</strong> (
-              {data.baseToken.symbol})
-            </p>
-            <p className="text-2xl font-bold text-white">
-              <DollarSign className="inline-block text-green-400" />{" "}
-              {parseFloat(data.priceUsd || "0").toFixed(9)}
-            </p>
-          </div>
-
-          <div className="bg-black/40 rounded-lg p-6 shadow-md space-y-4 hover:scale-105 transition-transform duration-300">
-            <p className="text-lg text-white">
-              <strong className="text-white">Price Change (24h): </strong>
-              <span
-                className={`font-bold ${
-                  data.priceChange.h24 > 0 ? "text-green-400" : "text-red-400"
-                }`}
-              >
-                {data.priceChange.h24}%{" "}
-                {data.priceChange.h24 > 0 ? (
-                  <ArrowUp className="inline-block" />
-                ) : (
-                  <ArrowDown className="inline-block" />
-                )}
-              </span>
-            </p>
-
-            <p className="text-lg text-white">
-              <strong>Volume (24h): </strong>
-              <span className="font-bold">
-                ${new Intl.NumberFormat("en-US", { style: "decimal", maximumFractionDigits: 2 }).format(data.volume.h24)}
-              </span>
-            </p>
-          </div>
-        </div>
-
-        <div className="bg-black/40 rounded-lg p-6 shadow-md space-y-4 hover:scale-105 transition-transform duration-300">
-          <p className="text-lg text-white">
-            <strong>Market Cap:</strong> ${data.marketCap.toLocaleString()}
-          </p>
-          <p className="text-lg text-white">
-            <strong>Liquidity (USD): </strong>
-            <span className="font-bold">
-              ${new Intl.NumberFormat("en-US", { style: "decimal", maximumFractionDigits: 2 }).format(data.liquidity.usd)}
-            </span>
-          </p>
-        </div>
-      </div>
-    )}
+    <div className="space-y-8">
+      <h2 className="text-2xl md:text-3xl font-light text-white/90 mb-6 md:mb-12 drop-shadow-[0_0_0.3rem_#ffffff70] text-center">
+        Token Information
+      </h2>
+      <TokenPriceDisplay tokenAddress="LABSh5DTebUcUbEoLzXKCiXFJLecDFiDWiBGUU1GpxR" />
+    </div>
   </div>
 </div>
 
