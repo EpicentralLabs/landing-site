@@ -149,41 +149,41 @@ export default function TokenPriceDisplay({ tokenAddress }: TokenPriceDisplayPro
   const formattedMarkets = numberMarkets !== undefined ? numberMarkets : 'N/A';
 
   return (
-    <div className="bg-black/40 rounded-lg p-6 shadow-md space-y-6 hover:scale-105 transition-transform duration-300">
-      <div className="flex items-center justify-between">
+    <div className="bg-black/40 rounded-lg p-4 md:p-6 shadow-md space-y-4 md:space-y-6 hover:scale-105 transition-transform duration-300">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-0">
         <div>
-          <p className="text-lg text-white">
-            <strong className="text-xl">Epicentral Labs</strong> (LABS)
+          <p className="text-base sm:text-lg text-white">
+            <strong className="text-lg sm:text-xl">Epicentral Labs</strong> <span className="text-sm sm:text-base">(LABS)</span>
           </p>
           {priceChange24h && (
-            <p className={`text-sm font-medium ${priceChangeColor}`}>
+            <p className={`text-xs sm:text-sm font-medium ${priceChangeColor}`}>
               24h: {parseFloat(priceChange24h) >= 0 ? "+" : ""}{priceChange24h}%
             </p>
           )}
         </div>
-        <div>
-          <p className="text-2xl font-bold text-white">
-            <DollarSign className="inline-block text-green-400" />{" "}
+        <div className="mt-1 sm:mt-0">
+          <p className="text-xl sm:text-2xl font-bold text-white">
+            <DollarSign className="inline-block text-green-400 h-4 w-4 sm:h-5 sm:w-5" />{" "}
             {price}
           </p>
           {lastUpdated && (
-            <p className="text-xs text-white/50 text-right">
+            <p className="text-xs text-white/50">
               Last updated: {lastUpdated}
             </p>
           )}
         </div>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-        <div className="bg-black/30 p-3 rounded-lg">
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+        <div className="bg-black/30 p-2 md:p-3 rounded-lg">
           <p className="text-white/60 text-xs mb-1">Market Cap</p>
           <p className="text-white text-sm font-medium">{formattedMarketCap}</p>
         </div>
-        <div className="bg-black/30 p-3 rounded-lg">
+        <div className="bg-black/30 p-2 md:p-3 rounded-lg">
           <p className="text-white/60 text-xs mb-1">Liquidity</p>
           <p className="text-white text-sm font-medium">{formattedLiquidity}</p>
         </div>
-        <div className="bg-black/30 p-3 rounded-lg">
+        <div className="bg-black/30 p-2 md:p-3 rounded-lg">
           <p className="text-white/60 text-xs mb-1">Volume (24h)</p>
           <p className="text-white text-sm font-medium">{totalVolume}</p>
           {buyPercentage !== null && sellPercentage !== null && (
@@ -205,7 +205,7 @@ export default function TokenPriceDisplay({ tokenAddress }: TokenPriceDisplayPro
             </div>
           )}
         </div>
-        <div className="bg-black/30 p-3 rounded-lg">
+        <div className="bg-black/30 p-2 md:p-3 rounded-lg">
           <p className="text-white/60 text-xs mb-1">Buy Volume (24h)</p>
           <p className="text-white text-sm font-medium">{formattedBuyVolume}</p>
           {formattedBuyChange && (
@@ -214,7 +214,7 @@ export default function TokenPriceDisplay({ tokenAddress }: TokenPriceDisplayPro
             </p>
           )}
         </div>
-        <div className="bg-black/30 p-3 rounded-lg">
+        <div className="bg-black/30 p-2 md:p-3 rounded-lg">
           <p className="text-white/60 text-xs mb-1">Sell Volume (24h)</p>
           <p className="text-white text-sm font-medium">{formattedSellVolume}</p>
           {formattedSellChange && (
@@ -223,7 +223,7 @@ export default function TokenPriceDisplay({ tokenAddress }: TokenPriceDisplayPro
             </p>
           )}
         </div>
-        <div className="bg-black/30 p-3 rounded-lg">
+        <div className="bg-black/30 p-2 md:p-3 rounded-lg">
           <p className="text-white/60 text-xs mb-1">Markets</p>
           <p className="text-white text-sm font-medium">{formattedMarkets}</p>
         </div>

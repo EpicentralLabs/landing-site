@@ -100,7 +100,7 @@ const totalUnlockedSupply = calculateTotalUnlockedSupply(tokenDistributionData, 
 
 console.log(timeProgress, exactPosition, progressLabel, lockedPercentage, unlockedPercentage, totalUnlockedSupply);
 
-// Update the Legend component to use dynamic layout based on client-side check
+// Update the PieChartLegend component to be more mobile-friendly
 const PieChartLegend = () => {
   const [isWideScreen, setIsWideScreen] = useState(false);
 
@@ -123,9 +123,12 @@ const PieChartLegend = () => {
       wrapperStyle={{
         paddingLeft: isWideScreen ? '20px' : '0',
         paddingTop: !isWideScreen ? '20px' : '0',
+        fontSize: !isWideScreen ? '12px' : '14px', // Smaller font on mobile
+        overflowWrap: 'break-word',
+        wordBreak: 'break-word'
       }}
       formatter={(value) => (
-        <span className="text-white/70 text-sm md:text-base">
+        <span className="text-white/70 text-xs md:text-sm lg:text-base">
           {value}
         </span>
       )}
@@ -136,9 +139,21 @@ const PieChartLegend = () => {
 export default function LabsTokenPage() {
   
 const [isMounted, setIsMounted] = useState(false);
+const [windowWidth, setWindowWidth] = useState(0);
 
 useEffect(() => {
   setIsMounted(true);
+  
+  // Track window width for responsive adjustments
+  const handleResize = () => {
+    setWindowWidth(window.innerWidth);
+  };
+  
+  // Set initial width
+  setWindowWidth(window.innerWidth);
+  
+  window.addEventListener('resize', handleResize);
+  return () => window.removeEventListener('resize', handleResize);
 }, []);
 
 if (!isMounted) {
@@ -167,15 +182,15 @@ if (!isMounted) {
                 <DropdownMenuTrigger asChild>
                   <Button 
                     size="lg" 
-                    className="bg-[#FFFFFF] hover:bg-[#FFFFFF]/90 transition-all duration-300 hover:scale-95 w-full sm:w-auto"
+                    className="bg-[#FFFFFF] hover:bg-[#FFFFFF]/90 transition-all duration-300 hover:scale-95 w-full sm:w-auto min-h-[44px]"
                   >
                     Buy $LABS
                     <ChevronDown className="ml-2 h-5 w-5" />
                   </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent className="bg-black/80 backdrop-blur-md border border-white/10 text-white">
+                <DropdownMenuContent className="bg-black/80 backdrop-blur-md border border-white/10 text-white w-[200px] max-w-[90vw]">
                   <DropdownMenuItem 
-                    className="text-white hover:bg-white/10 focus:bg-white/10 cursor-pointer flex items-center"
+                    className="text-white hover:bg-white/10 focus:bg-white/10 cursor-pointer flex items-center py-3"
                     onClick={() => window.open('https://jup.ag/swap/SOL-LABSh5DTebUcUbEoLzXKCiXFJLecDFiDWiBGUU1GpxR', '_blank')}
                   >
                     <Image 
@@ -188,7 +203,7 @@ if (!isMounted) {
                     Jupiter
                   </DropdownMenuItem>
                   <DropdownMenuItem 
-                    className="text-white hover:bg-white/10 focus:bg-white/10 cursor-pointer flex items-center"
+                    className="text-white hover:bg-white/10 focus:bg-white/10 cursor-pointer flex items-center py-3"
                     onClick={() => window.open('https://cabana.exchange/swap/EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v-LABSh5DTebUcUbEoLzXKCiXFJLecDFiDWiBGUU1GpxR?daoRef=Epicentral', '_blank')}
                   >
                     <Image 
@@ -201,7 +216,7 @@ if (!isMounted) {
                     Cabana Exchange
                   </DropdownMenuItem>
                   <DropdownMenuItem 
-                    className="text-white hover:bg-white/10 focus:bg-white/10 cursor-pointer flex items-center"
+                    className="text-white hover:bg-white/10 focus:bg-white/10 cursor-pointer flex items-center py-3"
                     onClick={() => window.open('https://raydium.io/swap/?inputCurrency=sol&outputCurrency=LABSh5DTebUcUbEoLzXKCiXFJLecDFiDWiBGUU1GpxR', '_blank')}
                   >
                     <Image 
@@ -218,7 +233,7 @@ if (!isMounted) {
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="transition-all duration-300 w-full sm:w-auto"
+                className="transition-all duration-300 w-full sm:w-auto min-h-[44px]"
                 onClick={() => {
                   document.getElementById('tokenomics')?.scrollIntoView({ 
                     behavior: 'smooth',
@@ -239,7 +254,7 @@ if (!isMounted) {
 
       {/* Token Distribution Section */}
       <section className="container mx-auto px-4 pt-2 pb-24">
-      <div className="max-w-7xl mx-auto p-6 space-y-12">
+      <div className="max-w-7xl mx-auto p-3 md:p-6 space-y-12">
         {/* BirdEye TradingView Chart */}
         <div className="bg-black/30 backdrop-blur-md border border-white/10 rounded-xl p-2 md:p-3 lg:p-4 hover:border-white/20 transition-all duration-500 shadow-lg">
           <h2 className="text-2xl md:text-3xl font-light text-white/90 mb-3 md:mb-4 drop-shadow-[0_0_0.3rem_#ffffff70] text-center">
@@ -247,7 +262,7 @@ if (!isMounted) {
           </h2>
           <iframe 
             width="100%" 
-            height="600" 
+            height={windowWidth < 768 ? "400" : "600"} 
             src="https://birdeye.so/tv-widget/LABSh5DTebUcUbEoLzXKCiXFJLecDFiDWiBGUU1GpxR?chain=solana&viewMode=pair&chartInterval=240&chartType=Candle&chartTimezone=America%2FNew_York&chartLeftToolbar=show&theme=dark&cssCustomProperties=--tv-color-platform-background%3A%230b0b0b00&cssCustomProperties=--tv-color-pane-background%3A%2313162100&chartOverrides=paneProperties.backgroundGradientStartColor%3Argba%280%2C+0%2C+0%2C+1%29&chartOverrides=paneProperties.backgroundGradientEndColor%3Argba%280%2C+0%2C+0%2C+0%29" 
             frameBorder="0" 
             allowFullScreen
@@ -255,10 +270,10 @@ if (!isMounted) {
         </div>
   <div
     id="labs_token"
-    className="bg-black/30 backdrop-blur-md border border-white/10 rounded-xl p-4 md:p-6 lg:p-8 hover:border-white/20 transition-all duration-500 shadow-lg"
+    className="bg-black/30 backdrop-blur-md border border-white/10 rounded-xl p-3 md:p-6 lg:p-8 hover:border-white/20 transition-all duration-500 shadow-lg"
   >
     <div className="space-y-8">
-      <h2 className="text-2xl md:text-3xl font-light text-white/90 mb-6 md:mb-12 drop-shadow-[0_0_0.3rem_#ffffff70] text-center">
+      <h2 className="text-2xl md:text-3xl font-light text-white/90 mb-4 md:mb-12 drop-shadow-[0_0_0.3rem_#ffffff70] text-center">
         LABS Information
       </h2>
       <TokenPriceDisplay tokenAddress="LABSh5DTebUcUbEoLzXKCiXFJLecDFiDWiBGUU1GpxR" />
@@ -266,24 +281,24 @@ if (!isMounted) {
   </div>
 </div>
 
-        <div className="max-w-7xl mx-auto space-y-12">
+        <div className="max-w-7xl mx-auto space-y-8 md:space-y-12">
           {/* Token Distribution */}
-          <div id="tokenomics" className="bg-black/30 backdrop-blur-md border border-white/10 rounded-xl p-4 md:p-8 lg:p-12 
+          <div id="tokenomics" className="bg-black/30 backdrop-blur-md border border-white/10 rounded-xl p-3 md:p-8 lg:p-12 
                           hover:border-white/20 transition-all duration-500
                           shadow-[0_0_15px_rgba(0,0,0,0.2)]">
-            <h2 className="text-2xl md:text-3xl font-light text-white/90 mb-6 md:mb-12 drop-shadow-[0_0_0.3rem_#ffffff70]
+            <h2 className="text-xl md:text-2xl lg:text-3xl font-light text-white/90 mb-4 md:mb-12 drop-shadow-[0_0_0.3rem_#ffffff70]
                            text-center">
               Token Distribution
-              <div className="mt-2 text-sm md:text-base font-normal text-white/50">
+              <div className="mt-2 text-xs md:text-sm lg:text-base font-normal text-white/50">
                 Total Supply: 54,652,600 LABS
               </div>
-              <div className="mt-1 text-sm md:text-base font-normal text-white/70">
+              <div className="mt-1 text-xs md:text-sm lg:text-base font-normal text-white/70">
                 {calculateTotalUnlockedSupply(tokenDistributionData, START_DATE).amount} LABS in Circulation ({calculateTotalUnlockedSupply(tokenDistributionData, START_DATE).percentage}% of Total Supply)
               </div>
             </h2>
             
             {/* Chart Container with styling */}
-            <div className="w-full h-[300px] md:h-[400px] mb-6 md:mb-12 relative">
+            <div className="w-full h-[250px] md:h-[350px] lg:h-[400px] mb-4 md:mb-12 relative">
               <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/5 to-transparent 
                               opacity-50 rounded-xl"></div>
               <ResponsiveContainer width="100%" height="100%">
@@ -292,8 +307,8 @@ if (!isMounted) {
                     data={tokenDistributionData}
                     cx="50%"
                     cy="50%"
-                    innerRadius={80}
-                    outerRadius={140}
+                    innerRadius={windowWidth < 768 ? 50 : 80}
+                    outerRadius={windowWidth < 768 ? 90 : 140}
                     paddingAngle={3}
                     dataKey="value"
                     strokeWidth={2}
@@ -318,7 +333,7 @@ if (!isMounted) {
             </div>
 
             {/* Distribution Cards with enhanced styling */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6">
               {tokenDistributionData.map((item, index) => (
                 <Card 
                   key={index} 
@@ -326,7 +341,7 @@ if (!isMounted) {
                              transition-all duration-300 hover:transform hover:scale-[1.02]
                              hover:shadow-[0_0_15px_rgba(255,255,255,0.1)]"
                 >
-                  <CardHeader className="p-4 md:p-6">
+                  <CardHeader className="p-3 md:p-6">
                     <div className="flex items-center gap-3">
                       <div 
                         className="w-4 h-4 rounded-full shadow-[0_0_10px_rgba(255,255,255,0.2)]" 
@@ -335,7 +350,7 @@ if (!isMounted) {
                           boxShadow: `0 0 10px ${item.color}40`
                         }}
                       />
-                      <CardTitle className="text-white/90 text-lg">
+                      <CardTitle className="text-white/90 text-base md:text-lg">
                         {item.name === 'Core Team & Investors' ? (
                           <span>{item.name}</span>
                         ) : (
@@ -350,13 +365,13 @@ if (!isMounted) {
                         )}
                       </CardTitle>
                     </div>
-                    <CardDescription className="text-white/70 mt-2 text-base">
+                    <CardDescription className="text-white/70 mt-2 text-sm md:text-base">
                       {item.value}% of Total Supply
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
                     <div className="flex flex-col gap-2">
-                      <p className="text-white/90 text-lg font-medium">
+                      <p className="text-white/90 text-base md:text-lg font-medium">
                         {item.amount} LABS
                       </p>
                       <div className="w-full bg-white/5 rounded-full h-2 overflow-hidden">
@@ -375,7 +390,7 @@ if (!isMounted) {
                           />
                         </div>
                       </div>
-                      <div className="flex justify-between text-sm">
+                      <div className="flex justify-between text-xs md:text-sm">
                         <p className="text-white/50 text-xs">
                           {item.name === 'Public Allocation' 
                             ? '100% Locked & Burned' 
@@ -393,15 +408,15 @@ if (!isMounted) {
           </div>
 
           {/* Vesting Schedule with matching styling */}
-          <div className="bg-black/30 backdrop-blur-md border border-white/10 rounded-xl p-8 md:p-12
+          <div className="bg-black/30 backdrop-blur-md border border-white/10 rounded-xl p-4 md:p-8 lg:p-12
                           hover:border-white/20 transition-all duration-500
                           shadow-[0_0_15px_rgba(0,0,0,0.2)]">
-            <h2 className="text-3xl font-light text-white/90 mb-4 drop-shadow-[0_0_0.3rem_#ffffff70]">
+            <h2 className="text-xl md:text-2xl lg:text-3xl font-light text-white/90 mb-3 md:mb-4 drop-shadow-[0_0_0.3rem_#ffffff70]">
               Vesting Schedule
             </h2>
             
             {/* Add the notes section */}
-            <div className="mb-8 space-y-3 text-sm md:text-base">
+            <div className="mb-6 md:mb-8 space-y-3 text-xs md:text-sm lg:text-base">
               <p className="text-white/70 italic">
                 Note: Vesting schedules are designed to ensure long-term alignment of stakeholder interests 
                 and prevent immediate sell-offs that could destabilize the token&apos;s value. All vesting schedules were created immutable via <a href="https://streamflow.finance/" target="_blank" rel="noopener noreferrer" className="text-[#4a85ff] hover:drop-shadow-[0_0_8px_#4a85ff] transition-all duration-300">Streamflow</a>.
@@ -411,11 +426,11 @@ if (!isMounted) {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <div className="bg-black/40 border border-white/10 rounded-xl p-6
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+              <div className="bg-black/40 border border-white/10 rounded-xl p-4 md:p-6
                               hover:border-white/20 transition-all duration-300">
-                <h3 className="text-xl font-medium text-white/90 mb-4">DeFi Allocation</h3>
-                <div className="space-y-2 text-white/70">
+                <h3 className="text-lg md:text-xl font-medium text-white/90 mb-3 md:mb-4">DeFi Allocation</h3>
+                <div className="space-y-2 text-sm md:text-base text-white/70">
                   <p>• 14 Month Vesting via Streamflow</p>
                   <p>• Deposited to DeFi Rewards Vault</p>
                   <p>
@@ -431,10 +446,10 @@ if (!isMounted) {
                 </div>
               </div>
 
-              <div className="bg-black/40 border border-white/10 rounded-xl p-6
+              <div className="bg-black/40 border border-white/10 rounded-xl p-4 md:p-6
                               hover:border-white/20 transition-all duration-300">
-                <h3 className="text-xl font-medium text-white/90 mb-4">DAO Treasury</h3>
-                <div className="space-y-2 text-white/70">
+                <h3 className="text-lg md:text-xl font-medium text-white/90 mb-3 md:mb-4">DAO Treasury</h3>
+                <div className="space-y-2 text-sm md:text-base text-white/70">
                   <p>• 13 Month Vesting via Streamflow</p>
                   <p>• Deposited to Main DAO Vault</p>
                   <p>
@@ -450,20 +465,20 @@ if (!isMounted) {
                 </div>
               </div>
 
-              <div className="bg-black/40 border border-white/10 rounded-xl p-6
+              <div className="bg-black/40 border border-white/10 rounded-xl p-4 md:p-6
                               hover:border-white/20 transition-all duration-300">
-                <h3 className="text-xl font-medium text-white/90 mb-4">Core Team & Investors</h3>
-                <div className="space-y-2 text-white/70">
+                <h3 className="text-lg md:text-xl font-medium text-white/90 mb-3 md:mb-4">Core Team & Investors</h3>
+                <div className="space-y-2 text-sm md:text-base text-white/70">
                   <p>• 17 Month Vesting via Streamflow</p>
                   <p>• Individual Wallet Distribution</p>
                   
                   <Accordion type="single" collapsible className="mt-4">
                     <AccordionItem value="team" className="border-white/10">
-                      <AccordionTrigger className="text-white/80 hover:text-white/90 hover:no-underline">
+                      <AccordionTrigger className="text-white/80 hover:text-white/90 hover:no-underline py-3 min-h-[44px]">
                         Core Team Members
                       </AccordionTrigger>
                       <AccordionContent>
-                        <div className="space-y-2 pl-4">
+                        <div className="space-y-2 pl-2 md:pl-4 text-xs md:text-sm">
                           {[
                             { label: "Member 1", link: "8QNcH3ui247mK6xaBwZKm821WRz7FhbUVqPjRE92nBvR" },
                             { label: "Member 2", link: "Hd74wLhrnMA761C8RseEhu3P9YCdNZSn9ZUhbnoRXsvR" },
@@ -485,11 +500,11 @@ if (!isMounted) {
                     </AccordionItem>
 
                     <AccordionItem value="investors" className="border-white/10">
-                      <AccordionTrigger className="text-white/80 hover:text-white/90 hover:no-underline">
+                      <AccordionTrigger className="text-white/80 hover:text-white/90 hover:no-underline py-3 min-h-[44px]">
                         Private Investors
                       </AccordionTrigger>
                       <AccordionContent>
-                        <div className="space-y-2 pl-4">
+                        <div className="space-y-2 pl-2 md:pl-4 text-xs md:text-sm">
                           {[
                             { label: "Investor 1", link: "HZwSTiBFXBmjbLeeLkid8KB2SP59tNEHA7sj9TXoVHRx" },
                             { label: "Investor 2", link: "GTP1PPsjQrJAWB1tUqfyFrtDCzBKFjLyXWbQQwEhGH52" },
@@ -521,11 +536,11 @@ if (!isMounted) {
             </div>
 
             {/* Add Marketing and Contributor Bonus cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-              <div className="bg-black/40 border border-white/10 rounded-xl p-6
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mt-4 md:mt-6">
+              <div className="bg-black/40 border border-white/10 rounded-xl p-4 md:p-6
                               hover:border-white/20 transition-all duration-300">
-                <h3 className="text-xl font-medium text-white/90 mb-4">Marketing</h3>
-                <div className="space-y-2 text-white/70">
+                <h3 className="text-lg md:text-xl font-medium text-white/90 mb-3 md:mb-4">Marketing</h3>
+                <div className="space-y-2 text-sm md:text-base text-white/70">
                   <p>• 3 Month Vesting via Streamflow</p>
                   <p>• Deposited to Marketing Vault</p>
                   <p>
@@ -541,10 +556,10 @@ if (!isMounted) {
                 </div>
               </div>
 
-              <div className="bg-black/40 border border-white/10 rounded-xl p-6
+              <div className="bg-black/40 border border-white/10 rounded-xl p-4 md:p-6
                               hover:border-white/20 transition-all duration-300">
-                <h3 className="text-xl font-medium text-white/90 mb-4">Contributor Bonus</h3>
-                <div className="space-y-2 text-white/70">
+                <h3 className="text-lg md:text-xl font-medium text-white/90 mb-3 md:mb-4">Contributor Bonus</h3>
+                <div className="space-y-2 text-sm md:text-base text-white/70">
                   <p>• 8 Month Vesting via Streamflow</p>
                   <p>• Deposited to Community Bonus Vault</p>
                   <p>
@@ -563,19 +578,19 @@ if (!isMounted) {
           </div>
 
           {/* Vesting Timeline Chart */}
-          <div className="mt-12 p-6 bg-black/40 border border-white/10 rounded-xl
+          <div className="mt-8 md:mt-12 p-3 md:p-6 bg-black/40 border border-white/10 rounded-xl
                           hover:border-white/20 transition-all duration-300">
-            <div className="flex justify-between items-center mb-6">
-              <h3 className="text-xl font-medium text-white/90">Vesting Timeline</h3>
-              <div className="text-white/70 text-sm px-3 py-1 bg-white/5 rounded-full border border-white/10">
+            <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-4 md:mb-6 gap-2">
+              <h3 className="text-lg md:text-xl font-medium text-white/90">Vesting Timeline</h3>
+              <div className="text-white/70 text-xs md:text-sm px-2 md:px-3 py-1 bg-white/5 rounded-full border border-white/10 self-start md:self-auto">
                 {getProgressLabel(START_DATE)}
               </div>
             </div>
-            <div className="w-full h-[300px] md:h-[400px]">
+            <div className="w-full h-[250px] md:h-[350px] lg:h-[400px]">
               <ResponsiveContainer width="100%" height="100%">
                 <LineChart 
                   data={vestingScheduleData}
-                  margin={{ top: 20, right: 30, left: 20, bottom: 40 }}
+                  margin={{ top: 20, right: 10, left: 0, bottom: 40 }}
                 >
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
                   <ReferenceLine
@@ -588,7 +603,7 @@ if (!isMounted) {
                         value={`Current (${(calculateTimeProgress(START_DATE)).toFixed(1)} months)`}
                         position="insideTopRight"
                         fill="rgba(255,255,255,0.8)"
-                        fontSize={12}
+                        fontSize={windowWidth < 768 ? 10 : 12}
                       />
                     }
                     isFront={true}
@@ -598,24 +613,26 @@ if (!isMounted) {
                     stroke="rgba(255,255,255,0.5)"
                     tick={<CustomTick />}
                     height={60}
-                    interval={0}
+                    interval={windowWidth < 768 ? 2 : 0}
+                    fontSize={windowWidth < 768 ? 10 : 12}
                   />
                   <YAxis 
                     stroke="rgba(255,255,255,0.5)"
                     tick={{ 
                       fill: 'rgba(255,255,255,0.5)',
-                      fontSize: 12
+                      fontSize: windowWidth < 768 ? 10 : 12
                     }}
                     tickFormatter={(value) => `${(value / 1000000).toFixed(1)}M`}
+                    width={windowWidth < 768 ? 30 : 40}
                   />
                   <Tooltip 
                     content={({ active, payload, label }) => {
                       if (active && payload && payload.length) {
                         return (
-                          <div className="bg-black/80 backdrop-blur-md border border-white/10 rounded-lg p-4">
-                            <p className="text-white/90 font-medium mb-2">{label}</p>
+                          <div className="bg-black/80 backdrop-blur-md border border-white/10 rounded-lg p-2 md:p-4 max-w-[90vw] md:max-w-none">
+                            <p className="text-white/90 font-medium mb-1 md:mb-2 text-xs md:text-sm">{label}</p>
                             {payload.map((entry, index) => (
-                              <p key={index} className="text-white/70" style={{ color: entry.color }}>
+                              <p key={index} className="text-white/70 text-xs md:text-sm" style={{ color: entry.color }}>
                                 {entry.name}: {Number(entry.value).toLocaleString()} LABS
                               </p>
                             ))}
@@ -627,51 +644,53 @@ if (!isMounted) {
                   />
                   <Legend 
                     formatter={(value) => (
-                      <span className="text-white/70">{value}</span>
+                      <span className="text-white/70 text-xs md:text-sm">{value}</span>
                     )}
                     wrapperStyle={{
-                      paddingTop: '20px'
+                      paddingTop: '20px',
+                      fontSize: windowWidth < 768 ? '10px' : '12px'
                     }}
+                    iconSize={windowWidth < 768 ? 8 : 10}
                   />
                   <Line 
                     type="monotone" 
                     dataKey="defi" 
                     name="DeFi Allocation"
                     stroke="#34d399" 
-                    strokeWidth={2}
-                    dot={{ fill: '#34d399', strokeWidth: 2, r: 4 }}
+                    strokeWidth={windowWidth < 768 ? 1.5 : 2}
+                    dot={{ fill: '#34d399', strokeWidth: windowWidth < 768 ? 1.5 : 2, r: windowWidth < 768 ? 3 : 4 }}
                   />
                   <Line 
                     type="monotone" 
                     dataKey="dao" 
                     name="DAO Treasury"
                     stroke="#f59e0b" 
-                    strokeWidth={2}
-                    dot={{ fill: '#f59e0b', strokeWidth: 2, r: 4 }}
+                    strokeWidth={windowWidth < 768 ? 1.5 : 2}
+                    dot={{ fill: '#f59e0b', strokeWidth: windowWidth < 768 ? 1.5 : 2, r: windowWidth < 768 ? 3 : 4 }}
                   />
                   <Line 
                     type="monotone" 
                     dataKey="team" 
                     name="Core Team & Investors"
                     stroke="#ec4899" 
-                    strokeWidth={2}
-                    dot={{ fill: '#ec4899', strokeWidth: 2, r: 4 }}
+                    strokeWidth={windowWidth < 768 ? 1.5 : 2}
+                    dot={{ fill: '#ec4899', strokeWidth: windowWidth < 768 ? 1.5 : 2, r: windowWidth < 768 ? 3 : 4 }}
                   />
                   <Line 
                     type="monotone" 
                     dataKey="marketing" 
                     name="Marketing"
                     stroke="#8b5cf6" 
-                    strokeWidth={2}
-                    dot={{ fill: '#8b5cf6', strokeWidth: 2, r: 4 }}
+                    strokeWidth={windowWidth < 768 ? 1.5 : 2}
+                    dot={{ fill: '#8b5cf6', strokeWidth: windowWidth < 768 ? 1.5 : 2, r: windowWidth < 768 ? 3 : 4 }}
                   />
                   <Line 
                     type="monotone" 
                     dataKey="contributors" 
                     name="Contributor Bonus"
                     stroke="#6366f1" 
-                    strokeWidth={2}
-                    dot={{ fill: '#6366f1', strokeWidth: 2, r: 4 }}
+                    strokeWidth={windowWidth < 768 ? 1.5 : 2}
+                    dot={{ fill: '#6366f1', strokeWidth: windowWidth < 768 ? 1.5 : 2, r: windowWidth < 768 ? 3 : 4 }}
                   />
                 </LineChart>
               </ResponsiveContainer>
