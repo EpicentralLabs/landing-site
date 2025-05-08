@@ -2,15 +2,14 @@
 
 import { useEffect, useState } from 'react';
 import { DollarSign } from "lucide-react";
-import { fetchTokenData } from "@/utils/api/useFetchTokenData";
-import { TokenData } from "@/types/tokenData";
+import { TokenDataResponse, fetchTokenData } from "@/utils/api/useFetchTokenData";
 
 interface TokenPriceDisplayProps {
   tokenAddress: string;
 }
 
 export default function TokenPriceDisplay({ tokenAddress }: TokenPriceDisplayProps) {
-  const [data, setData] = useState<any>(null);
+  const [data, setData] = useState<TokenDataResponse | null>(null);
   const [initialLoading, setInitialLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -59,7 +58,7 @@ export default function TokenPriceDisplay({ tokenAddress }: TokenPriceDisplayPro
 
   // Access the price value directly from the raw response structure
   const price = data && data.value 
-    ? parseFloat(data.value).toFixed(9) 
+    ? parseFloat(data.value.toString()).toFixed(9) 
     : "Price unavailable";
   
   const lastUpdated = data && data.updateUnixTime 
@@ -75,9 +74,23 @@ export default function TokenPriceDisplay({ tokenAddress }: TokenPriceDisplayPro
   // Many APIs nest token data under a data or token property
   const dataObject = data || {};
   
-  const getValueSafely = (obj: any, paths: string[]) => {
+  const getValueSafely = (obj: Record<string, any>, paths: string[]): unknown => {
+    if (!obj) return undefined;
+    
     for (const path of paths) {
-      const value = path.split('.').reduce((o, key) => (o && o[key] !== undefined) ? o[key] : undefined, obj);
+      const keys = path.split('.');
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      let value: any = obj;
+      
+      // Navigate through each key in the path
+      for (const key of keys) {
+        if (value === undefined || value === null || typeof value !== 'object') {
+          value = undefined;
+          break;
+        }
+        value = value[key];
+      }
+      
       if (value !== undefined) return value;
     }
     return undefined;
@@ -93,12 +106,12 @@ export default function TokenPriceDisplay({ tokenAddress }: TokenPriceDisplayPro
   const numberMarkets = getValueSafely(dataObject, ['numberMarkets', 'markets', 'data.numberMarkets']);
 
   // Format values
-  const formatCurrency = (value: any) => {
+  const formatCurrency = (value: unknown): string => {
     if (value === undefined || value === null) return 'N/A';
     return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(Number(value));
   };
   
-  const formatPercentage = (value: any) => {
+  const formatPercentage = (value: unknown): string | null => {
     if (value === undefined || value === null) return null;
     return Number(value).toFixed(2);
   };
@@ -107,8 +120,8 @@ export default function TokenPriceDisplay({ tokenAddress }: TokenPriceDisplayPro
   
   // Calculate total volume by combining buy and sell volumes
   let totalVolume = 'N/A';
-  let buyPercentage = null;
-  let sellPercentage = null;
+  let buyPercentage: number | null = null;
+  let sellPercentage: number | null = null;
   
   if (buyVolume24h !== undefined && sellVolume24h !== undefined) {
     const buyVol = Number(buyVolume24h) || 0;
@@ -146,7 +159,9 @@ export default function TokenPriceDisplay({ tokenAddress }: TokenPriceDisplayPro
     ? "text-green-400" 
     : "text-red-400";
 
-  const formattedMarkets = numberMarkets !== undefined ? numberMarkets : 'N/A';
+  const formattedMarkets = numberMarkets !== undefined 
+    ? (numberMarkets as number).toString() 
+    : 'N/A';
 
   return (
     <div className="bg-black/40 rounded-lg p-4 md:p-6 shadow-md space-y-4 md:space-y-6 hover:scale-105 transition-transform duration-300">

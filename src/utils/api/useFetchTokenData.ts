@@ -1,13 +1,30 @@
-import { TokenData } from "@/types/tokenData";
+// Define a typed response for the token data
+export interface TokenDataResponse {
+  value?: string | number;
+  updateUnixTime?: number;
+  priceChange24h?: number;
+  liquidity?: number;
+  volume?: number;
+  volume24h?: number;
+  marketCap?: number;
+  mcap?: number;
+  vBuy24hUSD?: number;
+  vSell24hUSD?: number;
+  vBuy24hChangePercent?: number;
+  vSell24hChangePercent?: number;
+  numberMarkets?: number;
+  markets?: number;
+  [key: string]: any; // For other properties that may exist in the response
+}
 
 /**
  * Fetches token data from the Birdeye API.
  *
  * @param address - The token address to fetch data for.
- * @returns {Promise<any>} The token data response from Birdeye API.
+ * @returns {Promise<TokenDataResponse>} The token data response from Birdeye API.
  * @throws {Error} Will throw an error if the fetch fails, if the response is not ok, or if the response data is malformed.
  */
-export const fetchTokenData = async (address: string): Promise<any> => {
+export const fetchTokenData = async (address: string): Promise<TokenDataResponse> => {
   try {
     // First, get basic price data
     const priceUrl = `https://public-api.birdeye.so/defi/price?address=${address}`;
