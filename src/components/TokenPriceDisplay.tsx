@@ -17,16 +17,10 @@ export default function TokenPriceDisplay({ tokenAddress }: TokenPriceDisplayPro
     const fetchData = async () => {
       try {
         const result = await fetchTokenData(tokenAddress);
-        console.log("Birdeye API response:", result);
-        
-        // Log each property to see the full structure
-        if (result) {
-          console.log("Data properties:", Object.keys(result));
-          for (const key of Object.keys(result)) {
-            console.log(`${key}:`, result[key]);
-          }
+        if (process.env.NODE_ENV !== "production") {
+          // eslint-disable-next-line no-console
+          console.debug("[Birdeye] result", result);
         }
-        
         setData(result);
       } catch (err) {
         if (err instanceof Error) {
