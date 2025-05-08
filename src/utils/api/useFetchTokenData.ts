@@ -32,7 +32,7 @@ export const fetchTokenData = async (address: string): Promise<TokenDataResponse
       method: "GET",
       headers: {
         "X-API-KEY": process.env.NEXT_PUBLIC_BIRDEYE_API_KEY || "",
-        "accept": "application/json",
+        "Accept": "application/json",
       },
     };
 
