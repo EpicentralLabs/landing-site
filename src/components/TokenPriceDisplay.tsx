@@ -51,14 +51,13 @@ export default function TokenPriceDisplay({ tokenAddress }: TokenPriceDisplayPro
   }
 
   // Access the price value directly from the raw response structure
-  const price = data && data.value 
-    ? parseFloat(data.value.toString()).toFixed(9) 
-    : "Price unavailable";
+  const priceNum = Number(data?.value);
+  const price =
+    Number.isFinite(priceNum) ? priceNum.toFixed(9) : "Price unavailable";
   
   const lastUpdated = data && data.updateUnixTime 
     ? new Date(data.updateUnixTime * 1000).toLocaleTimeString()
     : '';
-
   // Extract additional data from the API response
   const priceChange24h = data && data.priceChange24h !== undefined 
     ? data.priceChange24h.toFixed(2) 
