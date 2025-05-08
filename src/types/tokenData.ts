@@ -1,27 +1,16 @@
 export interface TokenData {
-    priceUsd?: string | null;
-    baseToken: {
-      name: string;
-      symbol: string;
-    };
-    quoteToken: {
-      name: string;
-      symbol: string;
-    };
-    priceChange: {
-      h1: number;
-      h6: number;
-      h24: number;
-    };
-    volume: {
-      h24: number;
-      h6: number;
-      h1: number;
-    };
-    liquidity: {
-      usd: number;
-    };
-    marketCap: number;
-    liquidityUsd: number;
-  }
+  value: number;
+  updateUnixTime: number;
+  updateHumanTime: string;
+  priceChange24h: number;
+  priceInNative: number;
+  liquidity: number;
+  volume: number;
+  marketCap: number;
+  vSell24hUSD: number;
+  vBuy24hUSD: number;
+  vBuy24hChangePercent: number;
+  vSell24hChangePercent: number;
+  numberMarkets: number;
+}
   
