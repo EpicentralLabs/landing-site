@@ -238,7 +238,7 @@ if (!isMounted) {
       </main>
 
       {/* Token Distribution Section */}
-      <section className="container mx-auto px-4 py-24">
+      <section className="container mx-auto px-4 pt-2 pb-24">
       <div className="max-w-7xl mx-auto p-6 space-y-12">
         {/* BirdEye TradingView Chart */}
         <div className="bg-black/30 backdrop-blur-md border border-white/10 rounded-xl p-2 md:p-3 lg:p-4 hover:border-white/20 transition-all duration-500 shadow-lg">
@@ -266,7 +266,7 @@ if (!isMounted) {
   </div>
 </div>
 
-        <div className="max-w-7xl mx-auto space-y-16">
+        <div className="max-w-7xl mx-auto space-y-12">
           {/* Token Distribution */}
           <div id="tokenomics" className="bg-black/30 backdrop-blur-md border border-white/10 rounded-xl p-4 md:p-8 lg:p-12 
                           hover:border-white/20 transition-all duration-500
