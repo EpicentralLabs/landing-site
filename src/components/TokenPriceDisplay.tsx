@@ -11,12 +11,11 @@ interface TokenPriceDisplayProps {
 
 export default function TokenPriceDisplay({ tokenAddress }: TokenPriceDisplayProps) {
   const [data, setData] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
+  const [initialLoading, setInitialLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
-      setLoading(true);
       try {
         const result = await fetchTokenData(tokenAddress);
         console.log("Birdeye API response:", result);
@@ -37,7 +36,7 @@ export default function TokenPriceDisplay({ tokenAddress }: TokenPriceDisplayPro
           setError("An unknown error occurred");
         }
       } finally {
-        setLoading(false);
+        setInitialLoading(false);
       }
     };
 
@@ -50,11 +49,11 @@ export default function TokenPriceDisplay({ tokenAddress }: TokenPriceDisplayPro
     return () => clearInterval(intervalId);
   }, [tokenAddress]);
 
-  if (loading) {
+  if (initialLoading) {
     return <p className="text-white text-lg animate-pulse">Loading token data...</p>;
   }
 
-  if (error) {
+  if (error && !data) {
     return <p className="text-red-500 text-lg">Error: {error}</p>;
   }
 
