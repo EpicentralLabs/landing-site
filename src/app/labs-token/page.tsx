@@ -382,7 +382,7 @@ if (!isMounted) {
                             : `${Math.round(calculateLockedPercentage(item.name, START_DATE))}% Locked (${Math.round(calculateUnlockedPercentage(item.name, START_DATE))}% Unlocked)`}
                         </p>
                         <p className="text-white/50 text-xs">
-                          {Number((Number(item.amount.replace(/,/g, '')) * calculateUnlockedPercentage(item.name, START_DATE) / 100).toFixed(0)).toLocaleString()} LABS
+                          ({Number((Number(item.amount.replace(/,/g, '')) * calculateUnlockedPercentage(item.name, START_DATE) / 100).toFixed(0)).toLocaleString()} LABS)
                         </p>
                       </div>
                     </div>
