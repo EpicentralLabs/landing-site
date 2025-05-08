@@ -337,7 +337,7 @@ if (!isMounted) {
               {tokenDistributionData.map((item, index) => (
                 <Card 
                   key={index} 
-                  className="bg-black/50 border-white/10 hover:border-white/20 
+                  className="bg-black/40 backdrop-blur-md border border-white/10 rounded-xl hover:border-white/20 
                              transition-all duration-300 hover:transform hover:scale-[1.02]
                              hover:shadow-[0_0_15px_rgba(255,255,255,0.1)]"
                 >
