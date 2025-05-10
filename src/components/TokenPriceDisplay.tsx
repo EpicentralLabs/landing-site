@@ -149,8 +149,8 @@ export default function TokenPriceDisplay({ tokenAddress }: TokenPriceDisplayPro
     : "text-red-400";
   
   const sellChangeColor = formattedSellChange && parseFloat(formattedSellChange) >= 0 
-    ? "text-green-400" 
-    : "text-red-400";
+    ? "text-red-400" 
+    : "text-green-400";
 
   const formattedMarkets = numberMarkets !== undefined 
     ? (numberMarkets as number).toString() 
