@@ -168,7 +168,7 @@ if (!isMounted) {
       {/* Hero Section */}
       <main className="flex-1 flex items-center justify-center min-h-[80vh] pt-16 md:pt-18">
         <div className="container mx-auto px-4 flex flex-col items-center justify-center">
-          <div className="max-w-3xl w-full text-center space-y-6">
+          <div className="max-w-6xl w-full text-center space-y-6">
             <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight">
               <span className="font-extralight drop-shadow-[0_0_0.3rem_#ffffff70]">
                 LABS Token
@@ -254,7 +254,7 @@ if (!isMounted) {
 
       {/* Token Distribution Section */}
       <section className="container mx-auto px-4 pt-2 pb-24">
-      <div className="max-w-7xl mx-auto p-3 md:p-6 space-y-12">
+      <div className="max-w-6xl mx-auto p-3 md:p-6 space-y-12">
         {/* BirdEye TradingView Chart */}
         <div className="bg-black/30 backdrop-blur-md border border-white/10 rounded-xl p-2 md:p-3 lg:p-4 hover:border-white/20 transition-all duration-500 shadow-lg">
           <h2 className="text-2xl md:text-3xl font-light text-white/90 mb-3 md:mb-4 drop-shadow-[0_0_0.3rem_#ffffff70] text-center">
@@ -281,7 +281,7 @@ if (!isMounted) {
   </div>
 </div>
 
-        <div className="max-w-7xl mx-auto space-y-8 md:space-y-12">
+        <div className="max-w-6xl mx-auto space-y-8 md:space-y-12">
           {/* Token Distribution */}
           <div id="tokenomics" className="bg-black/30 backdrop-blur-md border border-white/10 rounded-xl p-3 md:p-8 lg:p-12 
                           hover:border-white/20 transition-all duration-500

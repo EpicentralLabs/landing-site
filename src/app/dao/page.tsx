@@ -21,7 +21,7 @@ export default function DAOPage() {
       <main className="flex-1 flex flex-col items-center justify-center min-h-[calc(100vh-64px)] py-20"> {/* Subtract navbar height and add vertical padding */}
         {/* Hero Content */}
         <div className="container mx-auto px-4">
-          <div className="max-w-2xl mx-auto space-y-8 text-center">
+          <div className="max-w-6xl mx-auto space-y-8 text-center">
             <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
               <span className="font-extralight drop-shadow-[0_0_0.3rem_#ffffff70]">
                 Epicentral<strong>DAO</strong>
@@ -103,7 +103,7 @@ export default function DAOPage() {
 
       {/* New DAO Introduction Section */}
       <section className="container mx-auto px-4 py-24">
-        <div className="max-w-4xl mx-auto text-center">
+        <div className="max-w-6xl mx-auto text-center">
           <h2 className="text-3xl font-light text-white/90 mb-8">
             What is a DAO?
           </h2>
@@ -116,7 +116,7 @@ export default function DAOPage() {
 
       {/* New DAO Introduction Section */}
       <section className="container mx-auto px-4 py-24">
-        <div className="max-w-4xl mx-auto text-center">
+        <div className="max-w-6xl mx-auto text-center">
           <h2 className="text-3xl font-light text-white/90 mb-8">
             What is a DAO used for?
           </h2>
@@ -134,7 +134,7 @@ export default function DAOPage() {
 
       {/* New DAO Introduction Section */}
       <section className="container mx-auto px-4 py-24">
-        <div className="max-w-4xl mx-auto text-center">
+        <div className="max-w-6xl mx-auto text-center">
           <h2 className="text-3xl font-light text-white/90 mb-8">
             Why is EpicentralDAO needed?
           </h2>
@@ -152,7 +152,7 @@ export default function DAOPage() {
 
       {/* How It Works Section - Add id here */}
       <section id="how-it-works" className="container mx-auto px-4 py-24">
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-light text-white/90 mb-16 text-center drop-shadow-[0_0_0.3rem_#ffffff70]">
             How does the DAO work?
           </h2>
@@ -195,7 +195,7 @@ export default function DAOPage() {
 
       {/* Call to Action */}
       <div className="container mx-auto px-4 py-24">
-        <div className="max-w-4xl mx-auto space-y-16">
+        <div className="max-w-6xl mx-auto space-y-16">
           {/* Call to Action Container */}
           <div className="bg-black/30 backdrop-blur-md border border-white/10 rounded-xl p-8 md:p-12 text-center">
             <div className="space-y-6">
