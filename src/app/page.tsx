@@ -448,117 +448,122 @@ export default function Home() {
                   />
                 </div>
               </div>
-            </div>
-          </div>
 
-          {/* Focuses Container */}
-          <div className="bg-gradient-to-br from-black/40 to-black/20 backdrop-blur-md border border-white/10 rounded-xl p-8 md:p-12">
-            <div className="space-y-8">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#4a85ff]/20 to-[#4a85ff]/10 flex items-center justify-center">
-                  <svg className="w-6 h-6 text-[#4a85ff]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-                  </svg>
-                </div>
-                <h3 className="text-3xl font-light text-white/90">
-                  <i>What We're Shipping:</i>
-                </h3>
+              {/* Gradient Divider before What We're Shipping section */}
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent blur-sm"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent"></div>
+                <div className="h-px w-full bg-gradient-to-r from-transparent via-white/20 to-transparent relative"></div>
               </div>
 
-              <Accordion type="single" collapsible className="w-full space-y-4">
-                <AccordionItem value="governance" className="border-white/10">
-                  <AccordionTrigger className="hover:no-underline group">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-lg bg-[#4a85ff]/10 flex items-center justify-center transition-all duration-300 group-hover:bg-[#4a85ff]/20">
-                        <ArrowDown className="h-5 w-5 text-[#4a85ff] transition-transform duration-300" />
-                      </div>
-                      <h4 className="text-xl font-medium text-white/90 transition-all duration-300 
-                                    group-hover:text-white group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
-                        <i>OPX</i>
-                      </h4>
-                    </div>
-                  </AccordionTrigger>
-                  <AccordionContent className="text-white/70">
-                    <div className="pt-4 leading-relaxed space-y-4">
-                      <p>
-                        Solana's Options Exchange: Allowing for traders to hedge, speculate, and diversify their portfolios by utilizing single or multi-legged strategies.  
-                      </p>
-                      <div className="flex items-center">
-                        <Button 
-                          size="lg"
-                          className="bg-gradient-to-r from-[#4a85ff]/20 to-[#4a85ff]/10 hover:from-[#4a85ff]/30 hover:to-[#4a85ff]/20 text-white transition-all duration-300 
-                                    hover:shadow-[0_0_20px_rgba(74,133,255,0.2)] hover:scale-105 px-8"
-                          onClick={() => window.location.href = '/coming-soon'}
-                        >
-                          Coming Soon!
-                          <ArrowRight className="ml-2 h-5 w-5" />
-                        </Button>
-                      </div>
-                    </div>
-                  </AccordionContent>
-                </AccordionItem>
+              {/* What We're Shipping section */}
+              <div className="space-y-8">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#4a85ff]/20 to-[#4a85ff]/10 flex items-center justify-center">
+                    <svg className="w-6 h-6 text-[#4a85ff]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                    </svg>
+                  </div>
+                  <h3 className="text-3xl font-light text-white/90">
+                    <i>What We're Shipping:</i>
+                  </h3>
+                </div>
 
-                <AccordionItem value="security" className="border-white/10">
-                  <AccordionTrigger className="hover:no-underline group">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-lg bg-[#4a85ff]/10 flex items-center justify-center transition-all duration-300 group-hover:bg-[#4a85ff]/20">
-                        <ArrowDown className="h-5 w-5 text-[#4a85ff] transition-transform duration-300" />
+                <Accordion type="single" collapsible className="w-full space-y-4">
+                  <AccordionItem value="governance" className="border-white/10">
+                    <AccordionTrigger className="hover:no-underline group">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-lg bg-[#4a85ff]/10 flex items-center justify-center transition-all duration-300 group-hover:bg-[#4a85ff]/20">
+                          <ArrowDown className="h-5 w-5 text-[#4a85ff] transition-transform duration-300" />
+                        </div>
+                        <h4 className="text-xl font-medium text-white/90 transition-all duration-300 
+                                      group-hover:text-white group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
+                          <i>OPX</i>
+                        </h4>
                       </div>
-                      <h4 className="text-xl font-medium text-white/90 transition-all duration-300 
-                                    group-hover:text-white group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
-                        <i>Option Programs</i>
-                      </h4>
-                    </div>
-                  </AccordionTrigger>
-                  <AccordionContent className="text-white/70">
-                    <div className="pt-4 leading-relaxed">
-                      For option contracts to exist on Solana, on-chain programs validate the creation of new option contracts and the settlement of existing ones. 
-                      Ensuring that all options are accurately priced and settled fairly.
-                      <div className="flex items-center mt-4">
-                        <Button 
-                          size="lg"
-                          className="bg-gradient-to-r from-[#4a85ff]/20 to-[#4a85ff]/10 hover:from-[#4a85ff]/30 hover:to-[#4a85ff]/20 text-white transition-all duration-300 
-                                    hover:shadow-[0_0_20px_rgba(74,133,255,0.2)] hover:scale-105 px-8"
-                          onClick={() => window.location.href = '/coming-soon'}
-                        >
-                          Coming Soon!
-                          <ArrowRight className="ml-2 h-5 w-5" />
-                        </Button>
+                    </AccordionTrigger>
+                    <AccordionContent className="text-white/70">
+                      <div className="pt-4 leading-relaxed space-y-4">
+                        <p>
+                          Solana's Options Exchange: Allowing for traders to hedge, speculate, and diversify their portfolios by utilizing single or multi-legged strategies.  
+                        </p>
+                        <div className="flex items-center">
+                          <Button 
+                            size="lg"
+                            className="bg-gradient-to-r from-[#4a85ff]/20 to-[#4a85ff]/10 hover:from-[#4a85ff]/30 hover:to-[#4a85ff]/20 text-white transition-all duration-300 
+                                      hover:shadow-[0_0_20px_rgba(74,133,255,0.2)] hover:scale-105 px-8"
+                            onClick={() => window.location.href = '/coming-soon'}
+                          >
+                            Coming Soon!
+                            <ArrowRight className="ml-2 h-5 w-5" />
+                          </Button>
+                        </div>
                       </div>
-                    </div>
-                  </AccordionContent>
-                </AccordionItem>
+                    </AccordionContent>
+                  </AccordionItem>
 
-                <AccordionItem value="integration" className="border-white/10">
-                  <AccordionTrigger className="hover:no-underline group">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-lg bg-[#4a85ff]/10 flex items-center justify-center transition-all duration-300 group-hover:bg-[#4a85ff]/20">
-                        <ArrowDown className="h-5 w-5 text-[#4a85ff] transition-transform duration-300" />
+                  <AccordionItem value="security" className="border-white/10">
+                    <AccordionTrigger className="hover:no-underline group">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-lg bg-[#4a85ff]/10 flex items-center justify-center transition-all duration-300 group-hover:bg-[#4a85ff]/20">
+                          <ArrowDown className="h-5 w-5 text-[#4a85ff] transition-transform duration-300" />
+                        </div>
+                        <h4 className="text-xl font-medium text-white/90 transition-all duration-300 
+                                      group-hover:text-white group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
+                          <i>Option Programs</i>
+                        </h4>
                       </div>
-                      <h4 className="text-xl font-medium text-white/90 transition-all duration-300 
-                                    group-hover:text-white group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
-                        <i>Solana Options Standard SDK</i>
-                      </h4>
-                    </div>
-                  </AccordionTrigger>
-                  <AccordionContent className="text-white/70">
-                    <div className="pt-4 leading-relaxed">
-                      An open source program development kit (SDK) consisting of different libraries, modules, and pre-made mathematical derivative functions that allow developers to build or implement custom or standardized option contracts on Solana.
-                      <div className="flex items-center mt-4">
-                        <Button 
-                          size="lg"
-                          className="bg-gradient-to-r from-[#4a85ff]/20 to-[#4a85ff]/10 hover:from-[#4a85ff]/30 hover:to-[#4a85ff]/20 text-white transition-all duration-300 
-                                    hover:shadow-[0_0_20px_rgba(74,133,255,0.2)] hover:scale-105 px-8"
-                          onClick={() => window.open('https://github.com/EpicentralLabs', '_blank')}
-                        >
-                          View on GitHub
-                          <ArrowRight className="ml-2 h-5 w-5" />
-                        </Button>
+                    </AccordionTrigger>
+                    <AccordionContent className="text-white/70">
+                      <div className="pt-4 leading-relaxed">
+                        For option contracts to exist on Solana, on-chain programs validate the creation of new option contracts and the settlement of existing ones. 
+                        Ensuring that all options are accurately priced and settled fairly.
+                        <div className="flex items-center mt-4">
+                          <Button 
+                            size="lg"
+                            className="bg-gradient-to-r from-[#4a85ff]/20 to-[#4a85ff]/10 hover:from-[#4a85ff]/30 hover:to-[#4a85ff]/20 text-white transition-all duration-300 
+                                      hover:shadow-[0_0_20px_rgba(74,133,255,0.2)] hover:scale-105 px-8"
+                            onClick={() => window.location.href = '/coming-soon'}
+                          >
+                            Coming Soon!
+                            <ArrowRight className="ml-2 h-5 w-5" />
+                          </Button>
+                        </div>
                       </div>
-                    </div>
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem value="integration" className="border-white/10">
+                    <AccordionTrigger className="hover:no-underline group">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-lg bg-[#4a85ff]/10 flex items-center justify-center transition-all duration-300 group-hover:bg-[#4a85ff]/20">
+                          <ArrowDown className="h-5 w-5 text-[#4a85ff] transition-transform duration-300" />
+                        </div>
+                        <h4 className="text-xl font-medium text-white/90 transition-all duration-300 
+                                      group-hover:text-white group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
+                          <i>Solana Options Standard SDK</i>
+                        </h4>
+                      </div>
+                    </AccordionTrigger>
+                    <AccordionContent className="text-white/70">
+                      <div className="pt-4 leading-relaxed">
+                        An open source program development kit (SDK) consisting of different libraries, modules, and pre-made mathematical derivative functions that allow developers to build or implement custom or standardized option contracts on Solana.
+                        <div className="flex items-center mt-4">
+                          <Button 
+                            size="lg"
+                            className="bg-gradient-to-r from-[#4a85ff]/20 to-[#4a85ff]/10 hover:from-[#4a85ff]/30 hover:to-[#4a85ff]/20 text-white transition-all duration-300 
+                                      hover:shadow-[0_0_20px_rgba(74,133,255,0.2)] hover:scale-105 px-8"
+                            onClick={() => window.open('https://github.com/EpicentralLabs', '_blank')}
+                          >
+                            View on GitHub
+                            <ArrowRight className="ml-2 h-5 w-5" />
+                          </Button>
+                        </div>
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
+              </div>
             </div>
           </div>
         </div>
