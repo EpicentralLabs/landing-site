@@ -41,7 +41,7 @@ export default function Home() {
       setTimeout(() => {
         setCurrentTextIndex((prevIndex) => (prevIndex + 1) % heroTexts.length);
         setIsVisible(true);
-      }, 2000); // 2 second delay for fade out
+      }, 1000); // 1 second delay for fade out
     }, 8000); // 8 seconds display time
 
     return () => clearInterval(interval);
@@ -54,7 +54,7 @@ export default function Home() {
       {/* Hero Section */}
       <main className="flex-1 flex items-center justify-center min-h-[80vh] pt-48">
         <div className="container mx-auto px-4 flex flex-col items-center">
-          <div className="max-w-3xl w-full text-center space-y-8">
+          <div className="max-w-6xl w-full text-center space-y-8">
             <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
               <span 
                 className={`font-extralight drop-shadow-[0_0_0.3rem_#ffffff70] transition-all duration-500 ${
@@ -64,7 +64,16 @@ export default function Home() {
                 {heroTexts[currentTextIndex]}
               </span>
             </h1>
-            <div className="flex items-center justify-center gap-4">
+
+            {/* Gradient Divider */}
+            <div className="relative mt-16 w-full">
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent blur-sm"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent"></div>
+              <div className="h-px w-full bg-gradient-to-r from-transparent via-white/20 to-transparent relative"></div>
+            </div>
+
+            {/* Buttons Section */}
+            <div className="flex items-center justify-center gap-4 mt-8">
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button 
@@ -126,12 +135,6 @@ export default function Home() {
               >
                 Learn More
               </Button>
-            </div>
-            {/* Gradient Divider */}
-            <div className="relative mt-16 w-full">
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent blur-sm"></div>
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent"></div>
-              <div className="h-px w-full bg-gradient-to-r from-transparent via-white/20 to-transparent relative"></div>
             </div>
             
             {/* Partners Section */}
@@ -246,7 +249,7 @@ export default function Home() {
 
       {/* About Section */}
       <div id="about-section" className="container mx-auto px-4 py-48">
-        <div className="max-w-4xl mx-auto space-y-16">
+        <div className="max-w-6xl mx-auto space-y-16">
           {/* Combined Info Container */}
           <div id="epicentral-labs" className="bg-gradient-to-br from-black/40 to-black/20 backdrop-blur-md border border-white/10 rounded-xl p-8 md:p-12 mb-4 scroll-mt-32">
             <div className="space-y-12 text-left">
@@ -465,7 +468,7 @@ export default function Home() {
                     </svg>
                   </div>
                   <h3 className="text-3xl font-light text-white/90">
-                    <i>What We're Shipping:</i>
+                    What We're Shipping:
                   </h3>
                 </div>
 
@@ -485,7 +488,16 @@ export default function Home() {
                     <AccordionContent className="text-white/70">
                       <div className="pt-4 leading-relaxed space-y-4">
                         <p>
-                          Solana's Options Exchange: Allowing for traders to hedge, speculate, and diversify their portfolios by utilizing single or multi-legged strategies.  
+                        OPX is an on-chain options trading platform built on the "Solana Options Standard" — an open-source SDK designed to mint, exercise, and validate option pricing for underlying tokens. 
+                        <br />
+                        <br />
+                        It enables anyone to create and trade options, structure multi-legged spreads, and exercise contracts into the underlying assets. 
+                        <br />
+                        <br />
+                        Option sellers can use leverage to earn premiums from time decay without requiring full collateral to open positions. 
+                        <br />
+                        <br />
+                        Liquidity providers earn yield by supplying capital to the margin pool, which is borrowed by market makers (option sellers).  
                         </p>
                         <div className="flex items-center">
                           <Button 
