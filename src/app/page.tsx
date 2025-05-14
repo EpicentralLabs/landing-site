@@ -4,6 +4,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ArrowDown, ChevronDown } from "lucide-react";
 import Image from "next/image";
+import { useState, useEffect } from "react";
 import {
   Accordion,
   AccordionContent,
@@ -20,6 +21,32 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 export default function Home() {
+  const [currentTextIndex, setCurrentTextIndex] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
+
+  const heroTexts = [
+    "Shaping DeFi Through Governance",
+    "Bringing Options Trading to Solana",
+    "Expanding DeFi Derivatives"
+  ];
+
+  useEffect(() => {
+    // Initial fade in
+    setIsVisible(true);
+
+    const interval = setInterval(() => {
+      setIsVisible(false);
+      
+      // Wait for fade out animation to complete before changing text
+      setTimeout(() => {
+        setCurrentTextIndex((prevIndex) => (prevIndex + 1) % heroTexts.length);
+        setIsVisible(true);
+      }, 2000); // 2 second delay for fade out
+    }, 8000); // 8 seconds display time
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
@@ -29,8 +56,12 @@ export default function Home() {
         <div className="container mx-auto px-4 flex flex-col items-center">
           <div className="max-w-3xl w-full text-center space-y-8">
             <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
-              <span className="font-extralight drop-shadow-[0_0_0.3rem_#ffffff70]">
-                Shaping DeFi Through Governance
+              <span 
+                className={`font-extralight drop-shadow-[0_0_0.3rem_#ffffff70] transition-all duration-500 ${
+                  isVisible ? 'opacity-100 blur-0' : 'opacity-0 blur-md'
+                }`}
+              >
+                {heroTexts[currentTextIndex]}
               </span>
             </h1>
             <div className="flex items-center justify-center gap-4">
@@ -217,29 +248,28 @@ export default function Home() {
       <div id="about-section" className="container mx-auto px-4 py-48">
         <div className="max-w-4xl mx-auto space-y-16">
           {/* Combined Info Container */}
-          <div id="epicentral-labs" className="bg-black/30 backdrop-blur-md border border-white/10 rounded-xl p-8 md:p-12 mb-4 scroll-mt-32">
+          <div id="epicentral-labs" className="bg-gradient-to-br from-black/40 to-black/20 backdrop-blur-md border border-white/10 rounded-xl p-8 md:p-12 mb-4 scroll-mt-32">
             <div className="space-y-12 text-left">
               {/* What is Epicentral Labs? */}
               <div className="space-y-6">
-                <h3 className="text-2xl font-light text-white/90">
-                  What is Epicentral Labs?
-                </h3>
-                <p className="text-base leading-relaxed text-white/70">
-                  <b>Epicentral Labs is a community-governed protocol focused on bringing options trading
-                  to</b> <a href="https://solana.com/" className="text-[#4a85ff] hover:drop-shadow-[0_0_8px_#4a85ff] transition-all duration-300 underline">Solana</a>. The name &ldquo;Epicentral&rdquo; is
-                  inspired by seismology, symbolizing the aim to be a focal point for innovation in decentralized finance and
-                  blockchain development.
-                </p>
-                <div className="flex items-center">
-                  <Button 
-                    size="sm"
-                    variant="secondary"
-                    className="bg-white/10 hover:bg-white/20 text-white transition-all duration-300 
-                              hover:drop-shadow-[0_0_0.1rem_rgba(255,255,255,0.3)] hover:scale-95 px-4"
-                    onClick={() => window.open('https://jmp.sh/LNS9MwQU', '_blank')}
-                  >
-                    Read Whitepaper
-                  </Button>
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#4a85ff]/20 to-[#4a85ff]/10 flex items-center justify-center">
+                    <svg className="w-6 h-6 text-[#4a85ff]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                    </svg>
+                  </div>
+                  <h3 className="text-3xl font-light text-white/90">
+                    What is Epicentral Labs?
+                  </h3>
+                </div>
+                <div className="group bg-gradient-to-br from-white/5 to-white/[0.02] rounded-xl p-6 border border-white/10 hover:border-[#4a85ff]/30 transition-all duration-300 hover:shadow-[0_0_30px_rgba(74,133,255,0.1)]">
+                  <p className="text-base leading-relaxed text-white/70 group-hover:text-white/80 transition-all duration-300">
+                    <b>Epicentral Labs</b> is a protocol focused on bringing Options Trading and financial derivative solutions to <a href="https://solana.com/" className="text-[#4a85ff] hover:drop-shadow-[0_0_8px_#4a85ff] transition-all duration-300 underline">Solana</a>.
+                    <br />
+                    <br />
+                    The name &ldquo;Epicentral&rdquo;, comes from the word "epicenter", symbolizing to be a focal point for innovation in decentralized finance and
+                    blockchain development.
+                  </p>
                 </div>
               </div>
 
@@ -251,26 +281,81 @@ export default function Home() {
               </div>
 
               {/* Our Mission */}
-              <div className="space-y-6">
-                <h3 className="text-2xl font-light text-white/90">
-                  Our Mission
-                </h3>
-                <p className="text-base leading-relaxed text-white/70">
-                  <b>To create a "Gold Standard" for on-chain option contracts on Solana</b>. We aim to expand decentralized finance by building derivatives that work. With the help of community, and other protocols, our goal is to create an integrable tool for the Solana DeFi ecosystem.
-                </p>
-                <p className="text-base leading-relaxed text-white/70">
-                  Take a look at our 2025 roadmap to see what's in the works!
-                </p>
-                <div className="flex items-center">
+              <div className="space-y-8">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#4a85ff]/20 to-[#4a85ff]/10 flex items-center justify-center">
+                    <svg className="w-6 h-6 text-[#4a85ff]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                  </div>
+                  <h3 className="text-3xl font-light text-white/90">
+                    Our Mission
+                  </h3>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  {/* Innovation Card */}
+                  <div className="group bg-gradient-to-br from-white/5 to-white/[0.02] rounded-xl p-6 border border-white/10 hover:border-[#4a85ff]/30 transition-all duration-300 hover:shadow-[0_0_30px_rgba(74,133,255,0.1)]">
+                    <div className="space-y-4">
+                      <div className="w-10 h-10 rounded-lg bg-[#4a85ff]/10 flex items-center justify-center group-hover:bg-[#4a85ff]/20 transition-all duration-300">
+                        <svg className="w-5 h-5 text-[#4a85ff]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                        </svg>
+                      </div>
+                      <h4 className="text-xl font-medium text-white/90 group-hover:text-white transition-all duration-300">
+                        Innovation
+                      </h4>
+                      <p className="text-base leading-relaxed text-white/70 group-hover:text-white/80 transition-all duration-300">
+                        The <a href="https://github.com/EpicentralLabs/solana-options-standard-sdk" className="text-[#4a85ff] hover:drop-shadow-[0_0_8px_#4a85ff] transition-all duration-300 underline">Solana Options Standard (SOS)</a> - an on-chain solution for creating, pricing, and trading option contracts on Solana, designed for seamless integration into any DeFi application.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Expansion Card */}
+                  <div className="group bg-gradient-to-br from-white/5 to-white/[0.02] rounded-xl p-6 border border-white/10 hover:border-[#4a85ff]/30 transition-all duration-300 hover:shadow-[0_0_30px_rgba(74,133,255,0.1)]">
+                    <div className="space-y-4">
+                      <div className="w-10 h-10 rounded-lg bg-[#4a85ff]/10 flex items-center justify-center group-hover:bg-[#4a85ff]/20 transition-all duration-300">
+                        <svg className="w-5 h-5 text-[#4a85ff]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                        </svg>
+                      </div>
+                      <h4 className="text-xl font-medium text-white/90 group-hover:text-white transition-all duration-300">
+                        Expansion
+                      </h4>
+                      <p className="text-base leading-relaxed text-white/70 group-hover:text-white/80 transition-all duration-300">
+                        Building robust derivative solutions for the Solana DeFi ecosystem, from customizable Exotic Options to automated hedging strategies, creating powerful tools for traders and developers.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Education Card */}
+                  <div className="group bg-gradient-to-br from-white/5 to-white/[0.02] rounded-xl p-6 border border-white/10 hover:border-[#4a85ff]/30 transition-all duration-300 hover:shadow-[0_0_30px_rgba(74,133,255,0.1)]">
+                    <div className="space-y-4">
+                      <div className="w-10 h-10 rounded-lg bg-[#4a85ff]/10 flex items-center justify-center group-hover:bg-[#4a85ff]/20 transition-all duration-300">
+                        <svg className="w-5 h-5 text-[#4a85ff]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                        </svg>
+                      </div>
+                      <h4 className="text-xl font-medium text-white/90 group-hover:text-white transition-all duration-300">
+                        Education
+                      </h4>
+                      <p className="text-base leading-relaxed text-white/70 group-hover:text-white/80 transition-all duration-300">
+                        Leading the Solana ecosystem in options education, empowering users to leverage options for hedging, speculation, and portfolio diversification through comprehensive learning resources.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-center pt-4">
                   <Button 
-                    size="sm"
+                    size="lg"
                     variant="secondary"
-                    className="bg-white/10 hover:bg-white/20 text-white transition-all duration-300 
-                              hover:drop-shadow-[0_0_0.1rem_rgba(255,255,255,0.3)] hover:scale-95 px-4"
+                    className="bg-gradient-to-r from-[#4a85ff]/20 to-[#4a85ff]/10 hover:from-[#4a85ff]/30 hover:to-[#4a85ff]/20 text-white transition-all duration-300 
+                              hover:shadow-[0_0_20px_rgba(74,133,255,0.2)] hover:scale-105 px-8"
                     onClick={() => window.location.href = '/roadmap'}
                   >
-                    Roadmap
-                    <ArrowRight className="ml-0 h-4 w-4" />
+                    View Our Roadmap
+                    <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                 </div>
               </div>
@@ -283,56 +368,83 @@ export default function Home() {
               </div>
 
               {/* Powered by $LABS section */}
-              <div className="space-y-6">
-                <h3 className="text-2xl font-light text-white/90">
-                  Powered by $LABS
-                </h3>
-                <p className="text-base leading-relaxed text-white/70">
-                <b><a className="text-[#4a85ff] hover:drop-shadow-[0_0_8px_#4a85ff] transition-all duration-300">LABS</a> is our governance token for</b> <a href="/dao" className="text-[#4a85ff] hover:drop-shadow-[0_0_8px_#4a85ff] transition-all duration-300 underline">EpicentralDAO</a>. Each token is a vote in the decision-making process for Epicentral Labs.
-                </p>
-                <p className="text-base leading-relaxed text-white/70 font-bold">
-                  As a token holder:
-                </p>
-                
-                <ul className="text-base leading-relaxed text-white/70 space-y-2">
-                  <li className="flex items-center gap-2">
-                    <span className="text-[#4a85ff]">•</span> Decide which assets are added to the protocol
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="text-[#4a85ff]">•</span> Propose new features and improvements
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="text-[#4a85ff]">•</span> Vote on protocol parameter changes
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="text-[#4a85ff]">•</span> Stake your $LABS to grow your voting power
-                  </li>
-                </ul>
+              <div className="space-y-8">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#4a85ff]/20 to-[#4a85ff]/10 flex items-center justify-center">
+                    <svg className="w-6 h-6 text-[#4a85ff]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <h3 className="text-3xl font-light text-white/90">
+                    Powered by $LABS
+                  </h3>
+                </div>
 
-                <p className="text-base leading-relaxed text-white/70">
-                  To learn more about $LABS, check out the tokenomics page below:
-                </p>
+                <div className="group bg-gradient-to-br from-white/5 to-white/[0.02] rounded-xl p-6 border border-white/10 hover:border-[#4a85ff]/30 transition-all duration-300 hover:shadow-[0_0_30px_rgba(74,133,255,0.1)]">
+                  <div className="space-y-6">
+                    <p className="text-base leading-relaxed text-white/70 group-hover:text-white/80 transition-all duration-300">
+                      <b><a className="text-[#4a85ff] hover:drop-shadow-[0_0_8px_#4a85ff] transition-all duration-300">LABS</a> is our governance token for</b> <a href="/dao" className="text-[#4a85ff] hover:drop-shadow-[0_0_8px_#4a85ff] transition-all duration-300 underline">EpicentralDAO</a>. Each token is a vote in the decision-making process for Epicentral Labs.
+                    </p>
+                    
+                    <div className="space-y-4">
+                      <p className="text-base leading-relaxed text-white/70 font-bold group-hover:text-white/80 transition-all duration-300">
+                        As a token holder:
+                      </p>
+                      
+                      <ul className="space-y-3">
+                        <li className="flex items-center gap-3 text-white/70 group-hover:text-white/80 transition-all duration-300">
+                          <div className="w-6 h-6 rounded-full bg-[#4a85ff]/10 flex items-center justify-center">
+                            <span className="text-[#4a85ff] text-sm">•</span>
+                          </div>
+                          Decide which assets are added to the protocol
+                        </li>
+                        <li className="flex items-center gap-3 text-white/70 group-hover:text-white/80 transition-all duration-300">
+                          <div className="w-6 h-6 rounded-full bg-[#4a85ff]/10 flex items-center justify-center">
+                            <span className="text-[#4a85ff] text-sm">•</span>
+                          </div>
+                          Propose new features and improvements
+                        </li>
+                        <li className="flex items-center gap-3 text-white/70 group-hover:text-white/80 transition-all duration-300">
+                          <div className="w-6 h-6 rounded-full bg-[#4a85ff]/10 flex items-center justify-center">
+                            <span className="text-[#4a85ff] text-sm">•</span>
+                          </div>
+                          Vote on protocol parameter changes
+                        </li>
+                        <li className="flex items-center gap-3 text-white/70 group-hover:text-white/80 transition-all duration-300">
+                          <div className="w-6 h-6 rounded-full bg-[#4a85ff]/10 flex items-center justify-center">
+                            <span className="text-[#4a85ff] text-sm">•</span>
+                          </div>
+                          Stake your $LABS to grow your voting power
+                        </li>
+                      </ul>
+                    </div>
 
-                <div className="space-y-6">
-                  <Button 
-                    size="sm"
-                    variant="secondary"
-                    className="bg-white/10 hover:bg-white/20 text-white transition-all duration-300 
-                              hover:drop-shadow-[0_0_0.1rem_rgba(255,255,255,0.3)] hover:scale-95 px-4"
-                    onClick={() => window.open('/labs-token', '_blank')}
-                  >
-                    Tokenomics
-                    <ArrowRight className="ml-0 h-4 w-4" />
-                  </Button>
+                    <p className="text-base leading-relaxed text-white/70 group-hover:text-white/80 transition-all duration-300">
+                      To learn more about $LABS, check out the tokenomics page below:
+                    </p>
+
+                    <div className="flex items-center">
+                      <Button 
+                        size="lg"
+                        variant="secondary"
+                        className="bg-gradient-to-r from-[#4a85ff]/20 to-[#4a85ff]/10 hover:from-[#4a85ff]/30 hover:to-[#4a85ff]/20 text-white transition-all duration-300 
+                                  hover:shadow-[0_0_20px_rgba(74,133,255,0.2)] hover:scale-105 px-8"
+                        onClick={() => window.open('/labs-token', '_blank')}
+                      >
+                        View Tokenomics
+                        <ArrowRight className="ml-2 h-5 w-5" />
+                      </Button>
+                    </div>
+                  </div>
                 </div>
 
                 {/* Network Graph iframe */}
-                <div className="w-full">
+                <div className="w-full group">
                   <iframe
                     src="https://widget.vybenetwork.com/network-graph?address=LABSh5DTebUcUbEoLzXKCiXFJLecDFiDWiBGUU1GpxR&entity=token&connectionNode=program"
                     title="vybe-network-graph"
                     allow="clipboard-write"
-                    className="w-full h-[500px] rounded-lg border border-white/10"
+                    className="w-full h-[500px] rounded-lg border border-white/10 group-hover:border-[#4a85ff]/30 transition-all duration-300 group-hover:shadow-[0_0_30px_rgba(74,133,255,0.1)]"
                   />
                 </div>
               </div>
@@ -340,18 +452,25 @@ export default function Home() {
           </div>
 
           {/* Focuses Container */}
-          <div className="bg-black/30 backdrop-blur-md border border-white/10 rounded-xl p-8 md:p-12">
-            <div className="space-y-6">
-              <h3 className="text-2xl font-light text-white/90">
-                <i>What We're Shipping:</i>
-              </h3>
-              <Accordion type="single" collapsible className="w-full space-y-2">
+          <div className="bg-gradient-to-br from-black/40 to-black/20 backdrop-blur-md border border-white/10 rounded-xl p-8 md:p-12">
+            <div className="space-y-8">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#4a85ff]/20 to-[#4a85ff]/10 flex items-center justify-center">
+                  <svg className="w-6 h-6 text-[#4a85ff]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                  </svg>
+                </div>
+                <h3 className="text-3xl font-light text-white/90">
+                  <i>What We're Shipping:</i>
+                </h3>
+              </div>
+
+              <Accordion type="single" collapsible className="w-full space-y-4">
                 <AccordionItem value="governance" className="border-white/10">
                   <AccordionTrigger className="hover:no-underline group">
                     <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center transition-all duration-300">
-                        <ArrowDown className="h-5 w-5 text-white/70 transition-transform duration-300 
-                                           group-hover:text-white" />
+                      <div className="w-10 h-10 rounded-lg bg-[#4a85ff]/10 flex items-center justify-center transition-all duration-300 group-hover:bg-[#4a85ff]/20">
+                        <ArrowDown className="h-5 w-5 text-[#4a85ff] transition-transform duration-300" />
                       </div>
                       <h4 className="text-xl font-medium text-white/90 transition-all duration-300 
                                     group-hover:text-white group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
@@ -366,13 +485,13 @@ export default function Home() {
                       </p>
                       <div className="flex items-center">
                         <Button 
-                          size="sm"
-                          className="bg-[#FFFFFF] hover:bg-[#FFFFFF]/90 text-black transition-all duration-300 
-                                     hover:drop-shadow-[0_0_0.1rem_#FFFFFF] hover:scale-95 px-4"
+                          size="lg"
+                          className="bg-gradient-to-r from-[#4a85ff]/20 to-[#4a85ff]/10 hover:from-[#4a85ff]/30 hover:to-[#4a85ff]/20 text-white transition-all duration-300 
+                                    hover:shadow-[0_0_20px_rgba(74,133,255,0.2)] hover:scale-105 px-8"
                           onClick={() => window.location.href = '/coming-soon'}
                         >
                           Coming Soon!
-                          <ArrowRight className="ml-0 h-4 w-4" />
+                          <ArrowRight className="ml-2 h-5 w-5" />
                         </Button>
                       </div>
                     </div>
@@ -382,9 +501,8 @@ export default function Home() {
                 <AccordionItem value="security" className="border-white/10">
                   <AccordionTrigger className="hover:no-underline group">
                     <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center transition-all duration-300">
-                        <ArrowDown className="h-5 w-5 text-white/70 transition-transform duration-300 
-                                           group-hover:text-white" />
+                      <div className="w-10 h-10 rounded-lg bg-[#4a85ff]/10 flex items-center justify-center transition-all duration-300 group-hover:bg-[#4a85ff]/20">
+                        <ArrowDown className="h-5 w-5 text-[#4a85ff] transition-transform duration-300" />
                       </div>
                       <h4 className="text-xl font-medium text-white/90 transition-all duration-300 
                                     group-hover:text-white group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
@@ -398,13 +516,13 @@ export default function Home() {
                       Ensuring that all options are accurately priced and settled fairly.
                       <div className="flex items-center mt-4">
                         <Button 
-                          size="sm"
-                          className="bg-[#FFFFFF] hover:bg-[#FFFFFF]/90 text-black transition-all duration-300 
-                                     hover:drop-shadow-[0_0_0.1rem_#FFFFFF] hover:scale-95 px-4"
+                          size="lg"
+                          className="bg-gradient-to-r from-[#4a85ff]/20 to-[#4a85ff]/10 hover:from-[#4a85ff]/30 hover:to-[#4a85ff]/20 text-white transition-all duration-300 
+                                    hover:shadow-[0_0_20px_rgba(74,133,255,0.2)] hover:scale-105 px-8"
                           onClick={() => window.location.href = '/coming-soon'}
                         >
                           Coming Soon!
-                          <ArrowRight className="ml-0 h-4 w-4" />
+                          <ArrowRight className="ml-2 h-5 w-5" />
                         </Button>
                       </div>
                     </div>
@@ -414,9 +532,8 @@ export default function Home() {
                 <AccordionItem value="integration" className="border-white/10">
                   <AccordionTrigger className="hover:no-underline group">
                     <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center transition-all duration-300">
-                        <ArrowDown className="h-5 w-5 text-white/70 transition-transform duration-300 
-                                           group-hover:text-white" />
+                      <div className="w-10 h-10 rounded-lg bg-[#4a85ff]/10 flex items-center justify-center transition-all duration-300 group-hover:bg-[#4a85ff]/20">
+                        <ArrowDown className="h-5 w-5 text-[#4a85ff] transition-transform duration-300" />
                       </div>
                       <h4 className="text-xl font-medium text-white/90 transition-all duration-300 
                                     group-hover:text-white group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
@@ -429,13 +546,13 @@ export default function Home() {
                       An open source program development kit (SDK) consisting of different libraries, modules, and pre-made mathematical derivative functions that allow developers to build or implement custom or standardized option contracts on Solana.
                       <div className="flex items-center mt-4">
                         <Button 
-                          size="sm"
-                          className="bg-[#FFFFFF] hover:bg-[#FFFFFF]/90 text-black transition-all duration-300 
-                                     hover:drop-shadow-[0_0_0.1rem_#FFFFFF] hover:scale-95 px-4"
+                          size="lg"
+                          className="bg-gradient-to-r from-[#4a85ff]/20 to-[#4a85ff]/10 hover:from-[#4a85ff]/30 hover:to-[#4a85ff]/20 text-white transition-all duration-300 
+                                    hover:shadow-[0_0_20px_rgba(74,133,255,0.2)] hover:scale-105 px-8"
                           onClick={() => window.open('https://github.com/EpicentralLabs', '_blank')}
                         >
-                          GitHub
-                          <ArrowRight className="ml-0 h-4 w-4" />
+                          View on GitHub
+                          <ArrowRight className="ml-2 h-5 w-5" />
                         </Button>
                       </div>
                     </div>
