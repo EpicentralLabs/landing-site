@@ -111,7 +111,7 @@ export default function RoadmapPage() {
                 {
                   type: ItemType.Technical,
                   text: "Orca Integration with Realms DAOs",
-                  status: StatusChoice.InProgress,
+                  status: StatusChoice.Cancelled,
                 },
                 {
                   type: ItemType.Technical,
@@ -234,22 +234,57 @@ export default function RoadmapPage() {
                 },
                 {
                   type: ItemType.Community,
-                  text: "Host a Trailer Competition for OPX",
+                  text: "Host a Competition for OPX",
                   status: StatusChoice.Todo,
                 },
                 {
                   type: ItemType.Technical,
                   text: "OPX - Release for Beta",
-                  status: StatusChoice.Todo,
+                  status: StatusChoice.InProgress,
                 },
                 {
                   type: ItemType.Technical,
                   text: "OPX - Devnet Deployment",
+                  status: StatusChoice.InProgress,
+                },
+              ]}
+            />
+
+            <RoadmapCard
+              quarter="Q3 2025"
+              title="Education & Implementation"
+              status={StatusChoice.InProgress}
+              description="Teach the Solana Ecosystem about Options, Implement Options into other DeFi Protocols, and more."
+              items={[
+                {
+                  type: ItemType.Technical,
+                  text: "OPX - Mainnet Deployment",
+                  status: StatusChoice.Todo,
+                },
+                {
+                  type: ItemType.Community,
+                  text: "Create educational content for OPX/Options Trading",
+                  status: StatusChoice.Todo,
+                },
+
+                {
+                  type: ItemType.Technical,
+                  text: "Implement Programmable Fee Model via DAO proposals",
                   status: StatusChoice.Todo,
                 },
                 {
                   type: ItemType.Technical,
-                  text: "OPX - Mainnet Deployment",
+                  text: "Integrate Options into other DeFi Protocols (DeFiTuna, Adrena, etc.)",
+                  status: StatusChoice.Todo,
+                },
+                {
+                  type: ItemType.Technical,
+                  text: "Create Video Content for SOS SDK, Options Trading, and more",
+                  status: StatusChoice.Todo,
+                },
+                {
+                  type: ItemType.Technical,
+                  text: "Create Trade Leaderboard for OPX",
                   status: StatusChoice.Todo,
                 },
                 {
@@ -275,41 +310,6 @@ export default function RoadmapPage() {
                 {
                   type: ItemType.Technical,
                   text: "SOS SDK - Option Programs",
-                  status: StatusChoice.Todo,
-                },
-              ]}
-            />
-
-            <RoadmapCard
-              quarter="Q3 2025"
-              title="Education & Implementation"
-              status={StatusChoice.InProgress}
-              description="Teach the Solana Ecosystem about Options, Implement Options into other DeFi Protocols, and more."
-              items={[
-                {
-                  type: ItemType.Community,
-                  text: "Create educational content for OPX/Options Trading",
-                  status: StatusChoice.Todo,
-                },
-
-                {
-                  type: ItemType.Technical,
-                  text: "Implement Programmable Fee Model via DAO proposals",
-                  status: StatusChoice.Todo,
-                },
-                {
-                  type: ItemType.Technical,
-                  text: "Integrate Options into other DeFi Protocols (DeFiTuna, Adrena, etc.)",
-                  status: StatusChoice.Todo,
-                },
-                {
-                  type: ItemType.Technical,
-                  text: "Create Video Content for SOS SDK, Options Trading, and more",
-                  status: StatusChoice.Todo,
-                },
-                {
-                  type: ItemType.Technical,
-                  text: "Create Trade Leaderboard for OPX",
                   status: StatusChoice.Todo,
                 },
               ]}
