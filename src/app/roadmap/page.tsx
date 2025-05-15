@@ -346,7 +346,7 @@ export default function RoadmapPage() {
 
       {/* Call to Action */}
       <div className="container mx-auto px-4 py-24">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <div className="bg-black/30 backdrop-blur-md border border-white/10 rounded-xl p-8 md:p-12 text-center">
             <div className="space-y-6">
               <h2 className="text-3xl font-light text-white/90">

@@ -21,14 +21,14 @@ export default function DAOPage() {
       <main className="flex-1 flex flex-col items-center justify-center min-h-[calc(100vh-64px)] py-20"> {/* Subtract navbar height and add vertical padding */}
         {/* Hero Content */}
         <div className="container mx-auto px-4">
-          <div className="max-w-2xl mx-auto space-y-8 text-center">
+          <div className="max-w-6xl mx-auto space-y-8 text-center">
             <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
               <span className="font-extralight drop-shadow-[0_0_0.3rem_#ffffff70]">
                 Epicentral<strong>DAO</strong>
               </span>
             </h1>
             <p className="text-xl text-white/70">
-              A community-driven governance system for the future of DeFi on Solana
+              Transparent | Decentralized | Community-driven.
             </p>
             <div className="flex flex-col items-center gap-8">
               <div className="flex items-center justify-center gap-4">
@@ -101,57 +101,206 @@ export default function DAOPage() {
       {/* Add id to the divider for scrolling */}
       <div id="dao-intro" className="w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent mb-16"></div> 
 
-      {/* New DAO Introduction Section */}
+      {/* DAO Introduction Section - Consolidated */}
       <section className="container mx-auto px-4 py-24">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-light text-white/90 mb-8">
-            What is a DAO?
-          </h2>
-          <p className="text-lg text-white/70">
-            A Decentralized Autonomous Organization (DAO) is a revolutionary form of governance that allows communities to make decisions collectively without centralized control. 
-            DAOs are important because they empower individuals to have a direct say in the direction and management of projects, ensuring transparency, inclusivity, and decentralization. 
-            By leveraging Solana&apos;s blockchain and goverance tools, EpicentralDAO provides a secure and efficient way to coordinate and manage resources, making them a vital component of the future of decentralized finance and beyond.
-          </p>
+        <div className="max-w-6xl mx-auto">
+          <div className="bg-gradient-to-br from-black/40 to-black/20 backdrop-blur-md border border-white/10 rounded-xl p-8 md:p-12">
+            <div className="space-y-12">
+              {/* What is a DAO? */}
+              <div className="space-y-6">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#4a85ff]/20 to-[#4a85ff]/10 flex items-center justify-center">
+                    <svg className="w-6 h-6 text-[#4a85ff]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                    </svg>
+                  </div>
+                  <h2 className="text-3xl font-light text-white/90">
+                    What is a DAO?
+                  </h2>
+                </div>
+                <div className="group bg-gradient-to-br from-white/5 to-white/[0.02] rounded-xl p-6 border border-white/10 hover:border-[#4a85ff]/30 transition-all duration-300 hover:shadow-[0_0_30px_rgba(74,133,255,0.1)]">
+                  <div className="space-y-4">
+                    <p className="text-xl font-medium text-[#4a85ff]">
+                      "Decentralized Autonomous Organization"
+                    </p>
+                    <p className="text-base leading-relaxed text-white/70 group-hover:text-white/80 transition-all duration-300">
+                      A DAO is an organization that lives on the blockchain, governed by smart contracts and community consensus rather than traditional hierarchical structures.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Gradient Divider */}
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent blur-sm"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent"></div>
+                <div className="h-px w-full bg-gradient-to-r from-transparent via-white/20 to-transparent relative"></div>
+              </div>
+
+              {/* What is a DAO used for? */}
+              <div className="space-y-6">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#4a85ff]/20 to-[#4a85ff]/10 flex items-center justify-center">
+                    <svg className="w-6 h-6 text-[#4a85ff]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
+                  </div>
+                  <h2 className="text-3xl font-light text-white/90">
+                    What is a DAO used for?
+                  </h2>
+                </div>
+                <div className="group bg-gradient-to-br from-white/5 to-white/[0.02] rounded-xl p-6 border border-white/10 hover:border-[#4a85ff]/30 transition-all duration-300 hover:shadow-[0_0_30px_rgba(74,133,255,0.1)]">
+                  <div className="space-y-6">
+                    <div className="flex items-start gap-4">
+                      <div className="w-8 h-8 rounded-lg bg-[#4a85ff]/10 flex items-center justify-center flex-shrink-0 mt-1">
+                        <svg className="w-4 h-4 text-[#4a85ff]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                      </div>
+                      <p className="text-base leading-relaxed text-white/70 group-hover:text-white/80 transition-all duration-300">
+                        <strong className="text-white/90">Financial and Operational Decisions</strong> - DAOs operate similarly to corporations but with enhanced transparency and community involvement.
+                      </p>
+                    </div>
+                    <div className="flex items-start gap-4">
+                      <div className="w-8 h-8 rounded-lg bg-[#4a85ff]/10 flex items-center justify-center flex-shrink-0 mt-1">
+                        <svg className="w-4 h-4 text-[#4a85ff]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                      </div>
+                      <p className="text-base leading-relaxed text-white/70 group-hover:text-white/80 transition-all duration-300">
+                        <strong className="text-white/90">Treasury Management</strong> - EpicentralDAO is unique in that <span className="text-[#4a85ff]">anyone can propose what to do with the treasury</span>.
+                      </p>
+                    </div>
+                    <div className="flex items-start gap-4">
+                      <div className="w-8 h-8 rounded-lg bg-[#4a85ff]/10 flex items-center justify-center flex-shrink-0 mt-1">
+                        <svg className="w-4 h-4 text-[#4a85ff]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                      </div>
+                      <p className="text-base leading-relaxed text-white/70 group-hover:text-white/80 transition-all duration-300">
+                        <strong className="text-white/90">Governance Rights</strong> - As a $LABS Token holder, you can vote on proposals, transfer funds, and update protocol parameters.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Gradient Divider */}
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent blur-sm"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent"></div>
+                <div className="h-px w-full bg-gradient-to-r from-transparent via-white/20 to-transparent relative"></div>
+              </div>
+
+              {/* Why is EpicentralDAO needed? */}
+              <div className="space-y-6">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#4a85ff]/20 to-[#4a85ff]/10 flex items-center justify-center">
+                    <svg className="w-6 h-6 text-[#4a85ff]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                  </div>
+                  <h2 className="text-3xl font-light text-white/90">
+                    Why is EpicentralDAO needed?
+                  </h2>
+                </div>
+                <div className="group bg-gradient-to-br from-white/5 to-white/[0.02] rounded-xl p-6 border border-white/10 hover:border-[#4a85ff]/30 transition-all duration-300 hover:shadow-[0_0_30px_rgba(74,133,255,0.1)]">
+                  <div className="space-y-6">
+                    <div className="flex items-start gap-4">
+                      <div className="w-8 h-8 rounded-lg bg-[#4a85ff]/10 flex items-center justify-center flex-shrink-0 mt-1">
+                        <svg className="w-4 h-4 text-[#4a85ff]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                      </div>
+                      <p className="text-base leading-relaxed text-white/70 group-hover:text-white/80 transition-all duration-300">
+                        <strong className="text-white/90">Transparency</strong> - Building trust through open and verifiable operations on the blockchain.
+                      </p>
+                    </div>
+                    <div className="flex items-start gap-4">
+                      <div className="w-8 h-8 rounded-lg bg-[#4a85ff]/10 flex items-center justify-center flex-shrink-0 mt-1">
+                        <svg className="w-4 h-4 text-[#4a85ff]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                      </div>
+                      <p className="text-base leading-relaxed text-white/70 group-hover:text-white/80 transition-all duration-300">
+                        <strong className="text-white/90">Community Governance</strong> - Ensuring the protocol operates in the best interest of $LABS token holders and the Solana Ecosystem.
+                      </p>
+                    </div>
+                    <div className="flex items-start gap-4">
+                      <div className="w-8 h-8 rounded-lg bg-[#4a85ff]/10 flex items-center justify-center flex-shrink-0 mt-1">
+                        <svg className="w-4 h-4 text-[#4a85ff]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                      </div>
+                      <p className="text-base leading-relaxed text-white/70 group-hover:text-white/80 transition-all duration-300">
+                        <strong className="text-white/90">Decentralized Operations</strong> - The <span className="text-[#4a85ff]">Core Team</span> handles day-to-day operations while token holders make key decisions through proposals and voting.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* How It Works Section - Add id here */}
+      {/* How It Works Section */}
       <section id="how-it-works" className="container mx-auto px-4 py-24">
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-light text-white/90 mb-16 text-center drop-shadow-[0_0_0.3rem_#ffffff70]">
             How does the DAO work?
           </h2>
           
-          <div className="relative flex flex-col items-center">
+          <div className="relative flex flex-col items-center space-y-8">
             {/* Card 1 */}
-            <div className="relative z-30 max-w-lg bg-black/30 backdrop-blur-md border border-white/10 rounded-xl p-8 transform hover:-translate-y-2 transition-transform duration-300">
-              <h3 className="text-xl font-medium text-white/90 mb-2">1. Draft Proposal</h3>
+            <div className="relative z-30 w-full max-w-lg bg-gradient-to-br from-black/40 to-black/20 backdrop-blur-md border border-white/10 rounded-xl p-8 transform hover:-translate-y-2 transition-all duration-300 hover:border-[#4a85ff]/30 hover:shadow-[0_0_30px_rgba(74,133,255,0.1)]">
+              <div className="flex items-center gap-4 mb-4">
+                <div className="w-10 h-10 rounded-lg bg-[#4a85ff]/10 flex items-center justify-center">
+                  <span className="text-[#4a85ff] text-lg font-medium">1</span>
+                </div>
+                <h3 className="text-xl font-medium text-white/90">Draft Proposal</h3>
+              </div>
               <p className="text-base text-white/70">
-                Any member with <strong>1,000</strong> $LABS can draft a proposal in our <a href="https://discord.gg/5asAuY2sR8" className="text-[#4a85ff] hover:text-[#4a85ff] hover:drop-shadow-[0_0_0.3rem_#4a85ff] transition-all duration-300">Discord</a>. Proposals can range from parameter adjustments to new feature implementations.
+                Any member with <u>100,000 $LABS</u> can create a proposal either in <a href="https://app.realms.today/dao/LABS" className="text-[#4a85ff] hover:text-[#4a85ff] hover:drop-shadow-[0_0_0.3rem_#4a85ff] transition-all duration-300">Realms</a> or in the Epicentral Labs <a href="https://discord.gg/5asAuY2sR8" className="text-[#4a85ff] hover:text-[#4a85ff] hover:drop-shadow-[0_0_0.3rem_#4a85ff] transition-all duration-300">Discord</a>.
               </p>
             </div>
 
             {/* Card 2 */}
-            <div className="relative z-20 max-w-lg bg-black/30 backdrop-blur-md border border-white/10 rounded-xl p-8 -mt-4 ml-20 transform hover:-translate-y-2 transition-transform duration-300">
-              <h3 className="text-xl font-medium text-white/90 mb-2">2. Community Review & Feedback</h3>
+            <div className="relative z-20 w-full max-w-lg bg-gradient-to-br from-black/40 to-black/20 backdrop-blur-md border border-white/10 rounded-xl p-8 transform hover:-translate-y-2 transition-all duration-300 hover:border-[#4a85ff]/30 hover:shadow-[0_0_30px_rgba(74,133,255,0.1)]">
+              <div className="flex items-center gap-4 mb-4">
+                <div className="w-10 h-10 rounded-lg bg-[#4a85ff]/10 flex items-center justify-center">
+                  <span className="text-[#4a85ff] text-lg font-medium">2</span>
+                </div>
+                <h3 className="text-xl font-medium text-white/90">Community Feedback</h3>
+              </div>
               <p className="text-base text-white/70">
-                The community discusses the proposal, providing feedback and suggestions during a review period before offically submitting the proposal on-chain.
+                Whether created in Realms or Discord, the community will then discuss the proposal and provide feedback in designated channels.
               </p>
             </div>
 
             {/* Card 3 */}
-            <div className="relative z-10 max-w-lg bg-black/30 backdrop-blur-md border border-white/10 rounded-xl p-8 -mt-4 ml-40 transform hover:-translate-y-2 transition-transform duration-300">
-              <h3 className="text-xl font-medium text-white/90 mb-2">3. Voting Period</h3>
+            <div className="relative z-10 w-full max-w-lg bg-gradient-to-br from-black/40 to-black/20 backdrop-blur-md border border-white/10 rounded-xl p-8 transform hover:-translate-y-2 transition-all duration-300 hover:border-[#4a85ff]/30 hover:shadow-[0_0_30px_rgba(74,133,255,0.1)]">
+              <div className="flex items-center gap-4 mb-4">
+                <div className="w-10 h-10 rounded-lg bg-[#4a85ff]/10 flex items-center justify-center">
+                  <span className="text-[#4a85ff] text-lg font-medium">3</span>
+                </div>
+                <h3 className="text-xl font-medium text-white/90">Voting Period</h3>
+              </div>
               <p className="text-base text-white/70">
-                $LABS token holders can stake their tokens in the Epicentral DAO to vote on proposals, with voting power proportional to their holdings.
+                Holders that staked into the EpicentralDAO, use their $LABS to vote on live proposals -- with voting power proportional to their holdings.
               </p>
             </div>
 
             {/* Card 4 */}
-            <div className="relative max-w-lg bg-black/30 backdrop-blur-md border border-white/10 rounded-xl p-8 -mt-4 ml-60 transform hover:-translate-y-2 transition-transform duration-300">
-              <h3 className="text-xl font-medium text-white/90 mb-2">4. Implementation</h3>
+            <div className="relative w-full max-w-lg bg-gradient-to-br from-black/40 to-black/20 backdrop-blur-md border border-white/10 rounded-xl p-8 transform hover:-translate-y-2 transition-all duration-300 hover:border-[#4a85ff]/30 hover:shadow-[0_0_30px_rgba(74,133,255,0.1)]">
+              <div className="flex items-center gap-4 mb-4">
+                <div className="w-10 h-10 rounded-lg bg-[#4a85ff]/10 flex items-center justify-center">
+                  <span className="text-[#4a85ff] text-lg font-medium">4</span>
+                </div>
+                <h3 className="text-xl font-medium text-white/90">Implementation</h3>
+              </div>
               <p className="text-base text-white/70">
-                If a proposal is approved, it is implemented then executed via on-chain instructions or a new feature is added to the protocol by the Core Team.
+                After the voting period (1-3 days), if a proposal is approved by the public, it is then implemented by the Core Team or automatically via an executable on-chain instruction.
               </p>
             </div>
           </div>
@@ -160,9 +309,9 @@ export default function DAOPage() {
 
       {/* Call to Action */}
       <div className="container mx-auto px-4 py-24">
-        <div className="max-w-4xl mx-auto space-y-16">
+        <div className="max-w-6xl mx-auto space-y-16">
           {/* Call to Action Container */}
-          <div className="bg-black/30 backdrop-blur-md border border-white/10 rounded-xl p-8 md:p-12 text-center">
+          <div className="bg-gradient-to-br from-black/40 to-black/20 backdrop-blur-md border border-white/10 rounded-xl p-8 md:p-12 text-center">
             <div className="space-y-6">
               <h2 className="text-3xl font-light text-white/90">
                 Ready to Join?
