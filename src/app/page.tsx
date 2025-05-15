@@ -4,7 +4,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ArrowDown, ChevronDown } from "lucide-react";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   Accordion,
   AccordionContent,
@@ -23,7 +23,7 @@ import {
 export default function Home() {
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
-  const timeoutRef = useRef<number>();
+  const timeoutRef = useRef<number | undefined>(undefined);
 
   const heroTexts = [
     "Shaping DeFi Through Governance",
