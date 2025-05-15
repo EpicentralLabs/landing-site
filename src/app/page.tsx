@@ -23,6 +23,7 @@ import {
 export default function Home() {
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
+  const timeoutRef = useRef<number>();
 
   const heroTexts = [
     "Shaping DeFi Through Governance",
@@ -38,13 +39,18 @@ export default function Home() {
       setIsVisible(false);
       
       // Wait for fade out animation to complete before changing text
-      setTimeout(() => {
+      timeoutRef.current = window.setTimeout(() => {
         setCurrentTextIndex((prevIndex) => (prevIndex + 1) % heroTexts.length);
         setIsVisible(true);
-      }, 1000); // 1 second delay for fade out
-    }, 8000); // 8 seconds display time
+      }, 1000);
+    }, 8000);
 
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
   }, []);
 
   return (
