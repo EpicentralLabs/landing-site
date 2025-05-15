@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { DollarSign } from "lucide-react";
 import { TokenDataResponse, fetchTokenData } from "@/utils/api/useFetchTokenData";
+import { calculateLiquidityToMarketCapRatio, calculateBuySellPressure } from "@/utils/labs-token/token-information";
 
 interface TokenPriceDisplayProps {
   tokenAddress: string;
@@ -111,28 +112,6 @@ export default function TokenPriceDisplay({ tokenAddress }: TokenPriceDisplayPro
   
   const formattedLiquidity = formatCurrency(liquidity);
   
-  // Calculate total volume by combining buy and sell volumes
-  let totalVolume = 'N/A';
-  let buyPercentage: number | null = null;
-  let sellPercentage: number | null = null;
-  
-  if (buyVolume24h !== undefined && sellVolume24h !== undefined) {
-    const buyVol = Number(buyVolume24h) || 0;
-    const sellVol = Number(sellVolume24h) || 0;
-    const total = buyVol + sellVol;
-    
-    // Calculate what percentage of volume is buys vs sells
-    if (total > 0) {
-      buyPercentage = Math.round((buyVol / total) * 100);
-      sellPercentage = 100 - buyPercentage;
-    }
-    
-    totalVolume = formatCurrency(total);
-  } else if (volume !== undefined) {
-    // Fallback to the volume field if available
-    totalVolume = formatCurrency(volume);
-  }
-  
   const formattedMarketCap = formatCurrency(marketCap);
   const formattedBuyVolume = formatCurrency(buyVolume24h);
   const formattedSellVolume = formatCurrency(sellVolume24h);
@@ -155,6 +134,43 @@ export default function TokenPriceDisplay({ tokenAddress }: TokenPriceDisplayPro
   const formattedMarkets = numberMarkets !== undefined 
     ? (numberMarkets as number).toString() 
     : 'N/A';
+
+  // Calculate total volume by combining buy and sell volumes
+  let totalVolume = 'N/A';
+  let buyPercentage: number | null = null;
+  let sellPercentage: number | null = null;
+  let totalVolumeForPressure: number | null = null;
+  
+  if (buyVolume24h !== undefined && sellVolume24h !== undefined) {
+    const buyVol = Number(buyVolume24h) || 0;
+    const sellVol = Number(sellVolume24h) || 0;
+    const total = buyVol + sellVol;
+    totalVolumeForPressure = total;
+    // Calculate what percentage of volume is buys vs sells
+    if (total > 0) {
+      buyPercentage = Math.round((buyVol / total) * 100);
+      sellPercentage = 100 - buyPercentage;
+    }
+    totalVolume = formatCurrency(total);
+  } else if (volume !== undefined) {
+    totalVolumeForPressure = Number(volume);
+    // Fallback to the volume field if available
+    totalVolume = formatCurrency(volume);
+  }
+  
+  // Calculate Liquidity to Market Cap ratio
+  const liquidityToMarketCap = liquidity !== undefined && marketCap !== undefined
+    ? calculateLiquidityToMarketCapRatio(Number(liquidity), Number(marketCap))
+    : null;
+
+  // Calculate Buy/Sell Pressure using the same totalVolume as displayed
+  const buySellPressure = buyVolume24h !== undefined && sellVolume24h !== undefined && totalVolumeForPressure !== null && totalVolumeForPressure !== 0
+    ? calculateBuySellPressure(
+        Number(buyVolume24h),
+        Number(sellVolume24h),
+        totalVolumeForPressure
+      )
+    : null;
 
   return (
     <div className="bg-black/40 rounded-lg p-4 md:p-6 shadow-md space-y-4 md:space-y-6 hover:scale-105 transition-transform duration-300">
@@ -192,6 +208,10 @@ export default function TokenPriceDisplay({ tokenAddress }: TokenPriceDisplayPro
           <p className="text-white text-sm font-medium">{formattedLiquidity}</p>
         </div>
         <div className="bg-black/30 p-2 md:p-3 rounded-lg">
+          <p className="text-white/60 text-xs mb-1">Liq:MCAP Ratio</p>
+          <p className="text-white text-sm font-medium">{liquidityToMarketCap !== null ? liquidityToMarketCap : 'N/A'}</p>
+        </div>
+        <div className="bg-black/30 p-2 md:p-3 rounded-lg">
           <p className="text-white/60 text-xs mb-1">Volume (24h)</p>
           <p className="text-white text-sm font-medium">{totalVolume}</p>
           {buyPercentage !== null && sellPercentage !== null && (
@@ -212,6 +232,12 @@ export default function TokenPriceDisplay({ tokenAddress }: TokenPriceDisplayPro
               <span className="text-red-400 text-xs">{sellPercentage}% Sell</span>
             </div>
           )}
+        </div>
+        <div className="bg-black/30 p-2 md:p-3 rounded-lg">
+          <p className="text-white/60 text-xs mb-1">Buy/Sell Pressure</p>
+          <p className={`text-white text-sm font-medium ${buySellPressure !== null ? (buySellPressure >= 0 ? 'text-green-400' : 'text-red-400') : ''}`}>
+            {buySellPressure !== null ? (buySellPressure >= 0 ? '+' : '') + buySellPressure : 'N/A'}
+          </p>
         </div>
         <div className="bg-black/30 p-2 md:p-3 rounded-lg">
           <p className="text-white/60 text-xs mb-1">Buy Volume (24h)</p>
