@@ -196,23 +196,27 @@ export default function TokenPriceDisplay({ tokenAddress }: TokenPriceDisplayPro
       <div className="bg-black/40 rounded-lg p-4 md:p-6 shadow-md space-y-4 md:space-y-6 hover:scale-105 transition-transform duration-300">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-0">
           <div>
-            <div 
-              className="flex items-center gap-2 cursor-pointer hover:bg-white/5 rounded-lg p-2 -m-2 transition-colors group"
-              onClick={copyToClipboard}
-              title="Click to copy token address"
-            >
-              <p className="text-base sm:text-lg text-white">
-                <strong className="text-lg sm:text-xl">Epicentral Labs</strong> <span className="text-sm sm:text-base">(LABS)</span>
-              </p>
-              {copied ? (
-                <Check className="h-4 w-4 text-green-400" />
-              ) : (
-                <Copy className="h-4 w-4 text-white/60 group-hover:text-white/80 transition-colors" />
-              )}
-            </div>
-            {copied && (
-              <p className="text-xs text-green-400 mt-1">Token address copied!</p>
-            )}
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <div 
+                  className="flex items-center gap-2 cursor-pointer hover:bg-white/5 rounded-lg p-2 -m-2 transition-colors group"
+                  onClick={copyToClipboard}
+                >
+                  <p className="text-base sm:text-lg text-white">
+                    <strong className="text-lg sm:text-xl">Epicentral Labs</strong> <span className="text-sm sm:text-base">(LABS)</span>
+                  </p>
+                  {copied ? (
+                    <Check className="h-4 w-4 text-green-400" />
+                  ) : (
+                    <Copy className="h-4 w-4 text-white/60 group-hover:text-white/80 transition-colors" />
+                  )}
+                </div>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p className="font-mono text-xs">{labsTokenAddress}</p>
+                <p className="text-xs text-white/60 mt-1">Click to copy token address</p>
+              </TooltipContent>
+            </Tooltip>
             {priceChange24h && (
               <p className={`text-xs sm:text-sm font-medium ${priceChangeColor}`}>
                 24h: {parseFloat(priceChange24h) >= 0 ? "+" : ""}{priceChange24h}%
