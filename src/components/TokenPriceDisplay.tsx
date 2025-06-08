@@ -55,8 +55,8 @@ export default function TokenPriceDisplay({ tokenAddress }: TokenPriceDisplayPro
 
     fetchData();
     
-    // Set up an interval to fetch data every 30 seconds
-    const intervalId = setInterval(fetchData, 30000);
+    // Set up an interval to fetch data every 15 seconds
+    const intervalId = setInterval(fetchData, 15000);
     
     // Clean up the interval on component unmount
     return () => clearInterval(intervalId);
