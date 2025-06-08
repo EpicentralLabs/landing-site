@@ -199,18 +199,13 @@ export default function RoadmapPage() {
                 },
                 {
                   type: ItemType.Community,
-                  text: "Epicentral Discord Server reaches 1000 members",
-                  status: StatusChoice.InProgress,
-                },
-                {
-                  type: ItemType.Community,
-                  text: "Epicentral Twitter Account reaches 1500 followers",
-                  status: StatusChoice.InProgress,
+                  text: "Hire intern to run X/Twitter & Social Media",
+                  status: StatusChoice.Completed,
                 },
                 {
                   type: ItemType.Community,
                   text: "Contributor Participation Rewards Program",
-                  status: StatusChoice.InProgress,
+                  status: StatusChoice.Completed,
                 },
                 {
                   type: ItemType.Community,
@@ -220,7 +215,12 @@ export default function RoadmapPage() {
                 {
                   type: ItemType.Community,
                   text: "Recieve a second round of grants greater than $10k",
-                  status: StatusChoice.Todo,
+                  status: StatusChoice.InProgress,
+                },
+                {
+                  type: ItemType.Community,
+                  text: "Submit to the Solana Breakpoint 2025 Hackathon",
+                  status: StatusChoice.Completed,
                 },
                 {
                   type: ItemType.Community,
@@ -230,7 +230,7 @@ export default function RoadmapPage() {
                 {
                   type: ItemType.Community,
                   text: "Determine OPX Protocol Fees",
-                  status: StatusChoice.InProgress,
+                  status: StatusChoice.Todo,
                 },
                 {
                   type: ItemType.Community,
@@ -240,11 +240,16 @@ export default function RoadmapPage() {
                 {
                   type: ItemType.Technical,
                   text: "OPX - Release for Beta",
-                  status: StatusChoice.InProgress,
+                  status: StatusChoice.Todo,
                 },
                 {
                   type: ItemType.Technical,
                   text: "OPX - Devnet Deployment",
+                  status: StatusChoice.InProgress,
+                },
+                {
+                  type: ItemType.Technical,
+                  text: "LABS Staking Platform",
                   status: StatusChoice.InProgress,
                 },
               ]}
@@ -266,7 +271,11 @@ export default function RoadmapPage() {
                   text: "Create educational content for OPX/Options Trading",
                   status: StatusChoice.Todo,
                 },
-
+                {
+                  type: ItemType.Community,
+                  text: "Create X/Twitter Marketing Campaign",
+                  status: StatusChoice.Todo,
+                },
                 {
                   type: ItemType.Technical,
                   text: "Implement Programmable Fee Model via DAO proposals",
