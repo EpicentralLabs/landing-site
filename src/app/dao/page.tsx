@@ -307,6 +307,104 @@ export default function DAOPage() {
         </div>
       </section>
 
+      {/* Contribution Bonuses Section */}
+      <section className="container mx-auto px-4 py-24">
+        <div className="max-w-6xl mx-auto">
+          <div className="bg-gradient-to-br from-black/40 to-black/20 backdrop-blur-md border border-white/10 rounded-xl p-8 md:p-12">
+            <div className="space-y-12">
+              {/* What are Contribution Bonuses? */}
+              <div className="space-y-6">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#4a85ff]/20 to-[#4a85ff]/10 flex items-center justify-center">
+                    <svg className="w-6 h-6 text-[#4a85ff]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
+                    </svg>
+                  </div>
+                  <h2 className="text-3xl font-light text-white/90">
+                    Contribution Bonuses
+                  </h2>
+                </div>
+                <div className="group bg-gradient-to-br from-white/5 to-white/[0.02] rounded-xl p-6 border border-white/10 hover:border-[#4a85ff]/30 transition-all duration-300 hover:shadow-[0_0_30px_rgba(74,133,255,0.1)]">
+                  <div className="space-y-4">
+                    <p className="text-xl font-medium text-[#4a85ff]">
+                      Rewarding Community Contributors
+                    </p>
+                    <p className="text-base leading-relaxed text-white/70 group-hover:text-white/80 transition-all duration-300">
+                      EpicentralDAO recognizes and rewards community members who actively contribute to the ecosystem through development, content creation, community management, and other valuable services.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Gradient Divider */}
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent blur-sm"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent"></div>
+                <div className="h-px w-full bg-gradient-to-r from-transparent via-white/20 to-transparent relative"></div>
+              </div>
+
+              {/* How to Become a Contributor */}
+              <div className="space-y-6">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#4a85ff]/20 to-[#4a85ff]/10 flex items-center justify-center">
+                    <svg className="w-6 h-6 text-[#4a85ff]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                  </div>
+                  <h2 className="text-3xl font-light text-white/90">
+                    How to Become a Contributor
+                  </h2>
+                </div>
+                <div className="group bg-gradient-to-br from-white/5 to-white/[0.02] rounded-xl p-6 border border-white/10 hover:border-[#4a85ff]/30 transition-all duration-300 hover:shadow-[0_0_30px_rgba(74,133,255,0.1)]">
+                  <div className="space-y-6">
+                    <div className="flex items-start gap-4">
+                      <div className="w-8 h-8 rounded-lg bg-[#4a85ff]/10 flex items-center justify-center flex-shrink-0 mt-1">
+                        <svg className="w-4 h-4 text-[#4a85ff]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                        </svg>
+                      </div>
+                      <p className="text-base leading-relaxed text-white/70 group-hover:text-white/80 transition-all duration-300">
+                        <strong className="text-white/90">Join the Community</strong> - Start by engaging with the Epicentral Labs community on <a href="https://discord.gg/5asAuY2sR8" className="text-[#4a85ff] hover:text-[#4a85ff] hover:drop-shadow-[0_0_0.3rem_#4a85ff] transition-all duration-300">Discord</a> and participating in discussions.
+                      </p>
+                    </div>
+                    <div className="flex items-start gap-4">
+                      <div className="w-8 h-8 rounded-lg bg-[#4a85ff]/10 flex items-center justify-center flex-shrink-0 mt-1">
+                        <svg className="w-4 h-4 text-[#4a85ff]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V21a1 1 0 01-1 1H11a1 1 0 01-1-1v-2.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                        </svg>
+                      </div>
+                      <p className="text-base leading-relaxed text-white/70 group-hover:text-white/80 transition-all duration-300">
+                        <strong className="text-white/90">Identify Opportunities</strong> - Look for areas where you can contribute, whether it's <span className="text-[#4a85ff]">development</span>, <span className="text-[#4a85ff]">content creation</span>, <span className="text-[#4a85ff]">community support</span>, or <span className="text-[#4a85ff]">marketing</span>.
+                      </p>
+                    </div>
+                    <div className="flex items-start gap-4">
+                      <div className="w-8 h-8 rounded-lg bg-[#4a85ff]/10 flex items-center justify-center flex-shrink-0 mt-1">
+                        <svg className="w-4 h-4 text-[#4a85ff]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                        </svg>
+                      </div>
+                      <p className="text-base leading-relaxed text-white/70 group-hover:text-white/80 transition-all duration-300">
+                        <strong className="text-white/90">Resolve Issues</strong> - Resolve issues and bugs within the <a href="https://github.com/EpicentralLabs" className="text-[#4a85ff] hover:text-[#4a85ff] hover:drop-shadow-[0_0_0.3rem_#4a85ff] transition-all duration-300">Epicentral Labs GitHub Repositories</a>.
+                      </p>
+                    </div>
+                    <div className="flex items-start gap-4">
+                      <div className="w-8 h-8 rounded-lg bg-[#4a85ff]/10 flex items-center justify-center flex-shrink-0 mt-1">
+                        <svg className="w-4 h-4 text-[#4a85ff]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                        </svg>
+                      </div>
+                      <p className="text-base leading-relaxed text-white/70 group-hover:text-white/80 transition-all duration-300">
+                        <strong className="text-white/90">Get Rewarded</strong> - Upon successful completion and community approval, receive your contribution bonus in $LABS tokens directly from the DAO treasury.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Call to Action */}
       <div className="container mx-auto px-4 py-24">
         <div className="max-w-6xl mx-auto space-y-16">
