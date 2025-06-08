@@ -1,9 +1,15 @@
 "use client";
 
 import { useEffect, useState } from 'react';
-import { DollarSign } from "lucide-react";
+import { DollarSign, Copy, Check } from "lucide-react";
 import { TokenDataResponse, fetchTokenData } from "@/utils/api/useFetchTokenData";
 import { calculateLiquidityToMarketCapRatio, calculateBuySellPressure } from "@/utils/labs-token/token-information";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 interface TokenPriceDisplayProps {
   tokenAddress: string;
@@ -13,6 +19,19 @@ export default function TokenPriceDisplay({ tokenAddress }: TokenPriceDisplayPro
   const [data, setData] = useState<TokenDataResponse | null>(null);
   const [initialLoading, setInitialLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [copied, setCopied] = useState(false);
+
+  const labsTokenAddress = "LABSh5DTebUcUbEoLzXKCiXFJLecDFiDWiBGUU1GpxR";
+
+  const copyToClipboard = async () => {
+    try {
+      await navigator.clipboard.writeText(labsTokenAddress);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error('Failed to copy: ', err);
+    }
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -128,8 +147,8 @@ export default function TokenPriceDisplay({ tokenAddress }: TokenPriceDisplayPro
     : "text-red-400";
   
   const sellChangeColor = formattedSellChange && parseFloat(formattedSellChange) >= 0 
-    ? "text-red-400" 
-    : "text-green-400";
+    ? "text-green-400" 
+    : "text-red-400";
 
   const formattedMarkets = numberMarkets !== undefined 
     ? (numberMarkets as number).toString() 
@@ -173,95 +192,174 @@ export default function TokenPriceDisplay({ tokenAddress }: TokenPriceDisplayPro
     : null;
 
   return (
-    <div className="bg-black/40 rounded-lg p-4 md:p-6 shadow-md space-y-4 md:space-y-6 hover:scale-105 transition-transform duration-300">
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-0">
-        <div>
-          <p className="text-base sm:text-lg text-white">
-            <strong className="text-lg sm:text-xl">Epicentral Labs</strong> <span className="text-sm sm:text-base">(LABS)</span>
-          </p>
-          {priceChange24h && (
-            <p className={`text-xs sm:text-sm font-medium ${priceChangeColor}`}>
-              24h: {parseFloat(priceChange24h) >= 0 ? "+" : ""}{priceChange24h}%
+    <TooltipProvider>
+      <div className="bg-black/40 rounded-lg p-4 md:p-6 shadow-md space-y-4 md:space-y-6 hover:scale-105 transition-transform duration-300">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-0">
+          <div>
+            <div 
+              className="flex items-center gap-2 cursor-pointer hover:bg-white/5 rounded-lg p-2 -m-2 transition-colors group"
+              onClick={copyToClipboard}
+              title="Click to copy token address"
+            >
+              <p className="text-base sm:text-lg text-white">
+                <strong className="text-lg sm:text-xl">Epicentral Labs</strong> <span className="text-sm sm:text-base">(LABS)</span>
+              </p>
+              {copied ? (
+                <Check className="h-4 w-4 text-green-400" />
+              ) : (
+                <Copy className="h-4 w-4 text-white/60 group-hover:text-white/80 transition-colors" />
+              )}
+            </div>
+            {copied && (
+              <p className="text-xs text-green-400 mt-1">Token address copied!</p>
+            )}
+            {priceChange24h && (
+              <p className={`text-xs sm:text-sm font-medium ${priceChangeColor}`}>
+                24h: {parseFloat(priceChange24h) >= 0 ? "+" : ""}{priceChange24h}%
+              </p>
+            )}
+          </div>
+          <div className="mt-1 sm:mt-0">
+            <p className="text-xl sm:text-2xl font-bold text-white">
+              <DollarSign className="inline-block text-green-400 h-4 w-4 sm:h-5 sm:w-5" />{" "}
+              {price}
             </p>
-          )}
+            {lastUpdated && (
+              <p className="text-xs text-white/50">
+                Last updated: {lastUpdated}
+              </p>
+            )}
+          </div>
         </div>
-        <div className="mt-1 sm:mt-0">
-          <p className="text-xl sm:text-2xl font-bold text-white">
-            <DollarSign className="inline-block text-green-400 h-4 w-4 sm:h-5 sm:w-5" />{" "}
-            {price}
-          </p>
-          {lastUpdated && (
-            <p className="text-xs text-white/50">
-              Last updated: {lastUpdated}
-            </p>
-          )}
-        </div>
-      </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
-        <div className="bg-black/30 p-2 md:p-3 rounded-lg">
-          <p className="text-white/60 text-xs mb-1">Market Cap</p>
-          <p className="text-white text-sm font-medium">{formattedMarketCap}</p>
-        </div>
-        <div className="bg-black/30 p-2 md:p-3 rounded-lg">
-          <p className="text-white/60 text-xs mb-1">Liquidity</p>
-          <p className="text-white text-sm font-medium">{formattedLiquidity}</p>
-        </div>
-        <div className="bg-black/30 p-2 md:p-3 rounded-lg">
-          <p className="text-white/60 text-xs mb-1">Liq:MCAP Ratio</p>
-          <p className="text-white text-sm font-medium">{liquidityToMarketCap !== null ? liquidityToMarketCap : 'N/A'}</p>
-        </div>
-        <div className="bg-black/30 p-2 md:p-3 rounded-lg">
-          <p className="text-white/60 text-xs mb-1">Volume (24h)</p>
-          <p className="text-white text-sm font-medium">{totalVolume}</p>
-          {buyPercentage !== null && sellPercentage !== null && (
-            <div className="flex items-center mt-1 h-1 bg-black/30 rounded-full overflow-hidden">
-              <div 
-                className="h-full bg-green-400" 
-                style={{ width: `${buyPercentage}%` }}
-              />
-              <div 
-                className="h-full bg-red-400" 
-                style={{ width: `${sellPercentage}%` }}
-              />
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+            <div className="bg-black/30 p-2 md:p-3 rounded-lg">
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <p className="text-white/60 text-xs mb-1 border-b border-dotted border-white/40 cursor-help w-fit">Market Cap</p>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Market Capitalization is the circulated supply multiplied by market price, representing the total value of all tokens in circulation.</p>
+                </TooltipContent>
+              </Tooltip>
+              <p className="text-white text-sm font-medium">{formattedMarketCap}</p>
             </div>
-          )}
-          {buyPercentage !== null && sellPercentage !== null && (
-            <div className="flex justify-between mt-1">
-              <span className="text-green-400 text-xs">{buyPercentage}% Buy</span>
-              <span className="text-red-400 text-xs">{sellPercentage}% Sell</span>
+            
+            <div className="bg-black/30 p-2 md:p-3 rounded-lg">
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <p className="text-white/60 text-xs mb-1 border-b border-dotted border-white/40 cursor-help w-fit">Liquidity</p>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Liquidity represents the total value available for trading in decentralized exchanges, indicating how easily the token can be bought or sold.</p>
+                </TooltipContent>
+              </Tooltip>
+              <p className="text-white text-sm font-medium">{formattedLiquidity}</p>
             </div>
-          )}
+            
+            <div className="bg-black/30 p-2 md:p-3 rounded-lg">
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <p className="text-white/60 text-xs mb-1 border-b border-dotted border-white/40 cursor-help w-fit">Liquidity/Market Cap Ratio</p>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>The ratio of liquidity to market cap. A higher ratio indicates better trading conditions and lower price impact for large trades.</p>
+                </TooltipContent>
+              </Tooltip>
+              <p className="text-white text-sm font-medium">{liquidityToMarketCap !== null ? liquidityToMarketCap : 'N/A'}</p>
+            </div>
+            
+            <div className="bg-black/30 p-2 md:p-3 rounded-lg">
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <p className="text-white/60 text-xs mb-1 border-b border-dotted border-white/40 cursor-help w-fit">Volume (24h)</p>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Total trading volume in the last 24 hours, combining both buy and sell transactions. The bar shows the proportion of buy vs sell volume.</p>
+                </TooltipContent>
+              </Tooltip>
+              <p className="text-white text-sm font-medium">{totalVolume}</p>
+              {buyPercentage !== null && sellPercentage !== null && (
+                <div className="flex items-center mt-1 h-1 bg-black/30 rounded-full overflow-hidden">
+                  <div 
+                    className="h-full bg-green-400" 
+                    style={{ width: `${buyPercentage}%` }}
+                  />
+                  <div 
+                    className="h-full bg-red-400" 
+                    style={{ width: `${sellPercentage}%` }}
+                  />
+                </div>
+              )}
+              {buyPercentage !== null && sellPercentage !== null && (
+                <div className="flex justify-between mt-1">
+                  <span className="text-green-400 text-xs">{buyPercentage}% Buy</span>
+                  <span className="text-red-400 text-xs">{sellPercentage}% Sell</span>
+                </div>
+              )}
+            </div>
+            
+            <div className="bg-black/30 p-2 md:p-3 rounded-lg">
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <p className="text-white/60 text-xs mb-1 border-b border-dotted border-white/40 cursor-help w-fit">Buy/Sell Pressure Ratio (24h)</p>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>A measure of buying vs selling pressure. Positive values indicate more buying pressure, negative values indicate more selling pressure.</p>
+                </TooltipContent>
+              </Tooltip>
+              <p className={`text-white text-sm font-medium ${buySellPressure !== null ? (buySellPressure >= 0 ? 'text-green-400' : 'text-red-400') : ''}`}>
+                {buySellPressure !== null ? (buySellPressure >= 0 ? '+' : '') + buySellPressure : 'N/A'}
+              </p>
+            </div>
+            
+            <div className="bg-black/30 p-2 md:p-3 rounded-lg">
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <p className="text-white/60 text-xs mb-1 border-b border-dotted border-white/40 cursor-help w-fit">Buy Volume (24h)</p>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Total value of buy orders executed in the last 24 hours. Higher buy volume typically indicates bullish sentiment.</p>
+                </TooltipContent>
+              </Tooltip>
+              <p className="text-white text-sm font-medium">{formattedBuyVolume}</p>
+              {formattedBuyChange && (
+                <p className={`text-xs font-medium ${buyChangeColor}`}>
+                  {parseFloat(formattedBuyChange) >= 0 ? "+" : ""}{formattedBuyChange}%
+                </p>
+              )}
+            </div>
+            
+            <div className="bg-black/30 p-2 md:p-3 rounded-lg">
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <p className="text-white/60 text-xs mb-1 border-b border-dotted border-white/40 cursor-help w-fit">Sell Volume (24h)</p>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Total value of sell orders executed in the last 24 hours. Higher sell volume typically indicates bearish sentiment or profit-taking.</p>
+                </TooltipContent>
+              </Tooltip>
+              <p className="text-white text-sm font-medium">{formattedSellVolume}</p>
+              {formattedSellChange && (
+                <p className={`text-xs font-medium ${sellChangeColor}`}>
+                  {parseFloat(formattedSellChange) >= 0 ? "+" : ""}{formattedSellChange}%
+                </p>
+              )}
+            </div>
+            
+            <div className="bg-black/30 p-2 md:p-3 rounded-lg">
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <p className="text-white/60 text-xs mb-1 border-b border-dotted border-white/40 cursor-help w-fit">Markets</p>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Number of different markets or exchanges where this token is actively traded. More markets typically mean better liquidity and price discovery.</p>
+                </TooltipContent>
+              </Tooltip>
+              <p className="text-white text-sm font-medium">{formattedMarkets}</p>
+            </div>
+          </div>
         </div>
-        <div className="bg-black/30 p-2 md:p-3 rounded-lg">
-          <p className="text-white/60 text-xs mb-1">Buy/Sell Pressure</p>
-          <p className={`text-white text-sm font-medium ${buySellPressure !== null ? (buySellPressure >= 0 ? 'text-green-400' : 'text-red-400') : ''}`}>
-            {buySellPressure !== null ? (buySellPressure >= 0 ? '+' : '') + buySellPressure : 'N/A'}
-          </p>
-        </div>
-        <div className="bg-black/30 p-2 md:p-3 rounded-lg">
-          <p className="text-white/60 text-xs mb-1">Buy Volume (24h)</p>
-          <p className="text-white text-sm font-medium">{formattedBuyVolume}</p>
-          {formattedBuyChange && (
-            <p className={`text-xs font-medium ${buyChangeColor}`}>
-              {parseFloat(formattedBuyChange) >= 0 ? "+" : ""}{formattedBuyChange}%
-            </p>
-          )}
-        </div>
-        <div className="bg-black/30 p-2 md:p-3 rounded-lg">
-          <p className="text-white/60 text-xs mb-1">Sell Volume (24h)</p>
-          <p className="text-white text-sm font-medium">{formattedSellVolume}</p>
-          {formattedSellChange && (
-            <p className={`text-xs font-medium ${sellChangeColor}`}>
-              {parseFloat(formattedSellChange) >= 0 ? "+" : ""}{formattedSellChange}%
-            </p>
-          )}
-        </div>
-        <div className="bg-black/30 p-2 md:p-3 rounded-lg">
-          <p className="text-white/60 text-xs mb-1">Markets</p>
-          <p className="text-white text-sm font-medium">{formattedMarkets}</p>
-        </div>
-      </div>
-    </div>
-  );
-} 
+      </TooltipProvider>
+    );
+  } 
