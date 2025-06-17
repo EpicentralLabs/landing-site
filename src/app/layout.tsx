@@ -4,6 +4,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 import { Noto_Sans } from 'next/font/google'
 import { Analytics } from "@vercel/analytics/react"
+import { defaultMetadata } from "../lib/metadata";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -21,10 +22,7 @@ const notoSans = Noto_Sans({
   variable: '--font-noto-sans',
 })
 
-export const metadata: Metadata = {
-  title: "Epicentral",
-  description: "Building the future of web3",
-};
+export const metadata: Metadata = defaultMetadata;
 
 export default function RootLayout({
   children,
