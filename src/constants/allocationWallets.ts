@@ -35,3 +35,17 @@ export const allocationWallets = {
     'Contributor Bonus': 'https://solscan.io/account/DR1P6yBNXQ8YLBrpYpU3FjnnruStMRzm2y2cAA3D6ynm',
   } as const;
   
+/**
+ * Mapping of known wallet addresses to their human-readable labels for display in the UI.
+ */
+export const knownWalletLabels: Record<string, string> = {
+  '3BEvopNQ89zkM4r6ADva18i5fao1sqR1pmswyQyfj838': 'Epicentral DAO Main Treasury',
+  '5PP7vKjJyLw1MR55LoexRsCj3CpZj9MdD6aNXRrvxG42': 'Epicentral DAO Staked Tokens',
+  'GpMZbSM2GgvTKHJirzeGfMFoaZ8UR2X7F4v8vHTvxFbL': 'Raydium Pool',
+  '2gb7eFNMsmWhYQzfo7mrbJCxng2LhSzmbLo3j3VgLF1L': 'Streamflow Vesting (LABS) Contract',
+  'F5LBZCetsfcg2XYjitGbhgXp1fPgnTNG5xiF4FTptuRr': 'Meteora (LABS) Vault Authority',
+  'BsuJFZZqmvy8MF3Ccfervot2mWp8xrrSGD18ETorRy7B': 'Streamflow Vesting (LABS) Contract',
+  '6yuntQAS5gSwhhKaXG3QYbcwXPxhsbULu9Tzv9mizUUm': 'Epicentral DAO Rewards Treasury',
+  '6tpxdCf56XZQbdieLFZGDgaWpefc6SZPGy9Sg6MqYVRB': 'Epicentral DAO Marketing Treasury',
+};
+  

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { DollarSign, Copy, Check } from "lucide-react";
-import { TokenDataResponse, fetchTokenData } from "@/utils/api/useFetchTokenData";
+import { TokenDataResponse, fetchTokenData, fetchTokenHolders } from "@/utils/api/useFetchTokenData";
 import { calculateLiquidityToMarketCapRatio, calculateBuySellPressure } from "@/utils/labs-token/token-information";
 import {
   Tooltip,
@@ -10,6 +10,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { knownWalletLabels } from "@/constants/allocationWallets";
 
 interface TokenPriceDisplayProps {
   tokenAddress: string;
@@ -60,6 +61,27 @@ export default function TokenPriceDisplay({ tokenAddress }: TokenPriceDisplayPro
     
     // Clean up the interval on component unmount
     return () => clearInterval(intervalId);
+  }, [tokenAddress]);
+
+  // --- Top Holders State ---
+  const [holdersData, setHoldersData] = useState<any[] | null>(null);
+  const [holdersLoading, setHoldersLoading] = useState(true);
+  const [holdersError, setHoldersError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchHolders = async () => {
+      setHoldersLoading(true);
+      setHoldersError(null);
+      try {
+        const data = await fetchTokenHolders(tokenAddress, 0, 10);
+        setHoldersData(data?.items || []);
+      } catch (err) {
+        setHoldersError(err instanceof Error ? err.message : "Unknown error");
+      } finally {
+        setHoldersLoading(false);
+      }
+    };
+    fetchHolders();
   }, [tokenAddress]);
 
   if (initialLoading) {
@@ -376,7 +398,60 @@ export default function TokenPriceDisplay({ tokenAddress }: TokenPriceDisplayPro
               <p className="text-white text-sm font-medium">{holders !== undefined && holders !== null ? Number(holders).toLocaleString() : 'N/A'}</p>
             </div>
           </div>
+
+        {/* Top Holders Section */}
+        <div className="mt-6">
+          <h3 className="text-lg md:text-xl font-semibold text-white/90 mb-2">Top 10 Holders</h3>
+          {holdersLoading ? (
+            <p className="text-white/70 text-sm animate-pulse">Loading holders...</p>
+          ) : holdersError ? (
+            <p className="text-red-500 text-sm">Error: {holdersError}</p>
+          ) : holdersData && holdersData.length > 0 ? (
+            <div className="overflow-x-auto">
+              <table className="min-w-full text-xs md:text-sm text-white/80 bg-black/30 rounded-lg">
+                <thead>
+                  <tr className="border-b border-white/10">
+                    <th className="py-2 px-2 text-left font-medium">Rank</th>
+                    <th className="py-2 px-2 text-left font-medium">Wallet</th>
+                    <th className="py-2 px-2 text-left font-medium">Balance</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {holdersData.map((holder, idx) => (
+                    <tr key={holder.owner || idx} className="border-b border-white/5 hover:bg-white/5 transition-colors">
+                      <td className="py-2 px-2">{idx + 1}</td>
+                      <td className="py-2 px-2 font-mono">
+                        {holder.owner ? (
+                          <>
+                            <a
+                              href={`https://solscan.io/account/${holder.owner}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-[#4a85ff] hover:underline"
+                            >
+                              {holder.owner.slice(0, 4)}...{holder.owner.slice(-4)}
+                            </a>
+                            {knownWalletLabels[holder.owner] && (
+                              <span className="ml-2 text-xs text-white/60 bg-white/10 px-2 py-0.5 rounded">
+                                {knownWalletLabels[holder.owner]}
+                              </span>
+                            )}
+                          </>
+                        ) : (
+                          <span className="text-white/50">N/A</span>
+                        )}
+                      </td>
+                      <td className="py-2 px-2">{holder.amount !== undefined ? (Number(holder.amount) / 1e9).toLocaleString(undefined, { maximumFractionDigits: 4 }) + ' LABS' : 'N/A'}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            <p className="text-white/70 text-sm">No holder data available.</p>
+          )}
         </div>
-      </TooltipProvider>
-    );
-  } 
+      </div>
+    </TooltipProvider>
+  );
+} 

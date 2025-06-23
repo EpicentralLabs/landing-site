@@ -96,3 +96,43 @@ export const fetchTokenData = async (address: string): Promise<TokenDataResponse
     throw new Error(`Error fetching token data: ${errorMessage}`);
   }
 };
+
+/**
+ * Fetches the top token holders from the Birdeye API.
+ *
+ * @param address - The token address to fetch holders for.
+ * @param offset - The offset for pagination (default 0).
+ * @param limit - The number of holders to fetch (default 10).
+ * @returns {Promise<any>} The holders data from Birdeye API.
+ * @throws {Error} Will throw an error if the fetch fails or the response is not ok.
+ */
+export const fetchTokenHolders = async (
+  address: string,
+  offset = 0,
+  limit = 10
+): Promise<any> => {
+  try {
+    const url = `https://public-api.birdeye.so/defi/v3/token/holder?address=${address}&offset=${offset}&limit=${limit}`;
+    const options = {
+      method: "GET",
+      headers: {
+        "X-API-KEY": process.env.NEXT_PUBLIC_BIRDEYE_API_KEY || "",
+        "Accept": "application/json",
+        "x-chain": "solana",
+      },
+    };
+    const response = await fetch(url, options);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch holders for ${address} (Status: ${response.status})`);
+    }
+    const result = await response.json();
+    if (!result.success) {
+      throw new Error(`No holders data found for ${address}`);
+    }
+    return result.data;
+  } catch (err) {
+    const errorMessage = err instanceof Error ? err.message : "Unknown error";
+    console.error("Error fetching token holders:", errorMessage);
+    throw new Error(`Error fetching token holders: ${errorMessage}`);
+  }
+};
