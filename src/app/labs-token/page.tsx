@@ -136,6 +136,19 @@ const PieChartLegend = () => {
   );
 };
 
+// Add a reusable GreenCheckWithTooltip component
+const GreenCheckWithTooltip = () => (
+  <span className="relative group inline-flex items-center">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="drop-shadow-[0_0_6px_#22c55e]">
+      <circle cx="12" cy="12" r="12" fill="#22c55e" fillOpacity="0.15" />
+      <path d="M7 13.5L10.5 17L17 10.5" stroke="#22c55e" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+    <span className="absolute left-1/2 -translate-x-1/2 -top-8 z-20 opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-200 bg-black/90 text-white text-xs px-2 py-1 rounded shadow-lg whitespace-nowrap">
+      Completed
+    </span>
+  </span>
+);
+
 export default function LabsTokenPage() {
   
 const [isMounted, setIsMounted] = useState(false);
@@ -489,9 +502,12 @@ if (!isMounted) {
                                   href={`https://app.streamflow.finance/contract/solana/mainnet/${member.link}`}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="text-[#4a85ff] hover:drop-shadow-[0_0_8px_#4a85ff] transition-all duration-300"
+                                  className="text-[#4a85ff] hover:drop-shadow-[0_0_8px_#4a85ff] transition-all duration-300 inline-flex items-center gap-1"
                                 >
                                   {member.label} Contract
+                                  {member.label === "Member 2" || member.label === "Member 3" ? (
+                                    <GreenCheckWithTooltip />
+                                  ) : null}
                                 </a>
                             </p>
                           ))}
@@ -539,7 +555,10 @@ if (!isMounted) {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mt-4 md:mt-6">
               <div className="bg-black/40 border border-white/10 rounded-xl p-4 md:p-6
                               hover:border-white/20 transition-all duration-300">
-                <h3 className="text-lg md:text-xl font-medium text-white/90 mb-3 md:mb-4">Marketing</h3>
+                <h3 className="text-lg md:text-xl font-medium text-white/90 mb-3 md:mb-4 flex items-center gap-2">
+                  Marketing
+                  <GreenCheckWithTooltip />
+                </h3>
                 <div className="space-y-2 text-sm md:text-base text-white/70">
                   <p>• 3 Month Vesting via Streamflow</p>
                   <p>• Deposited to Marketing Vault</p>
@@ -558,7 +577,10 @@ if (!isMounted) {
 
               <div className="bg-black/40 border border-white/10 rounded-xl p-4 md:p-6
                               hover:border-white/20 transition-all duration-300">
-                <h3 className="text-lg md:text-xl font-medium text-white/90 mb-3 md:mb-4">Contributor Bonus</h3>
+                <h3 className="text-lg md:text-xl font-medium text-white/90 mb-3 md:mb-4 flex items-center gap-2">
+                  Contributor Bonus
+                  <GreenCheckWithTooltip />
+                </h3>
                 <div className="space-y-2 text-sm md:text-base text-white/70">
                   <p>• 8 Month Vesting via Streamflow</p>
                   <p>• Deposited to Community Bonus Vault</p>
