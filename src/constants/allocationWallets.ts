@@ -41,7 +41,7 @@ export const allocationWallets = {
 export const knownWalletLabels: Record<string, string> = {
   '3BEvopNQ89zkM4r6ADva18i5fao1sqR1pmswyQyfj838': 'Epicentral DAO Main Treasury',
   '5PP7vKjJyLw1MR55LoexRsCj3CpZj9MdD6aNXRrvxG42': 'Epicentral DAO Staked Tokens',
-  'GpMZbSM2GgvTKHJirzeGfMFoaZ8UR2X7F4v8vHTvxFbL': 'Raydium Pool',
+  'GpMZbSM2GgvTKHJirzeGfMFoaZ8UR2X7F4v8vHTvxFbL': 'Raydium Pool (Burned Liquidity)',
   '2gb7eFNMsmWhYQzfo7mrbJCxng2LhSzmbLo3j3VgLF1L': 'Streamflow Vesting (LABS) Contract',
   'F5LBZCetsfcg2XYjitGbhgXp1fPgnTNG5xiF4FTptuRr': 'Meteora (LABS) Vault Authority',
   'BsuJFZZqmvy8MF3Ccfervot2mWp8xrrSGD18ETorRy7B': 'Streamflow Vesting (LABS) Contract',

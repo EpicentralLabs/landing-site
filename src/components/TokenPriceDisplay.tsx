@@ -441,7 +441,7 @@ export default function TokenPriceDisplay({ tokenAddress }: TokenPriceDisplayPro
                           <span className="text-white/50">N/A</span>
                         )}
                       </td>
-                      <td className="py-2 px-2">{holder.amount !== undefined ? (Number(holder.amount) / 1e9).toLocaleString(undefined, { maximumFractionDigits: 4 }) + ' LABS' : 'N/A'}</td>
+                      <td className="py-2 px-2">{holder.amount !== undefined ? (Math.round(Number(holder.amount) / 1e9 * 100) / 100).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' LABS' : 'N/A'}</td>
                     </tr>
                   ))}
                 </tbody>
