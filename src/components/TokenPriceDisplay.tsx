@@ -423,6 +423,20 @@ export default function TokenPriceDisplay({ tokenAddress }: TokenPriceDisplayPro
                       <td className="py-2 px-2 font-mono">
                         {holder.owner ? (
                           <>
+                            <span
+                              className={
+                                knownWalletLabels[holder.owner] === 'Epicentral DAO Staked Tokens'
+                                  ? 'inline-block w-2 h-2 rounded-full bg-green-400 mr-2 align-middle shadow-[0_0_6px_#22c55e]'
+                                  : knownWalletLabels[holder.owner]
+                                  ? 'inline-block w-2 h-2 rounded-full bg-blue-400 mr-2 align-middle shadow-[0_0_6px_#60a5fa]'
+                                  : 'inline-block w-2 h-2 rounded-full bg-green-400 mr-2 align-middle shadow-[0_0_6px_#22c55e]'
+                              }
+                              title={
+                                knownWalletLabels[holder.owner] === 'Epicentral DAO Staked Tokens' || !knownWalletLabels[holder.owner]
+                                  ? 'User Held'
+                                  : 'Program/Contract Held'
+                              }
+                            />
                             <a
                               href={`https://solscan.io/account/${holder.owner}`}
                               target="_blank"
@@ -450,6 +464,16 @@ export default function TokenPriceDisplay({ tokenAddress }: TokenPriceDisplayPro
           ) : (
             <p className="text-white/70 text-sm">No holder data available.</p>
           )}
+        </div>
+
+        {/* Modern Legend/Key for Top Holders */}
+        <div className="mt-3 flex flex-wrap gap-4 items-center text-xs md:text-sm text-white/70">
+          <span className="inline-flex items-center gap-1">
+            <span className="inline-block w-3 h-3 rounded-full bg-green-400 shadow-[0_0_8px_#22c55e]"></span> User Held
+          </span>
+          <span className="inline-flex items-center gap-1">
+            <span className="inline-block w-3 h-3 rounded-full bg-blue-400 shadow-[0_0_8px_#60a5fa]"></span> Program/Contract Held
+          </span>
         </div>
       </div>
     </TooltipProvider>
