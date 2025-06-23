@@ -67,6 +67,8 @@ export default function TokenPriceDisplay({ tokenAddress }: TokenPriceDisplayPro
   const [holdersData, setHoldersData] = useState<any[] | null>(null);
   const [holdersLoading, setHoldersLoading] = useState(true);
   const [holdersError, setHoldersError] = useState<string | null>(null);
+  // Add copy state for each holder row
+  const [copiedHolder, setCopiedHolder] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchHolders = async () => {
@@ -83,6 +85,17 @@ export default function TokenPriceDisplay({ tokenAddress }: TokenPriceDisplayPro
     };
     fetchHolders();
   }, [tokenAddress]);
+
+  // Add copy handler for holder address
+  const copyHolderAddress = async (address: string) => {
+    try {
+      await navigator.clipboard.writeText(address);
+      setCopiedHolder(address);
+      setTimeout(() => setCopiedHolder((prev) => (prev === address ? null : prev)), 2000);
+    } catch (err) {
+      // Optionally handle error
+    }
+  };
 
   if (initialLoading) {
     return <p className="text-white text-lg animate-pulse">Loading token data...</p>;
@@ -213,6 +226,25 @@ export default function TokenPriceDisplay({ tokenAddress }: TokenPriceDisplayPro
         totalVolumeForPressure
       )
     : null;
+
+  // Calculate User Held vs Program/Contract Held percentages for top 10 holders
+  let userHeldTotal = 0;
+  let programHeldTotal = 0;
+  let totalHeld = 0;
+  if (holdersData && holdersData.length > 0) {
+    holdersData.forEach((holder) => {
+      const amount = Number(holder.amount) || 0;
+      // User Held: no label or label is 'Epicentral DAO Staked Tokens'
+      if (!knownWalletLabels[holder.owner] || knownWalletLabels[holder.owner] === 'Epicentral DAO Staked Tokens') {
+        userHeldTotal += amount;
+      } else {
+        programHeldTotal += amount;
+      }
+    });
+    totalHeld = userHeldTotal + programHeldTotal;
+  }
+  const userHeldPercent = totalHeld > 0 ? ((userHeldTotal / totalHeld) * 100).toFixed(1) : null;
+  const programHeldPercent = totalHeld > 0 ? ((programHeldTotal / totalHeld) * 100).toFixed(1) : null;
 
   return (
     <TooltipProvider>
@@ -440,30 +472,68 @@ export default function TokenPriceDisplay({ tokenAddress }: TokenPriceDisplayPro
                             {knownWalletLabels[holder.owner] ? (
                               <Tooltip>
                                 <TooltipTrigger asChild>
-                                  <a
-                                    href={`https://solscan.io/account/${holder.owner}`}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-[#4a85ff] hover:underline"
-                                  >
-                                    <span className="ml-0 text-xs text-white/60 bg-white/10 px-2 py-0.5 rounded cursor-pointer border-b border-dotted border-white/40" style={{ textDecoration: 'none' }}>
-                                      {knownWalletLabels[holder.owner]}
+                                  <span className="inline-flex items-center gap-1">
+                                    <a
+                                      href={`https://solscan.io/account/${holder.owner}`}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="text-[#4a85ff] hover:underline"
+                                    >
+                                      <span className="ml-0 text-xs text-white/60 bg-white/10 px-2 py-0.5 rounded cursor-pointer border-b border-dotted border-white/40" style={{ textDecoration: 'none' }}>
+                                        {knownWalletLabels[holder.owner]}
+                                      </span>
+                                    </a>
+                                    <span
+                                      className="ml-1 cursor-pointer"
+                                      onClick={(e) => { e.stopPropagation(); copyHolderAddress(holder.owner); }}
+                                    >
+                                      {copiedHolder === holder.owner ? (
+                                        <Check className="h-3 w-3 text-green-400" />
+                                      ) : (
+                                        <Tooltip>
+                                          <TooltipTrigger asChild>
+                                            <span><Copy className="h-3 w-3 text-white/60 hover:text-white/90 transition-colors" /></span>
+                                          </TooltipTrigger>
+                                          <TooltipContent>
+                                            <span>Copy address</span>
+                                          </TooltipContent>
+                                        </Tooltip>
+                                      )}
                                     </span>
-                                  </a>
+                                  </span>
                                 </TooltipTrigger>
                                 <TooltipContent>
                                   <span className="font-mono text-xs">{holder.owner}</span>
                                 </TooltipContent>
                               </Tooltip>
                             ) : (
-                              <a
-                                href={`https://solscan.io/account/${holder.owner}`}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-[#4a85ff] hover:underline"
-                              >
-                                {holder.owner.slice(0, 4)}...{holder.owner.slice(-4)}
-                              </a>
+                              <span className="inline-flex items-center gap-1">
+                                <a
+                                  href={`https://solscan.io/account/${holder.owner}`}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="text-[#4a85ff] hover:underline"
+                                >
+                                  {holder.owner.slice(0, 4)}...{holder.owner.slice(-4)}
+                                </a>
+                                <span
+                                  className="ml-1 cursor-pointer"
+                                  onClick={(e) => { e.stopPropagation(); copyHolderAddress(holder.owner); }}
+                                >
+                                  {copiedHolder === holder.owner ? (
+                                    <Check className="h-3 w-3 text-green-400" />
+                                  ) : (
+                                    <Tooltip>
+                                      <TooltipTrigger asChild>
+                                        <span><Copy className="h-3 w-3 text-white/60 hover:text-white/90 transition-colors" /></span>
+                                      </TooltipTrigger>
+                                      <TooltipContent>
+                                        <span>Copy address</span>
+                                      </TooltipContent>
+                                    </Tooltip>
+                                  )}
+                                </span>
+                              </span>
                             )}
                           </>
                         ) : (
@@ -484,10 +554,14 @@ export default function TokenPriceDisplay({ tokenAddress }: TokenPriceDisplayPro
         {/* Modern Legend/Key for Top Holders */}
         <div className="mt-3 flex flex-wrap gap-4 items-center text-xs md:text-sm text-white/70">
           <span className="inline-flex items-center gap-1">
-            <span className="inline-block w-3 h-3 rounded-full bg-green-400 shadow-[0_0_8px_#22c55e]"></span> User Held
+            <span className="inline-block w-3 h-3 rounded-full bg-green-400 shadow-[0_0_8px_#22c55e]"></span>
+            User Held
+            <span className="ml-1 text-white/60">{userHeldPercent !== null ? `(${userHeldPercent}%)` : 'N/A'}</span>
           </span>
           <span className="inline-flex items-center gap-1">
-            <span className="inline-block w-3 h-3 rounded-full bg-blue-400 shadow-[0_0_8px_#60a5fa]"></span> Program/Contract Held
+            <span className="inline-block w-3 h-3 rounded-full bg-blue-400 shadow-[0_0_8px_#60a5fa]"></span>
+            Program/Contract Held
+            <span className="ml-1 text-white/60">{programHeldPercent !== null ? `(${programHeldPercent}%)` : 'N/A'}</span>
           </span>
         </div>
       </div>
