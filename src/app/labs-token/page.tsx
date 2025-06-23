@@ -360,7 +360,7 @@ if (!isMounted) {
                           boxShadow: `0 0 10px ${item.color}40`
                         }}
                       />
-                      <CardTitle className="text-white/90 text-base md:text-lg">
+                      <CardTitle className="text-white/90 text-base md:text-lg flex items-center gap-2">
                         {item.name === 'Core Team & Investors' ? (
                           <span>{item.name}</span>
                         ) : (
@@ -372,6 +372,9 @@ if (!isMounted) {
                           >
                             {item.name}
                           </a>
+                        )}
+                        {Math.round(calculateUnlockedPercentage(item.name, START_DATE)) === 100 && (
+                          <GreenCheckWithTooltip />
                         )}
                       </CardTitle>
                     </div>
@@ -388,14 +391,17 @@ if (!isMounted) {
                         <div 
                           className="h-full rounded-full transition-all duration-500 relative"
                           style={{ 
-                            width: `${item.value}%`,
+                            width: '100%',
                             backgroundColor: item.color,
                           }}
                         >
                           <div 
-                            className="absolute inset-0 bg-black/50"
+                            className="absolute inset-0 bg-black/50 transition-all duration-500"
                             style={{ 
                               width: `${calculateLockedPercentage(item.name, START_DATE)}%`,
+                              left: 0,
+                              top: 0,
+                              bottom: 0,
                             }}
                           />
                         </div>
