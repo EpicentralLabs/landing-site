@@ -407,20 +407,20 @@ export default function TokenPriceDisplay({ tokenAddress }: TokenPriceDisplayPro
           ) : holdersError ? (
             <p className="text-red-500 text-sm">Error: {holdersError}</p>
           ) : holdersData && holdersData.length > 0 ? (
-            <div className="overflow-x-auto">
-              <table className="min-w-full text-xs md:text-sm text-white/80 bg-black/30 rounded-lg">
+            <div className="overflow-x-auto w-full">
+              <table className="min-w-[420px] w-full text-xs md:text-sm text-white/80 bg-black/30 rounded-lg">
                 <thead>
                   <tr className="border-b border-white/10">
-                    <th className="py-2 px-2 text-left font-medium">Rank</th>
-                    <th className="py-2 px-2 text-left font-medium">Wallet</th>
-                    <th className="py-2 px-2 text-left font-medium">Balance</th>
+                    <th className="py-2 px-2 md:py-2 md:px-3 text-left font-medium whitespace-nowrap">Rank</th>
+                    <th className="py-2 px-2 md:py-2 md:px-3 text-left font-medium whitespace-nowrap">Wallet</th>
+                    <th className="py-2 px-2 md:py-2 md:px-3 text-left font-medium whitespace-nowrap">Balance</th>
                   </tr>
                 </thead>
                 <tbody>
                   {holdersData.map((holder, idx) => (
                     <tr key={holder.owner || idx} className="border-b border-white/5 hover:bg-white/5 transition-colors">
-                      <td className="py-2 px-2">{idx + 1}</td>
-                      <td className="py-2 px-2 font-mono">
+                      <td className="py-2 px-2 md:py-2 md:px-3 align-middle">{idx + 1}</td>
+                      <td className="py-2 px-2 md:py-2 md:px-3 font-mono max-w-[160px] md:max-w-none truncate align-middle">
                         {holder.owner ? (
                           <>
                             <span
@@ -470,7 +470,7 @@ export default function TokenPriceDisplay({ tokenAddress }: TokenPriceDisplayPro
                           <span className="text-white/50">N/A</span>
                         )}
                       </td>
-                      <td className="py-2 px-2">{holder.amount !== undefined ? (Math.round(Number(holder.amount) / 1e9 * 100) / 100).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' LABS' : 'N/A'}</td>
+                      <td className="py-2 px-2 md:py-2 md:px-3 align-middle">{holder.amount !== undefined ? (Math.round(Number(holder.amount) / 1e9 * 100) / 100).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' LABS' : 'N/A'}</td>
                     </tr>
                   ))}
                 </tbody>
