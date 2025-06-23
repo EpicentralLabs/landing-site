@@ -261,7 +261,7 @@ export default function DAOPage() {
                 <h3 className="text-xl font-medium text-white/90">Draft Proposal</h3>
               </div>
               <p className="text-base text-white/70">
-                Any member with <u>100,000 $LABS</u> can create a proposal either in <a href="https://app.realms.today/dao/LABS" className="text-[#4a85ff] hover:text-[#4a85ff] hover:drop-shadow-[0_0_0.3rem_#4a85ff] transition-all duration-300">Realms</a> or in the Epicentral Labs <a href="https://discord.gg/5asAuY2sR8" className="text-[#4a85ff] hover:text-[#4a85ff] hover:drop-shadow-[0_0_0.3rem_#4a85ff] transition-all duration-300">Discord</a>.
+                Any member with <u>250,000 $LABS</u> can create a proposal either in <a href="https://app.realms.today/dao/LABS" className="text-[#4a85ff] hover:text-[#4a85ff] hover:drop-shadow-[0_0_0.3rem_#4a85ff] transition-all duration-300">Realms</a> or in the Epicentral Labs <a href="https://discord.gg/5asAuY2sR8" className="text-[#4a85ff] hover:text-[#4a85ff] hover:drop-shadow-[0_0_0.3rem_#4a85ff] transition-all duration-300">Discord</a>.
               </p>
             </div>
 
