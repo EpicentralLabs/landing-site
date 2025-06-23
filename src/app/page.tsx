@@ -26,8 +26,8 @@ export default function Home() {
   const timeoutRef = useRef<number | undefined>(undefined);
 
   const heroTexts = [
-    "Shaping DeFi Through Governance",
     "Bringing Options Trading to Solana",
+    "Shaping DeFi Through Governance",
     "Expanding DeFi Derivatives"
   ];
 
