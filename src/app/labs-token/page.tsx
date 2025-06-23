@@ -286,9 +286,6 @@ if (!isMounted) {
     className="bg-black/30 backdrop-blur-md border border-white/10 rounded-xl p-3 md:p-6 lg:p-8 hover:border-white/20 transition-all duration-500 shadow-lg"
   >
     <div className="space-y-8">
-      <h2 className="text-2xl md:text-3xl font-light text-white/90 mb-4 md:mb-12 drop-shadow-[0_0_0.3rem_#ffffff70] text-center">
-        LABS Information
-      </h2>
       <TokenPriceDisplay tokenAddress="LABSh5DTebUcUbEoLzXKCiXFJLecDFiDWiBGUU1GpxR" />
     </div>
   </div>

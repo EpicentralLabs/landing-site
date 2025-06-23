@@ -216,7 +216,7 @@ export default function TokenPriceDisplay({ tokenAddress }: TokenPriceDisplayPro
 
   return (
     <TooltipProvider>
-      <div className="bg-black/40 rounded-lg p-4 md:p-6 shadow-md space-y-4 md:space-y-6 hover:scale-105 transition-transform duration-300">
+      <div className="bg-black/40 rounded-lg p-4 md:p-6 shadow-md space-y-4 md:space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-0">
           <div>
             <Tooltip>
