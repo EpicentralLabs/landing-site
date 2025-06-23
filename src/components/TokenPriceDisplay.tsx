@@ -117,6 +117,7 @@ export default function TokenPriceDisplay({ tokenAddress }: TokenPriceDisplayPro
   const buyChange24h = getValueSafely(dataObject, ['vBuy24hChangePercent', 'buyVolumeChange24h', 'data.vBuy24hChangePercent']);
   const sellChange24h = getValueSafely(dataObject, ['vSell24hChangePercent', 'sellVolumeChange24h', 'data.vSell24hChangePercent']);
   const numberMarkets = getValueSafely(dataObject, ['numberMarkets', 'markets', 'data.numberMarkets']);
+  const holders = getValueSafely(dataObject, ['holder', 'data.holder']);
 
   // Format values
   const formatCurrency = (value: unknown): string => {
@@ -361,6 +362,18 @@ export default function TokenPriceDisplay({ tokenAddress }: TokenPriceDisplayPro
                 </TooltipContent>
               </Tooltip>
               <p className="text-white text-sm font-medium">{formattedMarkets}</p>
+            </div>
+            {/* Holders Panel */}
+            <div className="bg-black/30 p-2 md:p-3 rounded-lg">
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <p className="text-white/60 text-xs mb-1 border-b border-dotted border-white/40 cursor-help w-fit">Holders</p>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>The number of unique wallet addresses that currently hold LABS tokens. A higher number indicates broader community participation and distribution.</p>
+                </TooltipContent>
+              </Tooltip>
+              <p className="text-white text-sm font-medium">{holders !== undefined && holders !== null ? Number(holders).toLocaleString() : 'N/A'}</p>
             </div>
           </div>
         </div>
