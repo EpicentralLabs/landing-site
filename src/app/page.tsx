@@ -26,8 +26,8 @@ export default function Home() {
   const timeoutRef = useRef<number | undefined>(undefined);
 
   const heroTexts = [
-    "Shaping DeFi Through Governance",
     "Bringing Options Trading to Solana",
+    "Shaping DeFi Through Governance",
     "Expanding DeFi Derivatives"
   ];
 
@@ -478,7 +478,26 @@ export default function Home() {
                   </h3>
                 </div>
 
-                <Accordion type="single" collapsible className="w-full space-y-4">
+                <Accordion type="single" collapsible className="w-full space-y-4 mt-6">
+                  <AccordionItem value="opm" className="border-white/10">
+                    <AccordionTrigger className="hover:no-underline group">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-lg bg-[#4a85ff]/10 flex items-center justify-center transition-all duration-300 group-hover:bg-[#4a85ff]/20">
+                          <ArrowDown className="h-5 w-5 text-[#4a85ff] transition-transform duration-300" />
+                        </div>
+                        <h4 className="text-xl font-medium text-white/90 transition-all duration-300 \
+                                      group-hover:text-white group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
+                          <i>Option Pricing Model (OPM)</i>
+                        </h4>
+                      </div>
+                    </AccordionTrigger>
+                    <AccordionContent className="text-white/70">
+                      <div className="pt-4 leading-relaxed">
+                        The Option Pricing Model (OPM) is the foundation for how DeFi options are valued on our platform. Inspired by the widely recognized Black-Scholes Model from traditional finance, OPM provides a robust framework for calculating the fair price of options. This model supports both American and European style options, making it the ideal choice for Solana-based derivatives. By leveraging this proven approach, we ensure that option contracts on Solana are priced accurately and transparently, aligning with global standards in financial derivatives.
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+
                   <AccordionItem value="governance" className="border-white/10">
                     <AccordionTrigger className="hover:no-underline group">
                       <div className="flex items-center gap-3">
@@ -528,14 +547,14 @@ export default function Home() {
                         </div>
                         <h4 className="text-xl font-medium text-white/90 transition-all duration-300 
                                       group-hover:text-white group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
-                          <i>Option Programs</i>
+                          <i>Option Program</i>
                         </h4>
                       </div>
                     </AccordionTrigger>
                     <AccordionContent className="text-white/70">
                       <div className="pt-4 leading-relaxed">
-                        For option contracts to exist on Solana, on-chain programs validate the creation of new option contracts and the settlement of existing ones. 
-                        Ensuring that all options are accurately priced and settled fairly.
+                        For option contracts to exist on Solana, an on-chain program validates the creation of new option contracts and the settlement of existing ones as well as
+                        ensuring that all options are accurately priced and settled fairly.
                         <div className="flex items-center mt-4">
                           <Button 
                             size="lg"
