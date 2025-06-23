@@ -437,18 +437,33 @@ export default function TokenPriceDisplay({ tokenAddress }: TokenPriceDisplayPro
                                   : 'Program/Contract Held'
                               }
                             />
-                            <a
-                              href={`https://solscan.io/account/${holder.owner}`}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="text-[#4a85ff] hover:underline"
-                            >
-                              {holder.owner.slice(0, 4)}...{holder.owner.slice(-4)}
-                            </a>
-                            {knownWalletLabels[holder.owner] && (
-                              <span className="ml-2 text-xs text-white/60 bg-white/10 px-2 py-0.5 rounded">
-                                {knownWalletLabels[holder.owner]}
-                              </span>
+                            {knownWalletLabels[holder.owner] ? (
+                              <Tooltip>
+                                <TooltipTrigger asChild>
+                                  <a
+                                    href={`https://solscan.io/account/${holder.owner}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-[#4a85ff] hover:underline"
+                                  >
+                                    <span className="ml-0 text-xs text-white/60 bg-white/10 px-2 py-0.5 rounded cursor-pointer border-b border-dotted border-white/40" style={{ textDecoration: 'none' }}>
+                                      {knownWalletLabels[holder.owner]}
+                                    </span>
+                                  </a>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                  <span className="font-mono text-xs">{holder.owner}</span>
+                                </TooltipContent>
+                              </Tooltip>
+                            ) : (
+                              <a
+                                href={`https://solscan.io/account/${holder.owner}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-[#4a85ff] hover:underline"
+                              >
+                                {holder.owner.slice(0, 4)}...{holder.owner.slice(-4)}
+                              </a>
                             )}
                           </>
                         ) : (
