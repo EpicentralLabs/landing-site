@@ -11,6 +11,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { knownWalletLabels } from "@/constants/allocationWallets";
+import { fetchTopTokenHolders } from "@/solana";
 
 interface TokenPriceDisplayProps {
   tokenAddress: string;
@@ -75,8 +76,10 @@ export default function TokenPriceDisplay({ tokenAddress }: TokenPriceDisplayPro
       setHoldersLoading(true);
       setHoldersError(null);
       try {
-        const data = await fetchTokenHolders(tokenAddress, 0, 10);
-        setHoldersData(data?.items || []);
+        // Use Solana RPC to fetch top holders
+        const data = await fetchTopTokenHolders(tokenAddress, 10);
+        // For now, data is [{ owner, total }]. In the future, add governance balances here.
+        setHoldersData(data.map(({ owner, total }) => ({ owner, amount: total })));
       } catch (err) {
         setHoldersError(err instanceof Error ? err.message : "Unknown error");
       } finally {
