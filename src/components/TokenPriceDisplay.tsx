@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { DollarSign, Copy, Check } from "lucide-react";
-import { TokenDataResponse, fetchTokenData } from "@/utils/api/useFetchTokenData";
+import { TokenDataResponse, fetchTokenData, fetchTokenHolders } from "@/utils/api/useFetchTokenData";
 import { calculateLiquidityToMarketCapRatio, calculateBuySellPressure } from "@/utils/labs-token/token-information";
 import {
   Tooltip,
@@ -10,6 +10,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { knownWalletLabels } from "@/constants/allocationWallets";
 
 interface TokenPriceDisplayProps {
   tokenAddress: string;
@@ -61,6 +62,40 @@ export default function TokenPriceDisplay({ tokenAddress }: TokenPriceDisplayPro
     // Clean up the interval on component unmount
     return () => clearInterval(intervalId);
   }, [tokenAddress]);
+
+  // --- Top Holders State ---
+  const [holdersData, setHoldersData] = useState<any[] | null>(null);
+  const [holdersLoading, setHoldersLoading] = useState(true);
+  const [holdersError, setHoldersError] = useState<string | null>(null);
+  // Add copy state for each holder row
+  const [copiedHolder, setCopiedHolder] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchHolders = async () => {
+      setHoldersLoading(true);
+      setHoldersError(null);
+      try {
+        const data = await fetchTokenHolders(tokenAddress, 0, 10);
+        setHoldersData(data?.items || []);
+      } catch (err) {
+        setHoldersError(err instanceof Error ? err.message : "Unknown error");
+      } finally {
+        setHoldersLoading(false);
+      }
+    };
+    fetchHolders();
+  }, [tokenAddress]);
+
+  // Add copy handler for holder address
+  const copyHolderAddress = async (address: string) => {
+    try {
+      await navigator.clipboard.writeText(address);
+      setCopiedHolder(address);
+      setTimeout(() => setCopiedHolder((prev) => (prev === address ? null : prev)), 2000);
+    } catch (err) {
+      // Optionally handle error
+    }
+  };
 
   if (initialLoading) {
     return <p className="text-white text-lg animate-pulse">Loading token data...</p>;
@@ -117,6 +152,7 @@ export default function TokenPriceDisplay({ tokenAddress }: TokenPriceDisplayPro
   const buyChange24h = getValueSafely(dataObject, ['vBuy24hChangePercent', 'buyVolumeChange24h', 'data.vBuy24hChangePercent']);
   const sellChange24h = getValueSafely(dataObject, ['vSell24hChangePercent', 'sellVolumeChange24h', 'data.vSell24hChangePercent']);
   const numberMarkets = getValueSafely(dataObject, ['numberMarkets', 'markets', 'data.numberMarkets']);
+  const holders = getValueSafely(dataObject, ['holder', 'data.holder']);
 
   // Format values
   const formatCurrency = (value: unknown): string => {
@@ -191,9 +227,28 @@ export default function TokenPriceDisplay({ tokenAddress }: TokenPriceDisplayPro
       )
     : null;
 
+  // Calculate User Held vs Program/Contract Held percentages for top 10 holders
+  let userHeldTotal = 0;
+  let programHeldTotal = 0;
+  let totalHeld = 0;
+  if (holdersData && holdersData.length > 0) {
+    holdersData.forEach((holder) => {
+      const amount = Number(holder.amount) || 0;
+      // User Held: no label or label is 'Epicentral DAO Staked Tokens'
+      if (!knownWalletLabels[holder.owner] || knownWalletLabels[holder.owner] === 'Epicentral DAO Staked Tokens') {
+        userHeldTotal += amount;
+      } else {
+        programHeldTotal += amount;
+      }
+    });
+    totalHeld = userHeldTotal + programHeldTotal;
+  }
+  const userHeldPercent = totalHeld > 0 ? ((userHeldTotal / totalHeld) * 100).toFixed(1) : null;
+  const programHeldPercent = totalHeld > 0 ? ((programHeldTotal / totalHeld) * 100).toFixed(1) : null;
+
   return (
     <TooltipProvider>
-      <div className="bg-black/40 rounded-lg p-4 md:p-6 shadow-md space-y-4 md:space-y-6 hover:scale-105 transition-transform duration-300">
+      <div className="bg-black/40 rounded-lg p-4 md:p-6 shadow-md space-y-4 md:space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-0">
           <div>
             <Tooltip>
@@ -362,8 +417,154 @@ export default function TokenPriceDisplay({ tokenAddress }: TokenPriceDisplayPro
               </Tooltip>
               <p className="text-white text-sm font-medium">{formattedMarkets}</p>
             </div>
+            {/* Holders Panel */}
+            <div className="bg-black/30 p-2 md:p-3 rounded-lg">
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <p className="text-white/60 text-xs mb-1 border-b border-dotted border-white/40 cursor-help w-fit">Holders</p>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>The number of unique wallet addresses that currently hold LABS tokens. A higher number indicates broader community participation and distribution.</p>
+                </TooltipContent>
+              </Tooltip>
+              <p className="text-white text-sm font-medium">{holders !== undefined && holders !== null ? Number(holders).toLocaleString() : 'N/A'}</p>
+            </div>
           </div>
+
+        {/* Top Holders Section */}
+        <div className="mt-6">
+          <h3 className="text-lg md:text-xl font-semibold text-white/90 mb-2">Top 10 Holders</h3>
+          {holdersLoading ? (
+            <p className="text-white/70 text-sm animate-pulse">Loading holders...</p>
+          ) : holdersError ? (
+            <p className="text-red-500 text-sm">Error: {holdersError}</p>
+          ) : holdersData && holdersData.length > 0 ? (
+            <div className="overflow-x-auto w-full">
+              <table className="min-w-[420px] w-full text-xs md:text-sm text-white/80 bg-black/30 rounded-lg">
+                <thead>
+                  <tr className="border-b border-white/10">
+                    <th className="py-2 px-2 md:py-2 md:px-3 text-left font-medium whitespace-nowrap">Rank</th>
+                    <th className="py-2 px-2 md:py-2 md:px-3 text-left font-medium whitespace-nowrap">Wallet</th>
+                    <th className="py-2 px-2 md:py-2 md:px-3 text-left font-medium whitespace-nowrap">Balance</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {holdersData.map((holder, idx) => (
+                    <tr key={holder.owner || idx} className="border-b border-white/5 hover:bg-white/5 transition-colors">
+                      <td className="py-2 px-2 md:py-2 md:px-3 align-middle">{idx + 1}</td>
+                      <td className="py-2 px-2 md:py-2 md:px-3 font-mono max-w-[160px] md:max-w-none truncate align-middle">
+                        {holder.owner ? (
+                          <>
+                            <span
+                              className={
+                                knownWalletLabels[holder.owner] === 'Epicentral DAO Staked Tokens'
+                                  ? 'inline-block w-2 h-2 rounded-full bg-green-400 mr-2 align-middle shadow-[0_0_6px_#22c55e]'
+                                  : knownWalletLabels[holder.owner]
+                                  ? 'inline-block w-2 h-2 rounded-full bg-blue-400 mr-2 align-middle shadow-[0_0_6px_#60a5fa]'
+                                  : 'inline-block w-2 h-2 rounded-full bg-green-400 mr-2 align-middle shadow-[0_0_6px_#22c55e]'
+                              }
+                              title={
+                                knownWalletLabels[holder.owner] === 'Epicentral DAO Staked Tokens' || !knownWalletLabels[holder.owner]
+                                  ? 'User Held'
+                                  : 'Program/Contract Held'
+                              }
+                            />
+                            {knownWalletLabels[holder.owner] ? (
+                              <Tooltip>
+                                <TooltipTrigger asChild>
+                                  <span className="inline-flex items-center gap-1">
+                                    <a
+                                      href={`https://solscan.io/account/${holder.owner}`}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="text-[#4a85ff] hover:underline"
+                                    >
+                                      <span className="ml-0 text-xs text-white/60 bg-white/10 px-2 py-0.5 rounded cursor-pointer border-b border-dotted border-white/40" style={{ textDecoration: 'none' }}>
+                                        {knownWalletLabels[holder.owner]}
+                                      </span>
+                                    </a>
+                                    <span
+                                      className="ml-1 cursor-pointer"
+                                      onClick={(e) => { e.stopPropagation(); copyHolderAddress(holder.owner); }}
+                                    >
+                                      {copiedHolder === holder.owner ? (
+                                        <Check className="h-3 w-3 text-green-400" />
+                                      ) : (
+                                        <Tooltip>
+                                          <TooltipTrigger asChild>
+                                            <span><Copy className="h-3 w-3 text-white/60 hover:text-white/90 transition-colors" /></span>
+                                          </TooltipTrigger>
+                                          <TooltipContent>
+                                            <span>Copy address</span>
+                                          </TooltipContent>
+                                        </Tooltip>
+                                      )}
+                                    </span>
+                                  </span>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                  <span className="font-mono text-xs">{holder.owner}</span>
+                                </TooltipContent>
+                              </Tooltip>
+                            ) : (
+                              <span className="inline-flex items-center gap-1">
+                                <a
+                                  href={`https://solscan.io/account/${holder.owner}`}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="text-[#4a85ff] hover:underline"
+                                >
+                                  {holder.owner.slice(0, 4)}...{holder.owner.slice(-4)}
+                                </a>
+                                <span
+                                  className="ml-1 cursor-pointer"
+                                  onClick={(e) => { e.stopPropagation(); copyHolderAddress(holder.owner); }}
+                                >
+                                  {copiedHolder === holder.owner ? (
+                                    <Check className="h-3 w-3 text-green-400" />
+                                  ) : (
+                                    <Tooltip>
+                                      <TooltipTrigger asChild>
+                                        <span><Copy className="h-3 w-3 text-white/60 hover:text-white/90 transition-colors" /></span>
+                                      </TooltipTrigger>
+                                      <TooltipContent>
+                                        <span>Copy address</span>
+                                      </TooltipContent>
+                                    </Tooltip>
+                                  )}
+                                </span>
+                              </span>
+                            )}
+                          </>
+                        ) : (
+                          <span className="text-white/50">N/A</span>
+                        )}
+                      </td>
+                      <td className="py-2 px-2 md:py-2 md:px-3 align-middle">{holder.amount !== undefined ? (Math.round(Number(holder.amount) / 1e9 * 100) / 100).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' LABS' : 'N/A'}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            <p className="text-white/70 text-sm">No holder data available.</p>
+          )}
         </div>
-      </TooltipProvider>
-    );
-  } 
+
+        {/* Modern Legend/Key for Top Holders */}
+        <div className="mt-3 flex flex-wrap gap-4 items-center text-xs md:text-sm text-white/70">
+          <span className="inline-flex items-center gap-1">
+            <span className="inline-block w-3 h-3 rounded-full bg-green-400 shadow-[0_0_8px_#22c55e]"></span>
+            User Held
+            <span className="ml-1 text-white/60">{userHeldPercent !== null ? `(${userHeldPercent}%)` : 'N/A'}</span>
+          </span>
+          <span className="inline-flex items-center gap-1">
+            <span className="inline-block w-3 h-3 rounded-full bg-blue-400 shadow-[0_0_8px_#60a5fa]"></span>
+            Program/Contract Held
+            <span className="ml-1 text-white/60">{programHeldPercent !== null ? `(${programHeldPercent}%)` : 'N/A'}</span>
+          </span>
+        </div>
+      </div>
+    </TooltipProvider>
+  );
+} 

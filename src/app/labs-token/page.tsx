@@ -286,9 +286,6 @@ if (!isMounted) {
     className="bg-black/30 backdrop-blur-md border border-white/10 rounded-xl p-3 md:p-6 lg:p-8 hover:border-white/20 transition-all duration-500 shadow-lg"
   >
     <div className="space-y-8">
-      <h2 className="text-2xl md:text-3xl font-light text-white/90 mb-4 md:mb-12 drop-shadow-[0_0_0.3rem_#ffffff70] text-center">
-        LABS Information
-      </h2>
       <TokenPriceDisplay tokenAddress="LABSh5DTebUcUbEoLzXKCiXFJLecDFiDWiBGUU1GpxR" />
     </div>
   </div>
@@ -363,7 +360,7 @@ if (!isMounted) {
                           boxShadow: `0 0 10px ${item.color}40`
                         }}
                       />
-                      <CardTitle className="text-white/90 text-base md:text-lg">
+                      <CardTitle className="text-white/90 text-base md:text-lg flex items-center gap-2">
                         {item.name === 'Core Team & Investors' ? (
                           <span>{item.name}</span>
                         ) : (
@@ -375,6 +372,9 @@ if (!isMounted) {
                           >
                             {item.name}
                           </a>
+                        )}
+                        {Math.round(calculateUnlockedPercentage(item.name, START_DATE)) === 100 && (
+                          <GreenCheckWithTooltip />
                         )}
                       </CardTitle>
                     </div>
@@ -391,14 +391,14 @@ if (!isMounted) {
                         <div 
                           className="h-full rounded-full transition-all duration-500 relative"
                           style={{ 
-                            width: `${item.value}%`,
+                            width: '100%',
                             backgroundColor: item.color,
                           }}
                         >
                           <div 
-                            className="absolute inset-0 bg-black/50"
+                            className="absolute top-0 bottom-0 right-0 bg-black/50 transition-all duration-500"
                             style={{ 
-                              width: `${calculateLockedPercentage(item.name, START_DATE)}%`,
+                              width: `${Number(calculateLockedPercentage(item.name, START_DATE))}%`,
                             }}
                           />
                         </div>
