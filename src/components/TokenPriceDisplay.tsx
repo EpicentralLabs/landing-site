@@ -76,9 +76,8 @@ export default function TokenPriceDisplay({ tokenAddress }: TokenPriceDisplayPro
       setHoldersLoading(true);
       setHoldersError(null);
       try {
-        // Use Solana RPC to fetch top holders
-        const data = await fetchTopTokenHolders(tokenAddress, 10);
-        // For now, data is [{ owner, total }]. In the future, add governance balances here.
+        // Always fetch for LABS token
+        const data = await fetchTopTokenHolders(labsTokenAddress, 10);
         setHoldersData(data.map(({ owner, total }) => ({ owner, amount: total })));
       } catch (err) {
         setHoldersError(err instanceof Error ? err.message : "Unknown error");
@@ -87,7 +86,7 @@ export default function TokenPriceDisplay({ tokenAddress }: TokenPriceDisplayPro
       }
     };
     fetchHolders();
-  }, [tokenAddress]);
+  }, [labsTokenAddress]);
 
   // Add copy handler for holder address
   const copyHolderAddress = async (address: string) => {
