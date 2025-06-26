@@ -1,6 +1,6 @@
 {
-  "name": "epicentral-website",
-  "version": "0.11.0",
+  "name": "info-website",
+  "version": "0.11.1",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
