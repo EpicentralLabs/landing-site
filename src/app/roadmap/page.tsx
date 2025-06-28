@@ -173,31 +173,6 @@ export default function RoadmapPage() {
               description="Continue building and testing the core protocol: OPX."
               items={[
                 {
-                  type: ItemType.Technical,
-                  text: "Option Programs - Validate Option",
-                  status: StatusChoice.InProgress,
-                },
-                {
-                  type: ItemType.Technical,
-                  text: "OMLP Program(s)",
-                  status: StatusChoice.InProgress,
-                },
-                {
-                  type: ItemType.Technical,
-                  text: "Option Programs - Exercise Option",
-                  status: StatusChoice.InProgress,
-                },
-                {
-                  type: ItemType.Technical,
-                  text: "Option Programs - Create Option",
-                  status: StatusChoice.InProgress,
-                },
-                {
-                  type: ItemType.Technical,
-                  text: "OPX - Option Margin Liquidity Pool (OMLP)",
-                  status: StatusChoice.InProgress,
-                },
-                {
                   type: ItemType.Community,
                   text: "Hire intern to run X/Twitter & Social Media",
                   status: StatusChoice.Completed,
@@ -214,8 +189,18 @@ export default function RoadmapPage() {
                 },
                 {
                   type: ItemType.Community,
-                  text: "Recieve a second round of grants greater than $10k",
+                  text: "Receive a second round of grants greater than $10k",
                   status: StatusChoice.InProgress,
+                },
+                {
+                  type: ItemType.Community,
+                  text: "Implement discord price bot",
+                  status: StatusChoice.Completed,
+                },
+                {
+                  type: ItemType.Technical,
+                  text: "Execute a deal with Hello Moon to create options program for OPX",
+                  status: StatusChoice.Completed,
                 },
                 {
                   type: ItemType.Community,
@@ -225,27 +210,7 @@ export default function RoadmapPage() {
                 {
                   type: ItemType.Community,
                   text: "Host 3 AMA Calls on X/Twitter",
-                  status: StatusChoice.InProgress,
-                },
-                {
-                  type: ItemType.Community,
-                  text: "Determine OPX Protocol Fees",
-                  status: StatusChoice.Todo,
-                },
-                {
-                  type: ItemType.Community,
-                  text: "Host a Competition for OPX",
-                  status: StatusChoice.Todo,
-                },
-                {
-                  type: ItemType.Technical,
-                  text: "OPX - Release for Beta",
-                  status: StatusChoice.Todo,
-                },
-                {
-                  type: ItemType.Technical,
-                  text: "OPX - Devnet Deployment",
-                  status: StatusChoice.InProgress,
+                  status: StatusChoice.Cancelled,
                 },
                 {
                   type: ItemType.Technical,
@@ -263,9 +228,54 @@ export default function RoadmapPage() {
                 description="Teach the Solana Ecosystem about Options, Implement Options into other DeFi Protocols, and more."
                 items={[
                   {
+                  type: ItemType.Technical,
+                  text: "OMLP Program(s)",
+                  status: StatusChoice.InProgress,
+                  },
+                  {
+                  type: ItemType.Technical,
+                  text: "Create DOCS page for landing page",
+                  status: StatusChoice.InProgress,
+                  },
+                  {
+                  type: ItemType.Technical,
+                  text: "Option Programs - Exercise Option",
+                  status: StatusChoice.InProgress,
+                  },
+                  {
+                  type: ItemType.Technical,
+                  text: "Option Programs - Create Option",
+                  status: StatusChoice.InProgress,
+                  },
+                  {
+                  type: ItemType.Technical,
+                  text: "Option Programs - Validate Option",
+                  status: StatusChoice.InProgress,
+                  },
+                  {
+                  type: ItemType.Technical,
+                  text: "OPX - Devnet Deployment",
+                  status: StatusChoice.InProgress,
+                  },
+                  {
+                  type: ItemType.Community,
+                  text: "Determine OPX Protocol Fees",
+                  status: StatusChoice.Todo,
+                  },
+                  {
                     type: ItemType.Technical,
                     text: "OPX - Mainnet Deployment",
                     status: StatusChoice.Todo,
+                  },
+                  {
+                  type: ItemType.Community,
+                  text: "Host a Competition for OPX",
+                  status: StatusChoice.Todo,
+                  },
+                  {
+                  type: ItemType.Technical,
+                  text: "OPX - Release for Beta",
+                  status: StatusChoice.Todo,
                   },
                   {
                     type: ItemType.Community,
@@ -281,6 +291,11 @@ export default function RoadmapPage() {
                     type: ItemType.Technical,
                     text: "Implement Programmable Fee Model via DAO proposals",
                     status: StatusChoice.Todo,
+                  },
+                  {
+                  type: ItemType.Technical,
+                  text: "OPX - Option Margin Liquidity Pool (OMLP)",
+                  status: StatusChoice.InProgress,
                   },
                   {
                     type: ItemType.Technical,
