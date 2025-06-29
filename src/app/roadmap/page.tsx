@@ -209,6 +209,16 @@ export default function RoadmapPage() {
                 },
                 {
                   type: ItemType.Community,
+                  text: "Secure OPX.MARKETS domain for OPX protocol",
+                  status: StatusChoice.Completed,
+                },
+                {
+                  type: ItemType.Community,
+                  text: "Establish DAO as a legal entity -'Epicentral Labs, DAO LLC'text",
+                  status: StatusChoice.Completed,
+                },
+                {
+                  type: ItemType.Community,
                   text: "Host 3 AMA Calls on X/Twitter",
                   status: StatusChoice.Cancelled,
                 },
