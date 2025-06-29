@@ -168,9 +168,9 @@ export default function RoadmapPage() {
 
             <RoadmapCard
               quarter="Q2 2025"
-              title="Collaboration and Establishment"
+              title="Collaboration and Offialization"
               status={StatusChoice.InProgress}
-              description="Officializing Epicentral Labs as a legal entity, and building collaboration with key Solana partners "
+              description="Establishing Epicentral Labs as a legal entity, and building partnerships with key Solana partners "
               items={[
                 {
                   type: ItemType.Community,
@@ -209,7 +209,7 @@ export default function RoadmapPage() {
                 },
                 {
                   type: ItemType.Community,
-                  text: "Establish DAO as a legal entity - Epicentral Labs, DAO LLC",
+                  text: " Set up Epicentral Labs, DAO LLC",
                   status: StatusChoice.Completed,
                 },
                 {
