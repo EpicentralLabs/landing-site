@@ -94,11 +94,6 @@ export default function RoadmapPage() {
                   status: StatusChoice.Completed,
                 },
                 {
-                  type: ItemType.Community,
-                  text: "Collaborated with another Solana Project",
-                  status: StatusChoice.Completed,
-                },
-                {
                   type: ItemType.Technical,
                   text: "Option Pricing Model - OPM(Rust + Typescript)",
                   status: StatusChoice.Completed,
@@ -194,7 +189,7 @@ export default function RoadmapPage() {
                 },
                 {
                   type: ItemType.Technical,
-                  text: "Execute a deal with Hello Moon to create options_program for OPX",
+                  text: "Execute agreement with Hello Moon to create options_program for OPX",
                   status: StatusChoice.Completed,
                 },
                 {
@@ -225,121 +220,109 @@ export default function RoadmapPage() {
               ]}
             />
 
-            <div className="blur-sm">
-              <RoadmapCard
+            <RoadmapCard
               quarter="Q3 2025"
               title="OPX - Solana's Official Options Exchange"
               status={StatusChoice.InProgress}
-              description="Creation and launch of OPX, Solana's first official options exchange, with a focus on community-driven development and adoption."
+              description="Creation and launch of OPX, Solana's first official options exchange"
               items={[
-              {
-              type: ItemType.Technical,
-              text: "OMLP Program(s)",
-              status: StatusChoice.InProgress,
-              },
-              {
-              type: ItemType.Technical,
-              text: "Create DOCS page for landing page",
-              status: StatusChoice.InProgress,
-              },
-              {
-              type: ItemType.Technical,
-              text: "Option Programs - Exercise Option",
-              status: StatusChoice.InProgress,
-              },
-              {
-              type: ItemType.Technical,
-              text: "Option Programs - Create Option",
-              status: StatusChoice.InProgress,
-              },
-              {
-              type: ItemType.Technical,
-              text: "Option Programs - Validate Option",
-              status: StatusChoice.InProgress,
-              },
-              {
-                type: ItemType.Community,
-                text: "Initialize a Bug Bounty Program for OPX",
-                status: StatusChoice.InProgress,
-              },
-              {
-              type: ItemType.Technical,
-              text: "OPX - Devnet Deployment",
-              status: StatusChoice.InProgress,
-              },
-              {
-              type: ItemType.Community,
-              text: "Determine OPX Protocol Fees",
-              status: StatusChoice.Todo,
-              },
-              {
-              type: ItemType.Technical,
-              text: "OPX - Mainnet Deployment",
-              status: StatusChoice.Todo,
-              },
-              {
-              type: ItemType.Community,
-              text: "Host a Competition for OPX",
-              status: StatusChoice.Todo,
-              },
-              {
-              type: ItemType.Technical,
-              text: "OPX - Release for Beta",
-              status: StatusChoice.Todo,
-              },
-              {
-              type: ItemType.Community,
-              text: "Create X/Twitter Marketing Campaign",
-              status: StatusChoice.Todo,
-              },
-              {
-              type: ItemType.Technical,
-              text: "Implement Programmable Fee Model via DAO proposals",
-              status: StatusChoice.Todo,
-              },
-              {
-              type: ItemType.Technical,
-              text: "OPX - Option Margin Liquidity Pool (OMLP)",
-              status: StatusChoice.InProgress,
-              },
-              {
-              type: ItemType.Technical,
-              text: "Integrate Options into other DeFi Protocols (DeFiTuna, Adrena, etc.)",
-              status: StatusChoice.Todo,
-              },
-              {
-              type: ItemType.Technical,
-              text: "Create Trade Leaderboard for OPX",
-              status: StatusChoice.Todo,
-              },
-              {
-              type: ItemType.Technical,
-              text: "SOS SDK - Utilizing Option Pricing Model (OPM)",
-              status: StatusChoice.Todo,
-              },
-              {
-              type: ItemType.Technical,
-              text: "SOS SDK - Option Program CPI",
-              status: StatusChoice.Todo,
-              },
-              {
-              type: ItemType.Technical,
-              text: "SOS SDK - Option Margin Liquidity Pool (OMLP)",
-              status: StatusChoice.Todo,
-              },
-              {
-              type: ItemType.Technical,
-              text: "SOS SDK - Option Pricing Model (OPM)",
-              status: StatusChoice.Todo,
-              },
-              {
-              type: ItemType.Technical,
-              text: "SOS SDK - Option Programs",
-              status: StatusChoice.Todo,
-              },
+                {
+                  type: ItemType.Technical,
+                  text: "OMLP Program(s)",
+                  status: StatusChoice.Todo,
+                },
+                {
+                  type: ItemType.Technical,
+                  text: "Create DOCS page",
+                  status: StatusChoice.InProgress,
+                },
+                {
+                  type: ItemType.Technical,
+                  text: "Option Programs - Create Option",
+                  status: StatusChoice.InProgress,
+                },
+                {
+                  type: ItemType.Technical,
+                  text: "Option Programs - Validate Option",
+                  status: StatusChoice.InProgress,
+                },
+                {
+                  type: ItemType.Community,
+                  text: "Initialize a Bug Bounty Program for OPX",
+                  status: StatusChoice.InProgress,
+                },
+                {
+                  type: ItemType.Technical,
+                  text: "OPX - Devnet Deployment",
+                  status: StatusChoice.InProgress,
+                },
+                {
+                  type: ItemType.Technical,
+                  text: "OPX - Mainnet Deployment",
+                  status: StatusChoice.Todo,
+                },
+                {
+                  type: ItemType.Community,
+                  text: "Host a Competition for OPX",
+                  status: StatusChoice.Todo,
+                },
+                {
+                  type: ItemType.Technical,
+                  text: "OPX - Release for Beta",
+                  status: StatusChoice.Todo,
+                },
+                {
+                  type: ItemType.Community,
+                  text: "Create X/Twitter Marketing Campaign",
+                  status: StatusChoice.Todo,
+                },
+                {
+                  type: ItemType.Technical,
+                  text: "Implement Programmable Fee Model via DAO proposals",
+                  status: StatusChoice.Todo,
+                },
+                {
+                  type: ItemType.Technical,
+                  text: "OPX - Option Margin Liquidity Pool (OMLP)",
+                  status: StatusChoice.Todo,
+                },
+                {
+                  type: ItemType.Technical,
+                  text: "Integrate Options into other DeFi Protocols (DeFiTuna, Adrena, etc.)",
+                  status: StatusChoice.Todo,
+                },
+                {
+                  type: ItemType.Community,
+                  text: "Create Trade Leaderboard for OPX",
+                  status: StatusChoice.Todo,
+                },
+                {
+                  type: ItemType.Technical,
+                  text: "SOS SDK - Utilizing Option Pricing Model (OPM)",
+                  status: StatusChoice.Todo,
+                },
+                {
+                  type: ItemType.Technical,
+                  text: "SOS SDK - Option Program CPI",
+                  status: StatusChoice.Todo,
+                },
+                {
+                  type: ItemType.Technical,
+                  text: "SOS SDK - Option Margin Liquidity Pool (OMLP)",
+                  status: StatusChoice.Todo,
+                },
+                {
+                  type: ItemType.Technical,
+                  text: "SOS SDK - Option Pricing Model (OPM)",
+                  status: StatusChoice.Todo,
+                },
+                {
+                  type: ItemType.Technical,
+                  text: "SOS SDK - Option Programs",
+                  status: StatusChoice.Todo,
+                },
               ]}
-              />
-            </div>
+            />
 
             <div className="blur-sm">
               <RoadmapCard
